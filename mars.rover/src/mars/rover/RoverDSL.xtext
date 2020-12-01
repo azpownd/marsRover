@@ -2,13 +2,6 @@ grammar mars.rover.RoverDSL with org.eclipse.xtext.common.Terminals
 
 generate roverDSL "http://www.rover.mars/RoverDSL"
 
-//Model:
-//	greetings+=Greeting*;
-	
-//Greeting:
-//	'Hello' name=ID '!';
-// test for new commit Jurian 2
-
 Mission:
 	'Mission:' missiontype = MissionType
 	//'Safety:' safetyproperty = STRING // only ON and OFF or more specific?
@@ -26,6 +19,6 @@ Mission:
 
 enum MissionType: AvoidColors | FindColors;
 
-Colors: color = STRING; // Keep string or change to enum???
+Colors: color = STRING;
 
-Sensors: sensor = STRING; // Keep string or change to enum???
+Sensors: sensor = STRING; 
