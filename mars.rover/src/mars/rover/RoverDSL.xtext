@@ -7,7 +7,7 @@ generate roverDSL "http://www.rover.mars/RoverDSL"
 	
 //Greeting:
 //	'Hello' name=ID '!';
-// test for new commit Jurian
+// test for new commit Jurian 2
 
 Mission:
 	'Mission:' missiontype = MissionType
