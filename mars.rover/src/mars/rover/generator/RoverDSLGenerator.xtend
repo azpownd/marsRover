@@ -7,8 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import mars.rover.roverDSL.Greeting
-import mars.rover.roverDSL.Model
+import mars.rover.roverDSL.Mission
 
 /**
  * Generates code from your model files on save.
@@ -18,7 +17,7 @@ import mars.rover.roverDSL.Model
 class RoverDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-			 val root = resource.allContents.head as Model;
+			 val root = resource.allContents.head as Mission;
 			 if (root !== null) {
 				 //var path = "/src/"
 				 fsa.generateFile("master.py", PythonGeneratorM.toText(root))
