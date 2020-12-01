@@ -27,7 +27,7 @@ public class RoverDSLParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "Mission";
 	}
 
 	public RoverDSLGrammarAccess getGrammarAccess() {

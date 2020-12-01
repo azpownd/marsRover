@@ -76,14 +76,19 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
     new RoverDSLSwitch<Adapter>()
     {
       @Override
-      public Adapter caseModel(Model object)
+      public Adapter caseMission(Mission object)
       {
-        return createModelAdapter();
+        return createMissionAdapter();
       }
       @Override
-      public Adapter caseGreeting(Greeting object)
+      public Adapter caseColors(Colors object)
       {
-        return createGreetingAdapter();
+        return createColorsAdapter();
+      }
+      @Override
+      public Adapter caseSensors(Sensors object)
+      {
+        return createSensorsAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -108,31 +113,46 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Model <em>Model</em>}'.
+   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Mission <em>Mission</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see mars.rover.roverDSL.Model
+   * @see mars.rover.roverDSL.Mission
    * @generated
    */
-  public Adapter createModelAdapter()
+  public Adapter createMissionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Greeting <em>Greeting</em>}'.
+   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Colors <em>Colors</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see mars.rover.roverDSL.Greeting
+   * @see mars.rover.roverDSL.Colors
    * @generated
    */
-  public Adapter createGreetingAdapter()
+  public Adapter createColorsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Sensors <em>Sensors</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mars.rover.roverDSL.Sensors
+   * @generated
+   */
+  public Adapter createSensorsAdapter()
   {
     return null;
   }

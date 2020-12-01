@@ -24,22 +24,31 @@ public interface RoverDSLFactory extends EFactory
   RoverDSLFactory eINSTANCE = mars.rover.roverDSL.impl.RoverDSLFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Model</em>'.
+   * Returns a new object of class '<em>Mission</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
+   * @return a new object of class '<em>Mission</em>'.
    * @generated
    */
-  Model createModel();
+  Mission createMission();
 
   /**
-   * Returns a new object of class '<em>Greeting</em>'.
+   * Returns a new object of class '<em>Colors</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Greeting</em>'.
+   * @return a new object of class '<em>Colors</em>'.
    * @generated
    */
-  Greeting createGreeting();
+  Colors createColors();
+
+  /**
+   * Returns a new object of class '<em>Sensors</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sensors</em>'.
+   * @generated
+   */
+  Sensors createSensors();
 
   /**
    * Returns the package supported by this factory.
