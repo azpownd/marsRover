@@ -13,8 +13,8 @@ Mission:
 	'Mission:' missiontype = MissionType
 	//'Safety:' safetyproperty = STRING // only ON and OFF or more specific?
 	'OuterBorder:' border = STRING // optional? (if not given, make default?)
-	'ForwardSpeedPercentage:' forwardspeed = INT // optional? (if not given, make default?)
-	'ReverseSpeedPercentage:' reversespeed = INT // optional? (if not given, make default?)
+	'ForwardSpeed:' forwardspeed = INT // optional? (if not given, make default?) (validation 0-100)
+	'ReverseSpeed:' reversespeed = INT // optional? (if not given, make default?) (validation 0-100)
 	'TurnDirection:' turndirection = STRING // Left or right
 	('Colors:' colorlist += Colors*)?
 	('Sensors:' sensorlist += Sensors*)?

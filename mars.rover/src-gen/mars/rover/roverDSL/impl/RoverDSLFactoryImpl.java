@@ -6,6 +6,7 @@ package mars.rover.roverDSL.impl;
 import mars.rover.roverDSL.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -65,8 +66,9 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
   {
     switch (eClass.getClassifierID())
     {
-      case RoverDSLPackage.MODEL: return createModel();
-      case RoverDSLPackage.GREETING: return createGreeting();
+      case RoverDSLPackage.MISSION: return createMission();
+      case RoverDSLPackage.COLORS: return createColors();
+      case RoverDSLPackage.SENSORS: return createSensors();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -78,10 +80,15 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
    * @generated
    */
   @Override
-  public Model createModel()
+  public Object createFromString(EDataType eDataType, String initialValue)
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    switch (eDataType.getClassifierID())
+    {
+      case RoverDSLPackage.MISSION_TYPE:
+        return createMissionTypeFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
   }
 
   /**
@@ -90,10 +97,73 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
    * @generated
    */
   @Override
-  public Greeting createGreeting()
+  public String convertToString(EDataType eDataType, Object instanceValue)
   {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
+    switch (eDataType.getClassifierID())
+    {
+      case RoverDSLPackage.MISSION_TYPE:
+        return convertMissionTypeToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Mission createMission()
+  {
+    MissionImpl mission = new MissionImpl();
+    return mission;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Colors createColors()
+  {
+    ColorsImpl colors = new ColorsImpl();
+    return colors;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Sensors createSensors()
+  {
+    SensorsImpl sensors = new SensorsImpl();
+    return sensors;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MissionType createMissionTypeFromString(EDataType eDataType, String initialValue)
+  {
+    MissionType result = MissionType.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertMissionTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

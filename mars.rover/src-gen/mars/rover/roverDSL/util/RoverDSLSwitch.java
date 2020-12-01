@@ -73,17 +73,24 @@ public class RoverDSLSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case RoverDSLPackage.MODEL:
+      case RoverDSLPackage.MISSION:
       {
-        Model model = (Model)theEObject;
-        T result = caseModel(model);
+        Mission mission = (Mission)theEObject;
+        T result = caseMission(mission);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RoverDSLPackage.GREETING:
+      case RoverDSLPackage.COLORS:
       {
-        Greeting greeting = (Greeting)theEObject;
-        T result = caseGreeting(greeting);
+        Colors colors = (Colors)theEObject;
+        T result = caseColors(colors);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RoverDSLPackage.SENSORS:
+      {
+        Sensors sensors = (Sensors)theEObject;
+        T result = caseSensors(sensors);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -92,33 +99,49 @@ public class RoverDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Mission</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Mission</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModel(Model object)
+  public T caseMission(Mission object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Greeting</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Colors</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Greeting</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Colors</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGreeting(Greeting object)
+  public T caseColors(Colors object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Sensors</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Sensors</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSensors(Sensors object)
   {
     return null;
   }

@@ -3,15 +3,10 @@
  */
 package mars.rover.generator;
 
-import mars.rover.generator.PythonGeneratorM;
-import mars.rover.generator.PythonGeneratorS;
-import mars.rover.roverDSL.Model;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
-import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -22,11 +17,10 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 public class RoverDSLGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    EObject _head = IteratorExtensions.<EObject>head(resource.getAllContents());
-    final Model root = ((Model) _head);
-    if ((root != null)) {
-      fsa.generateFile("master.py", PythonGeneratorM.toText(root));
-      fsa.generateFile("slave.py", PythonGeneratorS.toText(root));
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nModel cannot be resolved to a type."
+      + "\nThe method toText(Model) from the type PythonGeneratorM refers to the missing type Model"
+      + "\nThe method toText(Model) from the type PythonGeneratorS refers to the missing type Model"
+      + "\n!== cannot be resolved");
   }
 }
