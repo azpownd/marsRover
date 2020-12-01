@@ -2,9 +2,29 @@ grammar mars.rover.RoverDSL with org.eclipse.xtext.common.Terminals
 
 generate roverDSL "http://www.rover.mars/RoverDSL"
 
-Model:
-	greetings+=Greeting*;
+//Model:
+//	greetings+=Greeting*;
 	
-Greeting:
-	'Hello' name=ID '!';
+//Greeting:
+//	'Hello' name=ID '!';
 // test for new commit Jurian
+
+Mission:
+	'Mission:' missiontype = MissionType
+	//'Safety:' safetyproperty = STRING // only ON and OFF or more specific?
+	'OuterBorder:' border = STRING // optional? (if not given, make default?)
+	'ForwardSpeedPercentage:' forwardspeed = INT // optional? (if not given, make default?)
+	'ReverseSpeedPercentage:' reversespeed = INT // optional? (if not given, make default?)
+	'TurnDirection:' turndirection = STRING // Left or right
+	('Colors:' colorlist += Colors*)?
+	('Sensors:' sensorlist += Sensors*)?
+	'End:' terminationcondition = STRING // add validation for types of termination values (based on mission)
+	'FlashingColor:' flashingcolor = STRING // cuz cant reuse color enum right? (when mission is complete)
+	'FinalSentence:' finalsentence = STRING // For robot to say when mission is done (maybe make optional) Maybe change final sentence to song? (validate options)
+;
+
+enum MissionType: AvoidColors | DetectBottle | FindColors;
+
+Colors: color = STRING; // Keep string or change to enum???
+
+Sensors: sensor = STRING; // Keep string or change to enum???
