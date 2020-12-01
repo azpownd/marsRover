@@ -12,18 +12,19 @@ generate roverDSL "http://www.rover.mars/RoverDSL"
 Mission:
 	'Mission:' missiontype = MissionType
 	//'Safety:' safetyproperty = STRING // only ON and OFF or more specific?
-	'OuterBorder:' border = STRING // optional? (if not given, make default?)
-	'ForwardSpeed:' forwardspeed = INT // optional? (if not given, make default?) (validation 0-100)
-	'ReverseSpeed:' reversespeed = INT // optional? (if not given, make default?) (validation 0-100)
-	'TurnDirection:' turndirection = STRING // Left or right
+	('BeginSentence:' beginsentence = STRING)? // For robot to say when mission is start (cuz multiple in a row) Maybe change final sentence to song? (validate options) Optional, default white
+	('OuterBorder:' border = STRING)? // Optional, default white
+	('ForwardSpeed:' forwardspeed = INT)? // Optional, default 50 or smth (validation 0-100)
+	('ReverseSpeed:' reversespeed = INT)? // Optional, default 20 I guess? (validation 0-100)
+	('TurnDirection:' turndirection = INT)? // Optional, default right. (validation -100 to 100?) (left right, etc.) (diff direction for backwrds or nah?)
 	('Colors:' colorlist += Colors*)?
 	('Sensors:' sensorlist += Sensors*)?
 	'End:' terminationcondition = STRING // add validation for types of termination values (based on mission)
-	'FlashingColor:' flashingcolor = STRING // cuz cant reuse color enum right? (when mission is complete)
-	'FinalSentence:' finalsentence = STRING // For robot to say when mission is done (maybe make optional) Maybe change final sentence to song? (validate options)
+	('FlashingColor:' flashingcolor = STRING)? // cuz cant reuse color enum right? (when mission is complete) Optional, default white
+	('FinalSentence:' finalsentence = STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
 ;
 
-enum MissionType: AvoidColors | DetectBottle | FindColors;
+enum MissionType: AvoidColors | FindColors;
 
 Colors: color = STRING; // Keep string or change to enum???
 

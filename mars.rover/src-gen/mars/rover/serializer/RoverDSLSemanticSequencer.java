@@ -73,15 +73,16 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * Constraint:
 	 *     (
 	 *         missiontype=MissionType 
-	 *         border=STRING 
-	 *         forwardspeed=INT 
-	 *         reversespeed=INT 
-	 *         turndirection=STRING 
+	 *         beginsentence=STRING? 
+	 *         border=STRING? 
+	 *         forwardspeed=INT? 
+	 *         reversespeed=INT? 
+	 *         turndirection=INT? 
 	 *         colorlist+=Colors* 
 	 *         sensorlist+=Sensors* 
 	 *         terminationcondition=STRING 
-	 *         flashingcolor=STRING 
-	 *         finalsentence=STRING
+	 *         flashingcolor=STRING? 
+	 *         finalsentence=STRING?
 	 *     )
 	 */
 	protected void sequence_Mission(ISerializationContext context, Mission semanticObject) {

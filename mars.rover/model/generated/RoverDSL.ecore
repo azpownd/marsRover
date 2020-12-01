@@ -3,10 +3,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="roverDSL" nsURI="http://www.rover.mars/RoverDSL" nsPrefix="roverDSL">
   <eClassifiers xsi:type="ecore:EClass" name="Mission">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="missiontype" eType="#//MissionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="beginsentence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="border" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="forwardspeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reversespeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="turndirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="turndirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="colorlist" upperBound="-1"
         eType="#//Colors" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sensorlist" upperBound="-1"
@@ -17,8 +18,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MissionType">
     <eLiterals name="AvoidColors" literal="AvoidColors"/>
-    <eLiterals name="DetectBottle" value="1" literal="DetectBottle"/>
-    <eLiterals name="FindColors" value="2" literal="FindColors"/>
+    <eLiterals name="FindColors" value="1" literal="FindColors"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Colors">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

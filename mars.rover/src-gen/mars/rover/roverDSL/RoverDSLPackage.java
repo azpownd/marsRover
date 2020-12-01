@@ -78,13 +78,22 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__MISSIONTYPE = 0;
 
   /**
+   * The feature id for the '<em><b>Beginsentence</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MISSION__BEGINSENTENCE = 1;
+
+  /**
    * The feature id for the '<em><b>Border</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__BORDER = 1;
+  int MISSION__BORDER = 2;
 
   /**
    * The feature id for the '<em><b>Forwardspeed</b></em>' attribute.
@@ -93,7 +102,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FORWARDSPEED = 2;
+  int MISSION__FORWARDSPEED = 3;
 
   /**
    * The feature id for the '<em><b>Reversespeed</b></em>' attribute.
@@ -102,7 +111,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__REVERSESPEED = 3;
+  int MISSION__REVERSESPEED = 4;
 
   /**
    * The feature id for the '<em><b>Turndirection</b></em>' attribute.
@@ -111,7 +120,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__TURNDIRECTION = 4;
+  int MISSION__TURNDIRECTION = 5;
 
   /**
    * The feature id for the '<em><b>Colorlist</b></em>' containment reference list.
@@ -120,7 +129,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__COLORLIST = 5;
+  int MISSION__COLORLIST = 6;
 
   /**
    * The feature id for the '<em><b>Sensorlist</b></em>' containment reference list.
@@ -129,7 +138,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__SENSORLIST = 6;
+  int MISSION__SENSORLIST = 7;
 
   /**
    * The feature id for the '<em><b>Terminationcondition</b></em>' attribute.
@@ -138,7 +147,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__TERMINATIONCONDITION = 7;
+  int MISSION__TERMINATIONCONDITION = 8;
 
   /**
    * The feature id for the '<em><b>Flashingcolor</b></em>' attribute.
@@ -147,7 +156,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FLASHINGCOLOR = 8;
+  int MISSION__FLASHINGCOLOR = 9;
 
   /**
    * The feature id for the '<em><b>Finalsentence</b></em>' attribute.
@@ -156,7 +165,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FINALSENTENCE = 9;
+  int MISSION__FINALSENTENCE = 10;
 
   /**
    * The number of structural features of the '<em>Mission</em>' class.
@@ -165,7 +174,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION_FEATURE_COUNT = 10;
+  int MISSION_FEATURE_COUNT = 11;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.impl.ColorsImpl <em>Colors</em>}' class.
@@ -254,6 +263,17 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    */
   EAttribute getMission_Missiontype();
+
+  /**
+   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getBeginsentence <em>Beginsentence</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Beginsentence</em>'.
+   * @see mars.rover.roverDSL.Mission#getBeginsentence()
+   * @see #getMission()
+   * @generated
+   */
+  EAttribute getMission_Beginsentence();
 
   /**
    * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getBorder <em>Border</em>}'.
@@ -446,6 +466,14 @@ public interface RoverDSLPackage extends EPackage
      * @generated
      */
     EAttribute MISSION__MISSIONTYPE = eINSTANCE.getMission_Missiontype();
+
+    /**
+     * The meta object literal for the '<em><b>Beginsentence</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MISSION__BEGINSENTENCE = eINSTANCE.getMission_Beginsentence();
 
     /**
      * The meta object literal for the '<em><b>Border</b></em>' attribute feature.
