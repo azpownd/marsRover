@@ -12,6 +12,7 @@
     </genEnums>
     <genClasses ecoreClass="RoverDSL.ecore#//Mission">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/missiontype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/safetyproperty"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/beginsentence"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/border"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/forwardspeed"/>

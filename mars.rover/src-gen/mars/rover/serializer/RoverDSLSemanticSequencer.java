@@ -73,6 +73,7 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * Constraint:
 	 *     (
 	 *         missiontype=MissionType 
+	 *         safetyproperty=STRING? 
 	 *         beginsentence=STRING? 
 	 *         border=STRING? 
 	 *         forwardspeed=INT? 

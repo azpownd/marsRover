@@ -20,14 +20,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected RoverDSLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Mission_ColorsKeyword_7_0_q;
-	protected AbstractElementAlias match_Mission_SensorsKeyword_8_0_q;
+	protected AbstractElementAlias match_Mission_ColorsKeyword_8_0_q;
+	protected AbstractElementAlias match_Mission_SensorsKeyword_9_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (RoverDSLGrammarAccess) access;
-		match_Mission_ColorsKeyword_7_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_7_0());
-		match_Mission_SensorsKeyword_8_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getSensorsKeyword_8_0());
+		match_Mission_ColorsKeyword_8_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_8_0());
+		match_Mission_SensorsKeyword_9_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getSensorsKeyword_9_0());
 	}
 	
 	@Override
@@ -42,10 +42,10 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Mission_ColorsKeyword_7_0_q.equals(syntax))
-				emit_Mission_ColorsKeyword_7_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Mission_SensorsKeyword_8_0_q.equals(syntax))
-				emit_Mission_SensorsKeyword_8_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Mission_ColorsKeyword_8_0_q.equals(syntax))
+				emit_Mission_ColorsKeyword_8_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Mission_SensorsKeyword_9_0_q.equals(syntax))
+				emit_Mission_SensorsKeyword_9_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -65,10 +65,12 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     missiontype=MissionType (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
 	 *     reversespeed=INT (ambiguity) 'Sensors:' sensorlist+=Sensors
 	 *     reversespeed=INT (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
+	 *     safetyproperty=STRING (ambiguity) 'Sensors:' sensorlist+=Sensors
+	 *     safetyproperty=STRING (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
 	 *     turndirection=INT (ambiguity) 'Sensors:' sensorlist+=Sensors
 	 *     turndirection=INT (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
 	 */
-	protected void emit_Mission_ColorsKeyword_7_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_ColorsKeyword_8_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -83,9 +85,10 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     forwardspeed=INT 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
 	 *     missiontype=MissionType 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
 	 *     reversespeed=INT 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
+	 *     safetyproperty=STRING 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
 	 *     turndirection=INT 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
 	 */
-	protected void emit_Mission_SensorsKeyword_8_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_SensorsKeyword_9_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

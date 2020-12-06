@@ -4,7 +4,7 @@ generate roverDSL "http://www.rover.mars/RoverDSL"
 
 Mission:
 	'Mission:' missiontype = MissionType
-	//'Safety:' safetyproperty = STRING // only ON and OFF or more specific?
+	('Safety:' safetyproperty = STRING)? // only ON and OFF or more specific?
 	('BeginSentence:' beginsentence = STRING)? // For robot to say when mission is start (cuz multiple in a row) Maybe change final sentence to song? (validate options) Optional, default white
 	('OuterBorder:' border = STRING)? // Optional, default white
 	('ForwardSpeed:' forwardspeed = INT)? // Optional, default 50 or smth (validation 0-100)

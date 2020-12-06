@@ -101,15 +101,39 @@ ruleMission returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_2='BeginSentence:'
+			otherlv_2='Safety:'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getMissionAccess().getBeginSentenceKeyword_2_0());
+				newLeafNode(otherlv_2, grammarAccess.getMissionAccess().getSafetyKeyword_2_0());
 			}
 			(
 				(
-					lv_beginsentence_3_0=RULE_STRING
+					lv_safetyproperty_3_0=RULE_STRING
 					{
-						newLeafNode(lv_beginsentence_3_0, grammarAccess.getMissionAccess().getBeginsentenceSTRINGTerminalRuleCall_2_1_0());
+						newLeafNode(lv_safetyproperty_3_0, grammarAccess.getMissionAccess().getSafetypropertySTRINGTerminalRuleCall_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMissionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"safetyproperty",
+							lv_safetyproperty_3_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+		)?
+		(
+			otherlv_4='BeginSentence:'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getMissionAccess().getBeginSentenceKeyword_3_0());
+			}
+			(
+				(
+					lv_beginsentence_5_0=RULE_STRING
+					{
+						newLeafNode(lv_beginsentence_5_0, grammarAccess.getMissionAccess().getBeginsentenceSTRINGTerminalRuleCall_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -118,22 +142,22 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"beginsentence",
-							lv_beginsentence_3_0,
+							lv_beginsentence_5_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_4='OuterBorder:'
+			otherlv_6='OuterBorder:'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getMissionAccess().getOuterBorderKeyword_3_0());
+				newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getOuterBorderKeyword_4_0());
 			}
 			(
 				(
-					lv_border_5_0=RULE_STRING
+					lv_border_7_0=RULE_STRING
 					{
-						newLeafNode(lv_border_5_0, grammarAccess.getMissionAccess().getBorderSTRINGTerminalRuleCall_3_1_0());
+						newLeafNode(lv_border_7_0, grammarAccess.getMissionAccess().getBorderSTRINGTerminalRuleCall_4_1_0());
 					}
 					{
 						if ($current==null) {
@@ -142,22 +166,22 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"border",
-							lv_border_5_0,
+							lv_border_7_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_6='ForwardSpeed:'
+			otherlv_8='ForwardSpeed:'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getForwardSpeedKeyword_4_0());
+				newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getForwardSpeedKeyword_5_0());
 			}
 			(
 				(
-					lv_forwardspeed_7_0=RULE_INT
+					lv_forwardspeed_9_0=RULE_INT
 					{
-						newLeafNode(lv_forwardspeed_7_0, grammarAccess.getMissionAccess().getForwardspeedINTTerminalRuleCall_4_1_0());
+						newLeafNode(lv_forwardspeed_9_0, grammarAccess.getMissionAccess().getForwardspeedINTTerminalRuleCall_5_1_0());
 					}
 					{
 						if ($current==null) {
@@ -166,22 +190,22 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"forwardspeed",
-							lv_forwardspeed_7_0,
+							lv_forwardspeed_9_0,
 							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_8='ReverseSpeed:'
+			otherlv_10='ReverseSpeed:'
 			{
-				newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getReverseSpeedKeyword_5_0());
+				newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getReverseSpeedKeyword_6_0());
 			}
 			(
 				(
-					lv_reversespeed_9_0=RULE_INT
+					lv_reversespeed_11_0=RULE_INT
 					{
-						newLeafNode(lv_reversespeed_9_0, grammarAccess.getMissionAccess().getReversespeedINTTerminalRuleCall_5_1_0());
+						newLeafNode(lv_reversespeed_11_0, grammarAccess.getMissionAccess().getReversespeedINTTerminalRuleCall_6_1_0());
 					}
 					{
 						if ($current==null) {
@@ -190,22 +214,22 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"reversespeed",
-							lv_reversespeed_9_0,
+							lv_reversespeed_11_0,
 							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_10='TurnDirection:'
+			otherlv_12='TurnDirection:'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getTurnDirectionKeyword_6_0());
+				newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getTurnDirectionKeyword_7_0());
 			}
 			(
 				(
-					lv_turndirection_11_0=RULE_INT
+					lv_turndirection_13_0=RULE_INT
 					{
-						newLeafNode(lv_turndirection_11_0, grammarAccess.getMissionAccess().getTurndirectionINTTerminalRuleCall_6_1_0());
+						newLeafNode(lv_turndirection_13_0, grammarAccess.getMissionAccess().getTurndirectionINTTerminalRuleCall_7_1_0());
 					}
 					{
 						if ($current==null) {
@@ -214,23 +238,23 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"turndirection",
-							lv_turndirection_11_0,
+							lv_turndirection_13_0,
 							"org.eclipse.xtext.common.Terminals.INT");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_12='Colors:'
+			otherlv_14='Colors:'
 			{
-				newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getColorsKeyword_7_0());
+				newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getColorsKeyword_8_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMissionAccess().getColorlistColorsParserRuleCall_7_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getColorlistColorsParserRuleCall_8_1_0());
 					}
-					lv_colorlist_13_0=ruleColors
+					lv_colorlist_15_0=ruleColors
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMissionRule());
@@ -238,7 +262,7 @@ ruleMission returns [EObject current=null]
 						add(
 							$current,
 							"colorlist",
-							lv_colorlist_13_0,
+							lv_colorlist_15_0,
 							"mars.rover.RoverDSL.Colors");
 						afterParserOrEnumRuleCall();
 					}
@@ -246,16 +270,16 @@ ruleMission returns [EObject current=null]
 			)*
 		)?
 		(
-			otherlv_14='Sensors:'
+			otherlv_16='Sensors:'
 			{
-				newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getSensorsKeyword_8_0());
+				newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getSensorsKeyword_9_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMissionAccess().getSensorlistSensorsParserRuleCall_8_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getSensorlistSensorsParserRuleCall_9_1_0());
 					}
-					lv_sensorlist_15_0=ruleSensors
+					lv_sensorlist_17_0=ruleSensors
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMissionRule());
@@ -263,22 +287,22 @@ ruleMission returns [EObject current=null]
 						add(
 							$current,
 							"sensorlist",
-							lv_sensorlist_15_0,
+							lv_sensorlist_17_0,
 							"mars.rover.RoverDSL.Sensors");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)*
 		)?
-		otherlv_16='End:'
+		otherlv_18='End:'
 		{
-			newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getEndKeyword_9());
+			newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getEndKeyword_10());
 		}
 		(
 			(
-				lv_terminationcondition_17_0=RULE_STRING
+				lv_terminationcondition_19_0=RULE_STRING
 				{
-					newLeafNode(lv_terminationcondition_17_0, grammarAccess.getMissionAccess().getTerminationconditionSTRINGTerminalRuleCall_10_0());
+					newLeafNode(lv_terminationcondition_19_0, grammarAccess.getMissionAccess().getTerminationconditionSTRINGTerminalRuleCall_11_0());
 				}
 				{
 					if ($current==null) {
@@ -287,21 +311,21 @@ ruleMission returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"terminationcondition",
-						lv_terminationcondition_17_0,
+						lv_terminationcondition_19_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
 		(
-			otherlv_18='FlashingColor:'
+			otherlv_20='FlashingColor:'
 			{
-				newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getFlashingColorKeyword_11_0());
+				newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getFlashingColorKeyword_12_0());
 			}
 			(
 				(
-					lv_flashingcolor_19_0=RULE_STRING
+					lv_flashingcolor_21_0=RULE_STRING
 					{
-						newLeafNode(lv_flashingcolor_19_0, grammarAccess.getMissionAccess().getFlashingcolorSTRINGTerminalRuleCall_11_1_0());
+						newLeafNode(lv_flashingcolor_21_0, grammarAccess.getMissionAccess().getFlashingcolorSTRINGTerminalRuleCall_12_1_0());
 					}
 					{
 						if ($current==null) {
@@ -310,22 +334,22 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"flashingcolor",
-							lv_flashingcolor_19_0,
+							lv_flashingcolor_21_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_20='FinalSentence:'
+			otherlv_22='FinalSentence:'
 			{
-				newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getFinalSentenceKeyword_12_0());
+				newLeafNode(otherlv_22, grammarAccess.getMissionAccess().getFinalSentenceKeyword_13_0());
 			}
 			(
 				(
-					lv_finalsentence_21_0=RULE_STRING
+					lv_finalsentence_23_0=RULE_STRING
 					{
-						newLeafNode(lv_finalsentence_21_0, grammarAccess.getMissionAccess().getFinalsentenceSTRINGTerminalRuleCall_12_1_0());
+						newLeafNode(lv_finalsentence_23_0, grammarAccess.getMissionAccess().getFinalsentenceSTRINGTerminalRuleCall_13_1_0());
 					}
 					{
 						if ($current==null) {
@@ -334,7 +358,7 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"finalsentence",
-							lv_finalsentence_21_0,
+							lv_finalsentence_23_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)

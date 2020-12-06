@@ -78,13 +78,22 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__MISSIONTYPE = 0;
 
   /**
+   * The feature id for the '<em><b>Safetyproperty</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MISSION__SAFETYPROPERTY = 1;
+
+  /**
    * The feature id for the '<em><b>Beginsentence</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__BEGINSENTENCE = 1;
+  int MISSION__BEGINSENTENCE = 2;
 
   /**
    * The feature id for the '<em><b>Border</b></em>' attribute.
@@ -93,7 +102,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__BORDER = 2;
+  int MISSION__BORDER = 3;
 
   /**
    * The feature id for the '<em><b>Forwardspeed</b></em>' attribute.
@@ -102,7 +111,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FORWARDSPEED = 3;
+  int MISSION__FORWARDSPEED = 4;
 
   /**
    * The feature id for the '<em><b>Reversespeed</b></em>' attribute.
@@ -111,7 +120,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__REVERSESPEED = 4;
+  int MISSION__REVERSESPEED = 5;
 
   /**
    * The feature id for the '<em><b>Turndirection</b></em>' attribute.
@@ -120,7 +129,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__TURNDIRECTION = 5;
+  int MISSION__TURNDIRECTION = 6;
 
   /**
    * The feature id for the '<em><b>Colorlist</b></em>' containment reference list.
@@ -129,7 +138,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__COLORLIST = 6;
+  int MISSION__COLORLIST = 7;
 
   /**
    * The feature id for the '<em><b>Sensorlist</b></em>' containment reference list.
@@ -138,7 +147,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__SENSORLIST = 7;
+  int MISSION__SENSORLIST = 8;
 
   /**
    * The feature id for the '<em><b>Terminationcondition</b></em>' attribute.
@@ -147,7 +156,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__TERMINATIONCONDITION = 8;
+  int MISSION__TERMINATIONCONDITION = 9;
 
   /**
    * The feature id for the '<em><b>Flashingcolor</b></em>' attribute.
@@ -156,7 +165,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FLASHINGCOLOR = 9;
+  int MISSION__FLASHINGCOLOR = 10;
 
   /**
    * The feature id for the '<em><b>Finalsentence</b></em>' attribute.
@@ -165,7 +174,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FINALSENTENCE = 10;
+  int MISSION__FINALSENTENCE = 11;
 
   /**
    * The number of structural features of the '<em>Mission</em>' class.
@@ -174,7 +183,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION_FEATURE_COUNT = 11;
+  int MISSION_FEATURE_COUNT = 12;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.impl.ColorsImpl <em>Colors</em>}' class.
@@ -263,6 +272,17 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    */
   EAttribute getMission_Missiontype();
+
+  /**
+   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getSafetyproperty <em>Safetyproperty</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Safetyproperty</em>'.
+   * @see mars.rover.roverDSL.Mission#getSafetyproperty()
+   * @see #getMission()
+   * @generated
+   */
+  EAttribute getMission_Safetyproperty();
 
   /**
    * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getBeginsentence <em>Beginsentence</em>}'.
@@ -466,6 +486,14 @@ public interface RoverDSLPackage extends EPackage
      * @generated
      */
     EAttribute MISSION__MISSIONTYPE = eINSTANCE.getMission_Missiontype();
+
+    /**
+     * The meta object literal for the '<em><b>Safetyproperty</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MISSION__SAFETYPROPERTY = eINSTANCE.getMission_Safetyproperty();
 
     /**
      * The meta object literal for the '<em><b>Beginsentence</b></em>' attribute feature.
