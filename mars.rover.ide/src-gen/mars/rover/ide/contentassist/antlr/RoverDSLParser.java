@@ -32,6 +32,8 @@ public class RoverDSLParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, RoverDSLGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getMissionTypeAccess().getAlternatives(), "rule__MissionType__Alternatives");
+			builder.put(grammarAccess.getColorsAccess().getAlternatives(), "rule__Colors__Alternatives");
+			builder.put(grammarAccess.getSafetyAccess().getAlternatives(), "rule__Safety__Alternatives");
 			builder.put(grammarAccess.getMissionAccess().getGroup(), "rule__Mission__Group__0");
 			builder.put(grammarAccess.getMissionAccess().getGroup_2(), "rule__Mission__Group_2__0");
 			builder.put(grammarAccess.getMissionAccess().getGroup_3(), "rule__Mission__Group_3__0");
@@ -45,18 +47,16 @@ public class RoverDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMissionAccess().getGroup_13(), "rule__Mission__Group_13__0");
 			builder.put(grammarAccess.getMissionAccess().getMissiontypeAssignment_1(), "rule__Mission__MissiontypeAssignment_1");
 			builder.put(grammarAccess.getMissionAccess().getSafetypropertyAssignment_2_1(), "rule__Mission__SafetypropertyAssignment_2_1");
-			builder.put(grammarAccess.getMissionAccess().getBeginsentenceAssignment_3_1(), "rule__Mission__BeginsentenceAssignment_3_1");
-			builder.put(grammarAccess.getMissionAccess().getBorderAssignment_4_1(), "rule__Mission__BorderAssignment_4_1");
-			builder.put(grammarAccess.getMissionAccess().getForwardspeedAssignment_5_1(), "rule__Mission__ForwardspeedAssignment_5_1");
-			builder.put(grammarAccess.getMissionAccess().getReversespeedAssignment_6_1(), "rule__Mission__ReversespeedAssignment_6_1");
-			builder.put(grammarAccess.getMissionAccess().getTurndirectionAssignment_7_1(), "rule__Mission__TurndirectionAssignment_7_1");
-			builder.put(grammarAccess.getMissionAccess().getColorlistAssignment_8_1(), "rule__Mission__ColorlistAssignment_8_1");
-			builder.put(grammarAccess.getMissionAccess().getSensorlistAssignment_9_1(), "rule__Mission__SensorlistAssignment_9_1");
+			builder.put(grammarAccess.getMissionAccess().getLakelistAssignment_3_1(), "rule__Mission__LakelistAssignment_3_1");
+			builder.put(grammarAccess.getMissionAccess().getBeginsentenceAssignment_4_1(), "rule__Mission__BeginsentenceAssignment_4_1");
+			builder.put(grammarAccess.getMissionAccess().getBorderAssignment_5_1(), "rule__Mission__BorderAssignment_5_1");
+			builder.put(grammarAccess.getMissionAccess().getForwardspeedAssignment_6_1(), "rule__Mission__ForwardspeedAssignment_6_1");
+			builder.put(grammarAccess.getMissionAccess().getReversespeedAssignment_7_1(), "rule__Mission__ReversespeedAssignment_7_1");
+			builder.put(grammarAccess.getMissionAccess().getTurndirectionAssignment_8_1(), "rule__Mission__TurndirectionAssignment_8_1");
+			builder.put(grammarAccess.getMissionAccess().getColorlistAssignment_9_1(), "rule__Mission__ColorlistAssignment_9_1");
 			builder.put(grammarAccess.getMissionAccess().getTerminationconditionAssignment_11(), "rule__Mission__TerminationconditionAssignment_11");
 			builder.put(grammarAccess.getMissionAccess().getFlashingcolorAssignment_12_1(), "rule__Mission__FlashingcolorAssignment_12_1");
 			builder.put(grammarAccess.getMissionAccess().getFinalsentenceAssignment_13_1(), "rule__Mission__FinalsentenceAssignment_13_1");
-			builder.put(grammarAccess.getColorsAccess().getColorAssignment(), "rule__Colors__ColorAssignment");
-			builder.put(grammarAccess.getSensorsAccess().getSensorAssignment(), "rule__Sensors__SensorAssignment");
 		}
 	}
 	
