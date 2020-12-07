@@ -5,10 +5,8 @@ package mars.rover.serializer;
 
 import com.google.inject.Inject;
 import java.util.Set;
-import mars.rover.roverDSL.Colors;
 import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.RoverDSLPackage;
-import mars.rover.roverDSL.Sensors;
 import mars.rover.services.RoverDSLGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -16,9 +14,7 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
-import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -34,14 +30,8 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == RoverDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case RoverDSLPackage.COLORS:
-				sequence_Colors(context, (Colors) semanticObject); 
-				return; 
 			case RoverDSLPackage.MISSION:
 				sequence_Mission(context, (Mission) semanticObject); 
-				return; 
-			case RoverDSLPackage.SENSORS:
-				sequence_Sensors(context, (Sensors) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -50,62 +40,26 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
-	 *     Colors returns Colors
-	 *
-	 * Constraint:
-	 *     color=STRING
-	 */
-	protected void sequence_Colors(ISerializationContext context, Colors semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, RoverDSLPackage.Literals.COLORS__COLOR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RoverDSLPackage.Literals.COLORS__COLOR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getColorsAccess().getColorSTRINGTerminalRuleCall_0(), semanticObject.getColor());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Mission returns Mission
 	 *
 	 * Constraint:
 	 *     (
 	 *         missiontype=MissionType 
-	 *         safetyproperty=STRING? 
+	 *         safetyproperty=Safety? 
+	 *         lakelist+=Colors* 
 	 *         beginsentence=STRING? 
-	 *         border=STRING? 
+	 *         border=Colors? 
 	 *         forwardspeed=INT? 
 	 *         reversespeed=INT? 
 	 *         turndirection=INT? 
 	 *         colorlist+=Colors* 
-	 *         sensorlist+=Sensors* 
 	 *         terminationcondition=STRING 
-	 *         flashingcolor=STRING? 
+	 *         flashingcolor=Colors? 
 	 *         finalsentence=STRING?
 	 *     )
 	 */
 	protected void sequence_Mission(ISerializationContext context, Mission semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Sensors returns Sensors
-	 *
-	 * Constraint:
-	 *     sensor=STRING
-	 */
-	protected void sequence_Sensors(ISerializationContext context, Sensors semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, RoverDSLPackage.Literals.SENSORS__SENSOR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RoverDSLPackage.Literals.SENSORS__SENSOR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSensorsAccess().getSensorSTRINGTerminalRuleCall_0(), semanticObject.getSensor());
-		feeder.finish();
 	}
 	
 	

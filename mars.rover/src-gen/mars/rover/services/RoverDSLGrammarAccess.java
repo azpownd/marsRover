@@ -33,59 +33,60 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cSafetyKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cSafetypropertyAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSafetypropertySTRINGTerminalRuleCall_2_1_0 = (RuleCall)cSafetypropertyAssignment_2_1.eContents().get(0);
+		private final RuleCall cSafetypropertySafetyEnumRuleCall_2_1_0 = (RuleCall)cSafetypropertyAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cBeginSentenceKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cBeginsentenceAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cBeginsentenceSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cBeginsentenceAssignment_3_1.eContents().get(0);
+		private final Keyword cLakeColorsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cLakelistAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cLakelistColorsEnumRuleCall_3_1_0 = (RuleCall)cLakelistAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cOuterBorderKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cBorderAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cBorderSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cBorderAssignment_4_1.eContents().get(0);
+		private final Keyword cBeginSentenceKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cBeginsentenceAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cBeginsentenceSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cBeginsentenceAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cForwardSpeedKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cForwardspeedAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cForwardspeedINTTerminalRuleCall_5_1_0 = (RuleCall)cForwardspeedAssignment_5_1.eContents().get(0);
+		private final Keyword cOuterBorderKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cBorderAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cBorderColorsEnumRuleCall_5_1_0 = (RuleCall)cBorderAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cReverseSpeedKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cReversespeedAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cReversespeedINTTerminalRuleCall_6_1_0 = (RuleCall)cReversespeedAssignment_6_1.eContents().get(0);
+		private final Keyword cForwardSpeedKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cForwardspeedAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cForwardspeedINTTerminalRuleCall_6_1_0 = (RuleCall)cForwardspeedAssignment_6_1.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cTurnDirectionKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cTurndirectionAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cTurndirectionINTTerminalRuleCall_7_1_0 = (RuleCall)cTurndirectionAssignment_7_1.eContents().get(0);
+		private final Keyword cReverseSpeedKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cReversespeedAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cReversespeedINTTerminalRuleCall_7_1_0 = (RuleCall)cReversespeedAssignment_7_1.eContents().get(0);
 		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Keyword cColorsKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Assignment cColorlistAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
-		private final RuleCall cColorlistColorsParserRuleCall_8_1_0 = (RuleCall)cColorlistAssignment_8_1.eContents().get(0);
+		private final Keyword cTurnDirectionKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cTurndirectionAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cTurndirectionINTTerminalRuleCall_8_1_0 = (RuleCall)cTurndirectionAssignment_8_1.eContents().get(0);
 		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
-		private final Keyword cSensorsKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
-		private final Assignment cSensorlistAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
-		private final RuleCall cSensorlistSensorsParserRuleCall_9_1_0 = (RuleCall)cSensorlistAssignment_9_1.eContents().get(0);
+		private final Keyword cColorsKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Assignment cColorlistAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
+		private final RuleCall cColorlistColorsEnumRuleCall_9_1_0 = (RuleCall)cColorlistAssignment_9_1.eContents().get(0);
 		private final Keyword cEndKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Assignment cTerminationconditionAssignment_11 = (Assignment)cGroup.eContents().get(11);
 		private final RuleCall cTerminationconditionSTRINGTerminalRuleCall_11_0 = (RuleCall)cTerminationconditionAssignment_11.eContents().get(0);
 		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
 		private final Keyword cFlashingColorKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
 		private final Assignment cFlashingcolorAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
-		private final RuleCall cFlashingcolorSTRINGTerminalRuleCall_12_1_0 = (RuleCall)cFlashingcolorAssignment_12_1.eContents().get(0);
+		private final RuleCall cFlashingcolorColorsEnumRuleCall_12_1_0 = (RuleCall)cFlashingcolorAssignment_12_1.eContents().get(0);
 		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
 		private final Keyword cFinalSentenceKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
 		private final Assignment cFinalsentenceAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
 		private final RuleCall cFinalsentenceSTRINGTerminalRuleCall_13_1_0 = (RuleCall)cFinalsentenceAssignment_13_1.eContents().get(0);
 		
 		//Mission:
-		//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=STRING)? ('BeginSentence:' beginsentence=STRING)?
-		//	('OuterBorder:' border=STRING)? ('ForwardSpeed:' forwardspeed=INT)? ('ReverseSpeed:' reversespeed=INT)?
-		//	('TurnDirection:' turndirection=INT)? ('Colors:' colorlist+=Colors*)? ('Sensors:' sensorlist+=Sensors*)?
-		//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=STRING)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
+		//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
+		//	('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' border=Colors)? ('ForwardSpeed:' forwardspeed=INT)?
+		//	('ReverseSpeed:' reversespeed=INT)? ('TurnDirection:' turndirection=INT)? ('Colors:' colorlist+=Colors*)?
+		//	//('Sensors:' sensorlist += Sensors*)?
+		//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Colors)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Mission:' missiontype=MissionType ('Safety:' safetyproperty=STRING)? ('BeginSentence:' beginsentence=STRING)?
-		//('OuterBorder:' border=STRING)? ('ForwardSpeed:' forwardspeed=INT)? ('ReverseSpeed:' reversespeed=INT)?
-		//('TurnDirection:' turndirection=INT)? ('Colors:' colorlist+=Colors*)? ('Sensors:' sensorlist+=Sensors*)? 'End:'
-		//terminationcondition=STRING ('FlashingColor:' flashingcolor=STRING)? ('FinalSentence:' finalsentence=STRING)?
+		//'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
+		//('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' border=Colors)? ('ForwardSpeed:' forwardspeed=INT)?
+		//('ReverseSpeed:' reversespeed=INT)? ('TurnDirection:' turndirection=INT)? ('Colors:' colorlist+=Colors*)? //('Sensors:' sensorlist += Sensors*)?
+		//'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Colors)? ('FinalSentence:' finalsentence=STRING)?
 		public Group getGroup() { return cGroup; }
 		
 		//'Mission:'
@@ -97,102 +98,103 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//MissionType
 		public RuleCall getMissiontypeMissionTypeEnumRuleCall_1_0() { return cMissiontypeMissionTypeEnumRuleCall_1_0; }
 		
-		//('Safety:' safetyproperty=STRING)?
+		//('Safety:' safetyproperty=Safety)?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'Safety:'
 		public Keyword getSafetyKeyword_2_0() { return cSafetyKeyword_2_0; }
 		
-		//safetyproperty=STRING
+		//safetyproperty=Safety
 		public Assignment getSafetypropertyAssignment_2_1() { return cSafetypropertyAssignment_2_1; }
 		
-		//STRING
-		public RuleCall getSafetypropertySTRINGTerminalRuleCall_2_1_0() { return cSafetypropertySTRINGTerminalRuleCall_2_1_0; }
+		//Safety
+		public RuleCall getSafetypropertySafetyEnumRuleCall_2_1_0() { return cSafetypropertySafetyEnumRuleCall_2_1_0; }
 		
-		//('BeginSentence:' beginsentence=STRING)?
+		//('LakeColors:' lakelist+=Colors*)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'BeginSentence:'
-		public Keyword getBeginSentenceKeyword_3_0() { return cBeginSentenceKeyword_3_0; }
+		//'LakeColors:'
+		public Keyword getLakeColorsKeyword_3_0() { return cLakeColorsKeyword_3_0; }
 		
-		//beginsentence=STRING
-		public Assignment getBeginsentenceAssignment_3_1() { return cBeginsentenceAssignment_3_1; }
-		
-		//STRING
-		public RuleCall getBeginsentenceSTRINGTerminalRuleCall_3_1_0() { return cBeginsentenceSTRINGTerminalRuleCall_3_1_0; }
-		
-		//('OuterBorder:' border=STRING)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'OuterBorder:'
-		public Keyword getOuterBorderKeyword_4_0() { return cOuterBorderKeyword_4_0; }
-		
-		//border=STRING
-		public Assignment getBorderAssignment_4_1() { return cBorderAssignment_4_1; }
-		
-		//STRING
-		public RuleCall getBorderSTRINGTerminalRuleCall_4_1_0() { return cBorderSTRINGTerminalRuleCall_4_1_0; }
-		
-		//('ForwardSpeed:' forwardspeed=INT)?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//'ForwardSpeed:'
-		public Keyword getForwardSpeedKeyword_5_0() { return cForwardSpeedKeyword_5_0; }
-		
-		//forwardspeed=INT
-		public Assignment getForwardspeedAssignment_5_1() { return cForwardspeedAssignment_5_1; }
-		
-		//INT
-		public RuleCall getForwardspeedINTTerminalRuleCall_5_1_0() { return cForwardspeedINTTerminalRuleCall_5_1_0; }
-		
-		//('ReverseSpeed:' reversespeed=INT)?
-		public Group getGroup_6() { return cGroup_6; }
-		
-		//'ReverseSpeed:'
-		public Keyword getReverseSpeedKeyword_6_0() { return cReverseSpeedKeyword_6_0; }
-		
-		//reversespeed=INT
-		public Assignment getReversespeedAssignment_6_1() { return cReversespeedAssignment_6_1; }
-		
-		//INT
-		public RuleCall getReversespeedINTTerminalRuleCall_6_1_0() { return cReversespeedINTTerminalRuleCall_6_1_0; }
-		
-		//('TurnDirection:' turndirection=INT)?
-		public Group getGroup_7() { return cGroup_7; }
-		
-		//'TurnDirection:'
-		public Keyword getTurnDirectionKeyword_7_0() { return cTurnDirectionKeyword_7_0; }
-		
-		//turndirection=INT
-		public Assignment getTurndirectionAssignment_7_1() { return cTurndirectionAssignment_7_1; }
-		
-		//INT
-		public RuleCall getTurndirectionINTTerminalRuleCall_7_1_0() { return cTurndirectionINTTerminalRuleCall_7_1_0; }
-		
-		//('Colors:' colorlist+=Colors*)?
-		public Group getGroup_8() { return cGroup_8; }
-		
-		//'Colors:'
-		public Keyword getColorsKeyword_8_0() { return cColorsKeyword_8_0; }
-		
-		//colorlist+=Colors*
-		public Assignment getColorlistAssignment_8_1() { return cColorlistAssignment_8_1; }
+		//lakelist+=Colors*
+		public Assignment getLakelistAssignment_3_1() { return cLakelistAssignment_3_1; }
 		
 		//Colors
-		public RuleCall getColorlistColorsParserRuleCall_8_1_0() { return cColorlistColorsParserRuleCall_8_1_0; }
+		public RuleCall getLakelistColorsEnumRuleCall_3_1_0() { return cLakelistColorsEnumRuleCall_3_1_0; }
 		
-		//('Sensors:' sensorlist+=Sensors*)?
+		//('BeginSentence:' beginsentence=STRING)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'BeginSentence:'
+		public Keyword getBeginSentenceKeyword_4_0() { return cBeginSentenceKeyword_4_0; }
+		
+		//beginsentence=STRING
+		public Assignment getBeginsentenceAssignment_4_1() { return cBeginsentenceAssignment_4_1; }
+		
+		//STRING
+		public RuleCall getBeginsentenceSTRINGTerminalRuleCall_4_1_0() { return cBeginsentenceSTRINGTerminalRuleCall_4_1_0; }
+		
+		//('OuterBorder:' border=Colors)?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//'OuterBorder:'
+		public Keyword getOuterBorderKeyword_5_0() { return cOuterBorderKeyword_5_0; }
+		
+		//border=Colors
+		public Assignment getBorderAssignment_5_1() { return cBorderAssignment_5_1; }
+		
+		//Colors
+		public RuleCall getBorderColorsEnumRuleCall_5_1_0() { return cBorderColorsEnumRuleCall_5_1_0; }
+		
+		//('ForwardSpeed:' forwardspeed=INT)?
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//'ForwardSpeed:'
+		public Keyword getForwardSpeedKeyword_6_0() { return cForwardSpeedKeyword_6_0; }
+		
+		//forwardspeed=INT
+		public Assignment getForwardspeedAssignment_6_1() { return cForwardspeedAssignment_6_1; }
+		
+		//INT
+		public RuleCall getForwardspeedINTTerminalRuleCall_6_1_0() { return cForwardspeedINTTerminalRuleCall_6_1_0; }
+		
+		//('ReverseSpeed:' reversespeed=INT)?
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//'ReverseSpeed:'
+		public Keyword getReverseSpeedKeyword_7_0() { return cReverseSpeedKeyword_7_0; }
+		
+		//reversespeed=INT
+		public Assignment getReversespeedAssignment_7_1() { return cReversespeedAssignment_7_1; }
+		
+		//INT
+		public RuleCall getReversespeedINTTerminalRuleCall_7_1_0() { return cReversespeedINTTerminalRuleCall_7_1_0; }
+		
+		//('TurnDirection:' turndirection=INT)?
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//'TurnDirection:'
+		public Keyword getTurnDirectionKeyword_8_0() { return cTurnDirectionKeyword_8_0; }
+		
+		//turndirection=INT
+		public Assignment getTurndirectionAssignment_8_1() { return cTurndirectionAssignment_8_1; }
+		
+		//INT
+		public RuleCall getTurndirectionINTTerminalRuleCall_8_1_0() { return cTurndirectionINTTerminalRuleCall_8_1_0; }
+		
+		//('Colors:' colorlist+=Colors*)?
 		public Group getGroup_9() { return cGroup_9; }
 		
-		//'Sensors:'
-		public Keyword getSensorsKeyword_9_0() { return cSensorsKeyword_9_0; }
+		//'Colors:'
+		public Keyword getColorsKeyword_9_0() { return cColorsKeyword_9_0; }
 		
-		//sensorlist+=Sensors*
-		public Assignment getSensorlistAssignment_9_1() { return cSensorlistAssignment_9_1; }
+		//colorlist+=Colors*
+		public Assignment getColorlistAssignment_9_1() { return cColorlistAssignment_9_1; }
 		
-		//Sensors
-		public RuleCall getSensorlistSensorsParserRuleCall_9_1_0() { return cSensorlistSensorsParserRuleCall_9_1_0; }
+		//Colors
+		public RuleCall getColorlistColorsEnumRuleCall_9_1_0() { return cColorlistColorsEnumRuleCall_9_1_0; }
 		
+		////('Sensors:' sensorlist += Sensors*)?
 		//'End:'
 		public Keyword getEndKeyword_10() { return cEndKeyword_10; }
 		
@@ -202,17 +204,17 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//STRING
 		public RuleCall getTerminationconditionSTRINGTerminalRuleCall_11_0() { return cTerminationconditionSTRINGTerminalRuleCall_11_0; }
 		
-		//('FlashingColor:' flashingcolor=STRING)?
+		//('FlashingColor:' flashingcolor=Colors)?
 		public Group getGroup_12() { return cGroup_12; }
 		
 		//'FlashingColor:'
 		public Keyword getFlashingColorKeyword_12_0() { return cFlashingColorKeyword_12_0; }
 		
-		//flashingcolor=STRING
+		//flashingcolor=Colors
 		public Assignment getFlashingcolorAssignment_12_1() { return cFlashingcolorAssignment_12_1; }
 		
-		//STRING
-		public RuleCall getFlashingcolorSTRINGTerminalRuleCall_12_1_0() { return cFlashingcolorSTRINGTerminalRuleCall_12_1_0; }
+		//Colors
+		public RuleCall getFlashingcolorColorsEnumRuleCall_12_1_0() { return cFlashingcolorColorsEnumRuleCall_12_1_0; }
 		
 		//('FinalSentence:' finalsentence=STRING)?
 		public Group getGroup_13() { return cGroup_13; }
@@ -225,36 +227,6 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//STRING
 		public RuleCall getFinalsentenceSTRINGTerminalRuleCall_13_1_0() { return cFinalsentenceSTRINGTerminalRuleCall_13_1_0; }
-	}
-	public class ColorsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Colors");
-		private final Assignment cColorAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cColorSTRINGTerminalRuleCall_0 = (RuleCall)cColorAssignment.eContents().get(0);
-		
-		//Colors:
-		//	color=STRING;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//color=STRING
-		public Assignment getColorAssignment() { return cColorAssignment; }
-		
-		//STRING
-		public RuleCall getColorSTRINGTerminalRuleCall_0() { return cColorSTRINGTerminalRuleCall_0; }
-	}
-	public class SensorsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Sensors");
-		private final Assignment cSensorAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cSensorSTRINGTerminalRuleCall_0 = (RuleCall)cSensorAssignment.eContents().get(0);
-		
-		//Sensors:
-		//	sensor=STRING;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//sensor=STRING
-		public Assignment getSensorAssignment() { return cSensorAssignment; }
-		
-		//STRING
-		public RuleCall getSensorSTRINGTerminalRuleCall_0() { return cSensorSTRINGTerminalRuleCall_0; }
 	}
 	
 	public class MissionTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -284,11 +256,97 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//"FindColors"
 		public Keyword getFindColorsFindColorsKeyword_1_0() { return cFindColorsFindColorsKeyword_1_0; }
 	}
+	public class ColorsElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Colors");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cWhiteEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cWhiteWhiteKeyword_0_0 = (Keyword)cWhiteEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cRedEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cRedRedKeyword_1_0 = (Keyword)cRedEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cBlueEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cBlueBlueKeyword_2_0 = (Keyword)cBlueEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cYellowEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cYellowYellowKeyword_3_0 = (Keyword)cYellowEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cBlackEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cBlackBlackKeyword_4_0 = (Keyword)cBlackEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cOrangeEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cOrangeOrangeKeyword_5_0 = (Keyword)cOrangeEnumLiteralDeclaration_5.eContents().get(0);
+		
+		//enum Colors:
+		//	White | Red | Blue | Yellow | Black | Orange;
+		public EnumRule getRule() { return rule; }
+		
+		//White | Red | Blue | Yellow | Black | Orange
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//White
+		public EnumLiteralDeclaration getWhiteEnumLiteralDeclaration_0() { return cWhiteEnumLiteralDeclaration_0; }
+		
+		//"White"
+		public Keyword getWhiteWhiteKeyword_0_0() { return cWhiteWhiteKeyword_0_0; }
+		
+		//Red
+		public EnumLiteralDeclaration getRedEnumLiteralDeclaration_1() { return cRedEnumLiteralDeclaration_1; }
+		
+		//"Red"
+		public Keyword getRedRedKeyword_1_0() { return cRedRedKeyword_1_0; }
+		
+		//Blue
+		public EnumLiteralDeclaration getBlueEnumLiteralDeclaration_2() { return cBlueEnumLiteralDeclaration_2; }
+		
+		//"Blue"
+		public Keyword getBlueBlueKeyword_2_0() { return cBlueBlueKeyword_2_0; }
+		
+		//Yellow
+		public EnumLiteralDeclaration getYellowEnumLiteralDeclaration_3() { return cYellowEnumLiteralDeclaration_3; }
+		
+		//"Yellow"
+		public Keyword getYellowYellowKeyword_3_0() { return cYellowYellowKeyword_3_0; }
+		
+		//Black
+		public EnumLiteralDeclaration getBlackEnumLiteralDeclaration_4() { return cBlackEnumLiteralDeclaration_4; }
+		
+		//"Black"
+		public Keyword getBlackBlackKeyword_4_0() { return cBlackBlackKeyword_4_0; }
+		
+		//Orange
+		public EnumLiteralDeclaration getOrangeEnumLiteralDeclaration_5() { return cOrangeEnumLiteralDeclaration_5; }
+		
+		//"Orange"
+		public Keyword getOrangeOrangeKeyword_5_0() { return cOrangeOrangeKeyword_5_0; }
+	}
+	public class SafetyElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Safety");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cOnEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cOnOnKeyword_0_0 = (Keyword)cOnEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cOffEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cOffOffKeyword_1_0 = (Keyword)cOffEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum Safety:
+		//	On | Off;
+		public EnumRule getRule() { return rule; }
+		
+		//On | Off
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//On
+		public EnumLiteralDeclaration getOnEnumLiteralDeclaration_0() { return cOnEnumLiteralDeclaration_0; }
+		
+		//"On"
+		public Keyword getOnOnKeyword_0_0() { return cOnOnKeyword_0_0; }
+		
+		//Off
+		public EnumLiteralDeclaration getOffEnumLiteralDeclaration_1() { return cOffEnumLiteralDeclaration_1; }
+		
+		//"Off"
+		public Keyword getOffOffKeyword_1_0() { return cOffOffKeyword_1_0; }
+	}
 	
 	private final MissionElements pMission;
 	private final MissionTypeElements eMissionType;
-	private final ColorsElements pColors;
-	private final SensorsElements pSensors;
+	private final ColorsElements eColors;
+	private final SafetyElements eSafety;
 	
 	private final Grammar grammar;
 	
@@ -301,8 +359,8 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.gaTerminals = gaTerminals;
 		this.pMission = new MissionElements();
 		this.eMissionType = new MissionTypeElements();
-		this.pColors = new ColorsElements();
-		this.pSensors = new SensorsElements();
+		this.eColors = new ColorsElements();
+		this.eSafety = new SafetyElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -333,10 +391,11 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 
 	
 	//Mission:
-	//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=STRING)? ('BeginSentence:' beginsentence=STRING)?
-	//	('OuterBorder:' border=STRING)? ('ForwardSpeed:' forwardspeed=INT)? ('ReverseSpeed:' reversespeed=INT)?
-	//	('TurnDirection:' turndirection=INT)? ('Colors:' colorlist+=Colors*)? ('Sensors:' sensorlist+=Sensors*)?
-	//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=STRING)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
+	//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
+	//	('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' border=Colors)? ('ForwardSpeed:' forwardspeed=INT)?
+	//	('ReverseSpeed:' reversespeed=INT)? ('TurnDirection:' turndirection=INT)? ('Colors:' colorlist+=Colors*)?
+	//	//('Sensors:' sensorlist += Sensors*)?
+	//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Colors)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
 	//;
 	public MissionElements getMissionAccess() {
 		return pMission;
@@ -356,24 +415,24 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getMissionTypeAccess().getRule();
 	}
 	
-	//Colors:
-	//	color=STRING;
+	//enum Colors:
+	//	White | Red | Blue | Yellow | Black | Orange;
 	public ColorsElements getColorsAccess() {
-		return pColors;
+		return eColors;
 	}
 	
-	public ParserRule getColorsRule() {
+	public EnumRule getColorsRule() {
 		return getColorsAccess().getRule();
 	}
 	
-	//Sensors:
-	//	sensor=STRING;
-	public SensorsElements getSensorsAccess() {
-		return pSensors;
+	//enum Safety:
+	//	On | Off;
+	public SafetyElements getSafetyAccess() {
+		return eSafety;
 	}
 	
-	public ParserRule getSensorsRule() {
-		return getSensorsAccess().getRule();
+	public EnumRule getSafetyRule() {
+		return getSafetyAccess().getRule();
 	}
 	
 	//terminal ID:

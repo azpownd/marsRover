@@ -67,8 +67,6 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
     switch (eClass.getClassifierID())
     {
       case RoverDSLPackage.MISSION: return createMission();
-      case RoverDSLPackage.COLORS: return createColors();
-      case RoverDSLPackage.SENSORS: return createSensors();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -86,6 +84,10 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
     {
       case RoverDSLPackage.MISSION_TYPE:
         return createMissionTypeFromString(eDataType, initialValue);
+      case RoverDSLPackage.COLORS:
+        return createColorsFromString(eDataType, initialValue);
+      case RoverDSLPackage.SAFETY:
+        return createSafetyFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -103,6 +105,10 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
     {
       case RoverDSLPackage.MISSION_TYPE:
         return convertMissionTypeToString(eDataType, instanceValue);
+      case RoverDSLPackage.COLORS:
+        return convertColorsToString(eDataType, instanceValue);
+      case RoverDSLPackage.SAFETY:
+        return convertSafetyToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -125,30 +131,6 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public Colors createColors()
-  {
-    ColorsImpl colors = new ColorsImpl();
-    return colors;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Sensors createSensors()
-  {
-    SensorsImpl sensors = new SensorsImpl();
-    return sensors;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public MissionType createMissionTypeFromString(EDataType eDataType, String initialValue)
   {
     MissionType result = MissionType.get(initialValue);
@@ -162,6 +144,50 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
    * @generated
    */
   public String convertMissionTypeToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Colors createColorsFromString(EDataType eDataType, String initialValue)
+  {
+    Colors result = Colors.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertColorsToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Safety createSafetyFromString(EDataType eDataType, String initialValue)
+  {
+    Safety result = Safety.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertSafetyToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

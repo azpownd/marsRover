@@ -33,24 +33,6 @@ public interface RoverDSLFactory extends EFactory
   Mission createMission();
 
   /**
-   * Returns a new object of class '<em>Colors</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Colors</em>'.
-   * @generated
-   */
-  Colors createColors();
-
-  /**
-   * Returns a new object of class '<em>Sensors</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Sensors</em>'.
-   * @generated
-   */
-  Sensors createSensors();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

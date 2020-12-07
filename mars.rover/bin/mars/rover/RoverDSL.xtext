@@ -4,21 +4,27 @@ generate roverDSL "http://www.rover.mars/RoverDSL"
 
 Mission:
 	'Mission:' missiontype = MissionType
-	('Safety:' safetyproperty = STRING)? // only ON and OFF or more specific?
+	('Safety:' safetyproperty = Safety)? // only ON and OFF or more specific?
+	('LakeColors:' lakelist += Colors*)?
 	('BeginSentence:' beginsentence = STRING)? // For robot to say when mission is start (cuz multiple in a row) Maybe change final sentence to song? (validate options) Optional, default white
-	('OuterBorder:' border = STRING)? // Optional, default white
+	('OuterBorder:' border = Colors)? // Optional, default white
 	('ForwardSpeed:' forwardspeed = INT)? // Optional, default 50 or smth (validation 0-100)
 	('ReverseSpeed:' reversespeed = INT)? // Optional, default 20 I guess? (validation 0-100)
 	('TurnDirection:' turndirection = INT)? // Optional, default right. (validation -100 to 100?) (left right, etc.) (diff direction for backwrds or nah?)
 	('Colors:' colorlist += Colors*)?
-	('Sensors:' sensorlist += Sensors*)?
+	//('Sensors:' sensorlist += Sensors*)?
 	'End:' terminationcondition = STRING // add validation for types of termination values (based on mission)
-	('FlashingColor:' flashingcolor = STRING)? // cuz cant reuse color enum right? (when mission is complete) Optional, default white
+	('FlashingColor:' flashingcolor = Colors)? // cuz cant reuse color enum right? (when mission is complete) Optional, default white
 	('FinalSentence:' finalsentence = STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
 ;
 
 enum MissionType: AvoidColors | FindColors;
 
-Colors: color = STRING;
+//Colors: color = STRING;
 
-Sensors: sensor = STRING; 
+//Sensors: sensor = STRING;
+
+enum Colors: White | Red | Blue | Yellow | Black | Orange;
+
+enum Safety: On | Off;
+//enum Sensors: Touch | Ultrasonic | Color;

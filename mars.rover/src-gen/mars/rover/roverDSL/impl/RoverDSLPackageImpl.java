@@ -8,13 +8,12 @@ import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.MissionType;
 import mars.rover.roverDSL.RoverDSLFactory;
 import mars.rover.roverDSL.RoverDSLPackage;
-import mars.rover.roverDSL.Sensors;
+import mars.rover.roverDSL.Safety;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -38,21 +37,21 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass colorsEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass sensorsEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EEnum missionTypeEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum colorsEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum safetyEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -156,7 +155,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Beginsentence()
+  public EAttribute getMission_Lakelist()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(2);
   }
@@ -167,7 +166,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Border()
+  public EAttribute getMission_Beginsentence()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(3);
   }
@@ -178,7 +177,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Forwardspeed()
+  public EAttribute getMission_Border()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(4);
   }
@@ -189,7 +188,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Reversespeed()
+  public EAttribute getMission_Forwardspeed()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(5);
   }
@@ -200,7 +199,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Turndirection()
+  public EAttribute getMission_Reversespeed()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(6);
   }
@@ -211,9 +210,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EReference getMission_Colorlist()
+  public EAttribute getMission_Turndirection()
   {
-    return (EReference)missionEClass.getEStructuralFeatures().get(7);
+    return (EAttribute)missionEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -222,9 +221,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EReference getMission_Sensorlist()
+  public EAttribute getMission_Colorlist()
   {
-    return (EReference)missionEClass.getEStructuralFeatures().get(8);
+    return (EAttribute)missionEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -266,53 +265,31 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EClass getColors()
-  {
-    return colorsEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getColors_Color()
-  {
-    return (EAttribute)colorsEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getSensors()
-  {
-    return sensorsEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSensors_Sensor()
-  {
-    return (EAttribute)sensorsEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EEnum getMissionType()
   {
     return missionTypeEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getColors()
+  {
+    return colorsEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EEnum getSafety()
+  {
+    return safetyEEnum;
   }
 
   /**
@@ -349,25 +326,21 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     missionEClass = createEClass(MISSION);
     createEAttribute(missionEClass, MISSION__MISSIONTYPE);
     createEAttribute(missionEClass, MISSION__SAFETYPROPERTY);
+    createEAttribute(missionEClass, MISSION__LAKELIST);
     createEAttribute(missionEClass, MISSION__BEGINSENTENCE);
     createEAttribute(missionEClass, MISSION__BORDER);
     createEAttribute(missionEClass, MISSION__FORWARDSPEED);
     createEAttribute(missionEClass, MISSION__REVERSESPEED);
     createEAttribute(missionEClass, MISSION__TURNDIRECTION);
-    createEReference(missionEClass, MISSION__COLORLIST);
-    createEReference(missionEClass, MISSION__SENSORLIST);
+    createEAttribute(missionEClass, MISSION__COLORLIST);
     createEAttribute(missionEClass, MISSION__TERMINATIONCONDITION);
     createEAttribute(missionEClass, MISSION__FLASHINGCOLOR);
     createEAttribute(missionEClass, MISSION__FINALSENTENCE);
 
-    colorsEClass = createEClass(COLORS);
-    createEAttribute(colorsEClass, COLORS__COLOR);
-
-    sensorsEClass = createEClass(SENSORS);
-    createEAttribute(sensorsEClass, SENSORS__SENSOR);
-
     // Create enums
     missionTypeEEnum = createEEnum(MISSION_TYPE);
+    colorsEEnum = createEEnum(COLORS);
+    safetyEEnum = createEEnum(SAFETY);
   }
 
   /**
@@ -403,28 +376,34 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     // Initialize classes and features; add operations and parameters
     initEClass(missionEClass, Mission.class, "Mission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMission_Missiontype(), this.getMissionType(), "missiontype", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Safetyproperty(), ecorePackage.getEString(), "safetyproperty", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMission_Safetyproperty(), this.getSafety(), "safetyproperty", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMission_Lakelist(), this.getColors(), "lakelist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Beginsentence(), ecorePackage.getEString(), "beginsentence", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Border(), ecorePackage.getEString(), "border", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMission_Border(), this.getColors(), "border", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Forwardspeed(), ecorePackage.getEInt(), "forwardspeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Reversespeed(), ecorePackage.getEInt(), "reversespeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Turndirection(), ecorePackage.getEInt(), "turndirection", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMission_Colorlist(), this.getColors(), null, "colorlist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMission_Sensorlist(), this.getSensors(), null, "sensorlist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMission_Colorlist(), this.getColors(), "colorlist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Terminationcondition(), ecorePackage.getEString(), "terminationcondition", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Flashingcolor(), ecorePackage.getEString(), "flashingcolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMission_Flashingcolor(), this.getColors(), "flashingcolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Finalsentence(), ecorePackage.getEString(), "finalsentence", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(colorsEClass, Colors.class, "Colors", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getColors_Color(), ecorePackage.getEString(), "color", null, 0, 1, Colors.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(sensorsEClass, Sensors.class, "Sensors", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSensors_Sensor(), ecorePackage.getEString(), "sensor", null, 0, 1, Sensors.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(missionTypeEEnum, MissionType.class, "MissionType");
     addEEnumLiteral(missionTypeEEnum, MissionType.AVOID_COLORS);
     addEEnumLiteral(missionTypeEEnum, MissionType.FIND_COLORS);
+
+    initEEnum(colorsEEnum, Colors.class, "Colors");
+    addEEnumLiteral(colorsEEnum, Colors.WHITE);
+    addEEnumLiteral(colorsEEnum, Colors.RED);
+    addEEnumLiteral(colorsEEnum, Colors.BLUE);
+    addEEnumLiteral(colorsEEnum, Colors.YELLOW);
+    addEEnumLiteral(colorsEEnum, Colors.BLACK);
+    addEEnumLiteral(colorsEEnum, Colors.ORANGE);
+
+    initEEnum(safetyEEnum, Safety.class, "Safety");
+    addEEnumLiteral(safetyEEnum, Safety.ON);
+    addEEnumLiteral(safetyEEnum, Safety.OFF);
 
     // Create resource
     createResource(eNS_URI);

@@ -7,7 +7,7 @@ import org.eclipse.xtext.validation.Check
 import mars.rover.roverDSL.MissionType
 import mars.rover.roverDSL.Mission
 import mars.rover.roverDSL.Colors
-import mars.rover.roverDSL.Sensors
+import mars.rover.roverDSL.Safety
 
 /** 
  * This class contains custom validation rules. 
@@ -15,16 +15,37 @@ import mars.rover.roverDSL.Sensors
  */
 class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static final String INVALID_NAME = "invalidName";
 	
+	
 	@Check
-	def checkMissionType(MissionType missionType) {
-		//possible check
+	def checkMissionType(Mission mission) {
+		if (mission.missiontype == MissionType.AVOID_COLORS) {
+			if (mission.colorlist.isEmpty()) {
+				error("For this mission, at least one color should be specified (Colors: <Color>).",null)
+			}
+		}
+		else {
+			// mission has to be FindColors at this moment
+			if (mission.colorlist.isEmpty()) {
+				error("For this mission, at least one color should be specified (Colors: <Color>).",null)
+			}
+		}
 	}
 	
 	@Check
+	// warn when safety is off, warn if lake colors are not given when Safety: On
 	def checkSafety(Mission mission) {
-		if (mission.safetyproperty !='Off' && mission.safetyproperty !='On') {
-			error("Safety should be either 'On' or 'Off'.",null)
+		if (mission.safetyproperty == Safety.OFF) {
+			warning("Are you sure you want to turn off safety features?",null)
+		} else {
+			if (mission.lakelist.isEmpty()) {
+				warning("Are you sure there are no lakes on the map?",null)
+			}
 		}
+	}
+	
+	@Check
+	def checkLakeColors(Mission mission) {
+		//possible check
 	}
 	
 	@Check
@@ -33,55 +54,53 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	}
 	
 	@Check
+	// warn if the border is not default (white)
 	def checkOuterBorder(Mission mission) {
-		switch(mission.border) {
-			case 'White': null
-			case 'Red': 
-				warning("Are you sure this is the color of the border?", null)
-			case 'Yellow': 
-				warning("Are you sure this is the color of the border?", null)
-			case 'Blue': 
-				warning("Are you sure this is the color of the border?", null)
-			case 'Black': 
-				warning("Are you sure this is the color of the border?", null)
-			default:
-				error("Please give a viable color ('White', 'Red', 'Yellow', 'Blue' or 'Black').",null)
+		if (mission.border != Colors.WHITE) {
+			warning("Are you sure this is the color of the border?", null)
 		}
 	}
 	
 	@Check
+	// check input
 	def checkForwardSpeed(Mission mission) {
-		//possible check
+		if(mission.forwardspeed < 1 || mission.forwardspeed > 100) {
+			error("Please give a correct speed value (1-100)",null)
+		}
 	}
 	
 	@Check
+	// check input
 	def checkReverseSpeed(Mission mission) {
-		//possible check
+		if(mission.reversespeed < 1 || mission.reversespeed > 100) {
+			error("Please give a correct speed value (1-100)",null)
+		}
 	}
 	
 	@Check
+	// check input
 	def checkTurnDirection(Mission mission) {
-		//possible check
+		if(mission.turndirection < 1 || mission.turndirection > 360){
+			error("Please give a correct turndirection value (1-360) ",null)
+		}
 	}
 	
 	@Check
+	// check for colors being used twice
 	def checkColors(Mission mission) {
-		//possible check
-	}
-	
-	@Check
-	def checkColor(Colors color) {
-		//possible check
-	}
-	
-	@Check
-	def checkSensors(Mission mission) {
-		//possible check
-	}
-	
-	@Check
-	def checkSensor(Sensors sensor) {
-		//possible check
+		var clist = mission.colorlist
+		for (var i=0; i< clist.size;i++) {
+			// avoid using the same color twice
+			for (var j = i+1; j < clist.size; j++) {
+				if (clist.get(i).equals(clist.get(j))) {
+					error("Double color.",null)
+				}
+			}
+			// avoid conflicts for using the border color in the mission
+			if (clist.get(i) == mission.border && mission.missiontype != MissionType.AVOID_COLORS) {
+				error("The color of the border is reused for the mission.",null)
+			}
+		}
 	}
 	
 	@Check
@@ -98,4 +117,25 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	def checkFinalSentence(Mission mission) {
 		//possible check
 	}
+	
+	/** @Check
+	// check input
+	def checkColor(Colors c) {
+		if (c.color != 'White' && c.color != 'Red' && c.color != 'Yellow' && c.color != 'Blue' && c.color != 'Black') {
+			error("Please give a viable color ('White', 'Red', 'Yellow', 'Blue' or 'Black').",null)
+		}
+	}**/
+	
+	/**@Check
+	// check input
+	def checkSensor(Sensors s) {
+		if (s.sensor != 'Touch' && s.sensor != 'Ultrasonic' && s.sensor != 'Color') {
+			error("Please give a viable sensor ('Color', 'Ultrasonic' or 'Touch').",null)
+		}
+	}**/
+	
+	/**@Check
+	def checkSensors(Mission mission) {
+		//possible check
+	}**/
 }

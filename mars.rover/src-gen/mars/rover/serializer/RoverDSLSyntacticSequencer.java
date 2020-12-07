@@ -20,14 +20,14 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected RoverDSLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Mission_ColorsKeyword_8_0_q;
-	protected AbstractElementAlias match_Mission_SensorsKeyword_9_0_q;
+	protected AbstractElementAlias match_Mission_ColorsKeyword_9_0_q;
+	protected AbstractElementAlias match_Mission_LakeColorsKeyword_3_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (RoverDSLGrammarAccess) access;
-		match_Mission_ColorsKeyword_8_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_8_0());
-		match_Mission_SensorsKeyword_9_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getSensorsKeyword_9_0());
+		match_Mission_ColorsKeyword_9_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_9_0());
+		match_Mission_LakeColorsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getLakeColorsKeyword_3_0());
 	}
 	
 	@Override
@@ -42,10 +42,10 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Mission_ColorsKeyword_8_0_q.equals(syntax))
-				emit_Mission_ColorsKeyword_8_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Mission_SensorsKeyword_9_0_q.equals(syntax))
-				emit_Mission_SensorsKeyword_9_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Mission_ColorsKeyword_9_0_q.equals(syntax))
+				emit_Mission_ColorsKeyword_9_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Mission_LakeColorsKeyword_3_0_q.equals(syntax))
+				emit_Mission_LakeColorsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -55,40 +55,40 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Colors:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     beginsentence=STRING (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     beginsentence=STRING (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
-	 *     border=STRING (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     border=STRING (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
-	 *     forwardspeed=INT (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     forwardspeed=INT (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
-	 *     missiontype=MissionType (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     missiontype=MissionType (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
-	 *     reversespeed=INT (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     reversespeed=INT (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
-	 *     safetyproperty=STRING (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     safetyproperty=STRING (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
-	 *     turndirection=INT (ambiguity) 'Sensors:' sensorlist+=Sensors
-	 *     turndirection=INT (ambiguity) 'Sensors:'? 'End:' terminationcondition=STRING
+	 *     beginsentence=STRING (ambiguity) 'End:' terminationcondition=STRING
+	 *     border=Colors (ambiguity) 'End:' terminationcondition=STRING
+	 *     forwardspeed=INT (ambiguity) 'End:' terminationcondition=STRING
+	 *     lakelist+=Colors (ambiguity) 'End:' terminationcondition=STRING
+	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
+	 *     reversespeed=INT (ambiguity) 'End:' terminationcondition=STRING
+	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
+	 *     turndirection=INT (ambiguity) 'End:' terminationcondition=STRING
 	 */
-	protected void emit_Mission_ColorsKeyword_8_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_ColorsKeyword_9_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'Sensors:'?
+	 *     'LakeColors:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     beginsentence=STRING 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     border=STRING 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     colorlist+=Colors (ambiguity) 'End:' terminationcondition=STRING
-	 *     forwardspeed=INT 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     missiontype=MissionType 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     reversespeed=INT 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     safetyproperty=STRING 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     turndirection=INT 'Colors:'? (ambiguity) 'End:' terminationcondition=STRING
+	 *     missiontype=MissionType (ambiguity) 'BeginSentence:' beginsentence=STRING
+	 *     missiontype=MissionType (ambiguity) 'Colors:' colorlist+=Colors
+	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
+	 *     missiontype=MissionType (ambiguity) 'ForwardSpeed:' forwardspeed=INT
+	 *     missiontype=MissionType (ambiguity) 'OuterBorder:' border=Colors
+	 *     missiontype=MissionType (ambiguity) 'ReverseSpeed:' reversespeed=INT
+	 *     missiontype=MissionType (ambiguity) 'TurnDirection:' turndirection=INT
+	 *     safetyproperty=Safety (ambiguity) 'BeginSentence:' beginsentence=STRING
+	 *     safetyproperty=Safety (ambiguity) 'Colors:' colorlist+=Colors
+	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
+	 *     safetyproperty=Safety (ambiguity) 'ForwardSpeed:' forwardspeed=INT
+	 *     safetyproperty=Safety (ambiguity) 'OuterBorder:' border=Colors
+	 *     safetyproperty=Safety (ambiguity) 'ReverseSpeed:' reversespeed=INT
+	 *     safetyproperty=Safety (ambiguity) 'TurnDirection:' turndirection=INT
 	 */
-	protected void emit_Mission_SensorsKeyword_9_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_LakeColorsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
