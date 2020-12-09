@@ -1,6 +1,8 @@
 package mars.rover.generator
 
 import mars.rover.roverDSL.Mission
+import mars.rover.roverDSL.MissionType
+import mars.rover.roverDSL.Safety
 
 class PythonGeneratorM {
 	def static toText(Mission root)'''
@@ -20,66 +22,269 @@ class PythonGeneratorM {
 	# driving variables
 	s = Sound()
 	tank_drive = MoveTank(OUTPUT_A, OUTPUT_D)
-	cs_r = ColorSensor(INPUT_3)
-	ts_l = ColorSensor(INPUT_1)
+	# Robot arm = OUTPUT_B, use movetank again or...?
+	cs_l = ColorSensor(INPUT_1)
 	cs_m = ColorSensor(INPUT_2)
+	cs_r = ColorSensor(INPUT_3)
 	us_b = UltrasonicSensor(INPUT_4)
 	us_b.mode = 'US-DIST-CM'
 	
+	avoid_object_bool = False
+	
 	def connect(server_mac, is_master = True):
-		port = 3
-		if is_master:
-			server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-			server_sock.bind((server_mac, port))
-			server_sock.listen(1)
-			print('Listening...')
-			client_sock, address = server_sock.accept()
-			print('Accepted connection from ', address)
-			return client_sock, client_sock.makefile('r'), client_sock.makefile('w')
-		else:
-			sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-			print('Connecting...')
-			sock.connect((server_mac, port)) 
-			print('Connected to ', server_mac)
-			return sock, sock.makefile('r'), sock.makefile('w')
+	    port = 3
+	    if is_master:
+	        server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+	        server_sock.bind((server_mac, port))
+	        server_sock.listen(1)
+	        print('Listening...')
+	        client_sock, address = server_sock.accept()
+	        print('Accepted connection from ', address)
+	        return client_sock, client_sock.makefile('r'), client_sock.makefile('w')
+	    else:
+	        sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+	        print('Connecting...')
+	        sock.connect((server_mac, port)) 
+	        print('Connected to ', server_mac)
+	        return sock, sock.makefile('r'), sock.makefile('w')
 	
 	
 	def disconnect(sock):
-		sock.close()
+	    sock.close()
 	
 	
 	def run(server_mac, is_master = True):
-		sock, sock_in, sock_out = connect(server_mac, is_master)
-		listener = threading.Thread(target=start_listening if is_master else listen, args=(sock_in, sock_out))
-		listener.start()
-		#start driving
-		missions()
-		disconnect(sock_in)
-		disconnect(sock_out)
-		disconnect(sock)
+	    sock, sock_in, sock_out = connect(server_mac, is_master)
+	    listener = threading.Thread(target=start_listening if is_master else listen, args=(sock_in, sock_out))
+	    listener.start()
+	    #start driving
+	    missions()
+	    disconnect(sock_in)
+	    disconnect(sock_out)
+	    disconnect(sock)
 	
 	
 	def start_listening(sock_in, sock_out):
-		i = 1
-		sock_out.write(str(i) + '\n')
-		sock_out.flush()
-		print('Sent ' + str(i))
-		listen(sock_in, sock_out)
+	    i = 1
+	    sock_out.write(str(i) + '\n')
+	    sock_out.flush()
+	    print('Sent ' + str(i))
+	    listen(sock_in, sock_out)
 	
 	
 	def listen(sock_in, sock_out):
-		print('Now listening...')
-		while True:
-			data = sock_in.readline()
-			print('Received ' + str(data))
-			sleep(1)
-			sock_out.write("nothing" + '\n')
-			sock_out.flush()
-			print('Sent ' + str(data))
-		
+	    global avoid_object_bool
+	    print('Now listening...')
+	    while True:
+	        data = sock_in.readline()
+	        if 'Avoid' in data:
+	            print('Avoid Received')
+	            avoid_object_bool = True
+	        else:
+	            print('Received ' + str(data))
+	        sleep(1)
+	        sock_out.write("nothing" + '\n')
+	        sock_out.flush()
+	        #print('Sent ' + str(data))
+	
+	#-------------------------CHANGING CODE---------------------------------------
+	«IF root.safetyproperty.equals(Safety.ON)»
+	class StayInLine:
+	    #stop = False
+	    done = False # When / how set to done? Given as input or smth? (set to done is needed for terminating program correctly?
+	    prio = 10 # Higher = more important
+	    def takeControl(self):
+	        return not self.done and (cs_l.color == 6 or cs_m.color == 6 or cs_r.color == 6
+	                                  or us_b.distance_centimeters > 100) #white (border) # Note: Change if lake depth changes!
+	        
+	    def action(self):
+	        s.speak("Found border", play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
+	        if cs_l.color == 6:
+	            print("Border on left side")
+	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	        elif cs_m.color == 6:
+	            print("Border in front")
+	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	        elif cs_r.color == 6:
+	            print("Border on right side")
+	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1) # Turn left (backwards)
+	        elif us_b.distance_centimeters > 100: # Note: Change if lake depth changes!
+	            print("Border behind")
+	            tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(0), 1)  # Turn right (forward)
+	
+	    def suppress(self):
+	       print("StayInLine suppressed!") # Should never happen!
+	       #self.stop = True
+	«ENDIF»
+	
+	«IF !root.lakelist.isEmpty()»
+	new_lake_found = 0
+	
+	class AvoidLakes: # Only generate if no color tasks OR always have but add colors to colors found array if mission selected?
+	    stop = False
+	    prio = 9 # Higher = more important
+	    lake_colors = {
+	        2: "Blue",
+	        4: "Yellow",
+	        5: "Red"
+	    }
+	    def takeControl(self):
+	        return cs_l.color in self.lake_colors or cs_m.color in self.lake_colors or cs_r.color in self.lake_colors \
+	               or us_b.distance_centimeters > 100 # Note: Change if lake depth changes!
+	
+	    def action(self):
+	        global new_lake_found # Used for find colors
+	        s.speak("Found lake", play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
+	        if cs_l.color in self.lake_colors:
+	            print("{} lake on left side".format(self.lake_colors[cs_l.color]))
+	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	            new_lake_found = cs_l.color # Used for find colors
+	        elif cs_m.color in self.lake_colors:
+	            print("{} lake in front".format(self.lake_colors[cs_m.color]))
+	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	            new_lake_found = cs_m.color # Used for find colors
+	        elif cs_r.color in self.lake_colors:
+	            print("{} lake on right side".format(self.lake_colors[cs_r.color]))
+	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1) # Turn left (backwards)
+	            new_lake_found = cs_r.color # Used for find colors
+	            print(cs_r.color)
+	        elif us_b.distance_centimeters > 100: # Note: Change if lake depth changes!
+	            print("Lake behind")
+	            tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(0), 1)  # Turn right (forward)
+	
+	    def suppress(self):
+	       print("StayInLine suppressed!") # Can only be done by StayInLine
+	«ENDIF»
+	
+	«IF root.safetyproperty.equals(Safety.ON)»
+	class AvoidObjects: # Add sensor checks to brick 2. Action code can be here. Take control if signal from brick 1?
+	    stop = False
+	    prio = 8 # Higher = more important
+	
+	    brick2_us_f = False
+	    brick2_ts_b = False
+	    brick2_ts_l = False
+	    brick2_ts_r = False
+	
+	    def takeControl(self):
+	        global avoid_object_bool
+	        return avoid_object_bool
+	
+	    def action(self):
+	        global avoid_object_bool
+	        avoid_object_bool = False
+	        print("Avoiding object") # Can extend if wanted to different turn side for each bumper or something
+	        tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	
+	    def suppress(self):
+	        print("AvoidObjects suppressed!")
+	«ENDIF»
+	
+	«IF root.missiontype.equals(MissionType.FIND_COLORS)»
+	found_colors = [] # global to store found colors between interrupts
+	
+	class FindColors: # change name to find lakes?
+	    stop = False
+	    done = False
+	    prio = 5  # Higher = more important
+	    old_lake_found = 0
+	
+	    def takeControl(self):
+	        global new_lake_found
+	        #print('STARTING?????: {}\n'.format(new_lake_found != self.old_lake_found and not self.done))
+	        return new_lake_found != self.old_lake_found and not self.done
+	
+	    def action(self):
+	        global found_colors
+	        global new_lake_found
+	        self.old_lake_found = new_lake_found # allows 1 run of this action, then they are equal egain
+	        mission_colors = ["Blue", "Red", "Yellow"]  # Give as input
+	        all_colors_on_field = {
+	            2: "Blue",
+	            4: "Yellow",
+	            5: "Red"
+	        }
+	        print('\n(Re)Starting the color search!\n')
+	        print('Old lake: {} and new lake: {}'.format(self.old_lake_found, new_lake_found))
+	
+	        if not self.done:
+	            if self.old_lake_found in all_colors_on_field:  # check if old_lake_found is a key value in our dictionary
+	                found_color = all_colors_on_field[old_lake_found] # Determines which color is attached to this key value
+	                #print(found_color)
+	                if found_color in mission_colors and found_color not in found_colors:
+	                    s.speak(found_color, play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
+	                    print("New color found: {}".format(found_color))
+	                    found_colors.append(found_color)
+	            if len(found_colors) == len(mission_colors):
+	                print("ALL COLORS FOUND!")
+	                tank_drive.on(SpeedPercent(0), SpeedPercent(0)) # turn off instead?
+	                Leds().animate_flash('AMBER', sleeptime=0.75, duration=5,
+	                                     block=True)  # blocking to prevent early exit()
+	                self.done = True
+	                # break # Or exit if last / only program? Discuss program flow multiple missions
+	
+	    def suppress(self):
+	        print("FindColors suppressed!")
+	        self.stop = True
+	«ENDIF»
+	
+	class ClassB2: # DONT DELETE!!! ONLY IF OTHER CLASS IS ALWAYS TRUE!!!
+	    stop = False
+	    prio = 0 # Higher = more important
+	    def takeControl(self):
+	        return True # One class needs to always be wanting takeControl or else crash
+	        
+	    def action(self): # drive speed at start of while not loop
+	        counter = 0
+	        while not self.stop:
+	            #sleep(1)
+	            counter +=1
+	            #print("B2: ",self.stop,counter)
+	            if counter == 5000:
+	                break
+	        
+	    def suppress(self):
+	       print("B2 suppressed!")
+	       self.stop = True
+	
+	«IF root.missiontype.equals(MissionType.AVOID_COLORS)»
+	
+	«ENDIF»
+	
+	behaviour = ClassB2() #edited
+	behaviours = [«IF root.safetyproperty.equals(Safety.ON)»StayInLine(),«ENDIF»
+	«IF !root.lakelist.isEmpty()»AvoidLakes(),«ENDIF»
+	«IF root.safetyproperty.equals(Safety.ON)»AvoidObjects(),«ENDIF»
+	«IF root.missiontype.equals(MissionType.FIND_COLORS)»FindColors(),«ENDIF» 
+	ClassB2()] #list with missions, first = highest priority. NEED to be in order!
+	
+	#-------------------------CHANGING CODE---------------------------------------
+	
+	def monitoring():
+	    global behaviour
+	    global behaviours
+	    while True:
+	        for b in behaviours:
+	            if behaviour.prio < b.prio and b.takeControl():
+	                print("interrupting prio: ", behaviour.prio)
+	                behaviour.suppress()
+	                sleep(1) # Remove later with print, just for testing
+	        
 	def missions():
-		while True:
-			sleep(1)
+	    # initialize all behaviours
+	    global behaviour
+	    global behaviours
+	    
+	    monitor = threading.Thread(target=monitoring)
+	    monitor.start()
+	    
+	    while True:
+	        #print("Nieuwe ronde!")
+	        tank_drive.on(SpeedPercent(20), SpeedPercent(20)) # default movement speed
+	        behaviour = next(b for b in behaviours if b.takeControl())
+	        behaviour.action()
+	        #behaviour.stop = False
+	        
 	
 	s.speak("start")
 	run(server_mac, is_master)
