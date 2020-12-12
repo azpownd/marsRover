@@ -59,6 +59,7 @@ public class RoverDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMissionAccess().getTerminationconditionAssignment_12(), "rule__Mission__TerminationconditionAssignment_12");
 			builder.put(grammarAccess.getMissionAccess().getFlashingcolorAssignment_13_1(), "rule__Mission__FlashingcolorAssignment_13_1");
 			builder.put(grammarAccess.getMissionAccess().getFinalsentenceAssignment_14_1(), "rule__Mission__FinalsentenceAssignment_14_1");
+			builder.put(grammarAccess.getIntegerAccess().getIntegerAssignment(), "rule__Integer__IntegerAssignment");
 			builder.put(grammarAccess.getColorAccess().getColorAssignment(), "rule__Color__ColorAssignment");
 		}
 	}
