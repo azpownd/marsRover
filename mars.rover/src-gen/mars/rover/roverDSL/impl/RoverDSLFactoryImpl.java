@@ -3,7 +3,13 @@
  */
 package mars.rover.roverDSL.impl;
 
-import mars.rover.roverDSL.*;
+import mars.rover.roverDSL.Color;
+import mars.rover.roverDSL.Colors;
+import mars.rover.roverDSL.Mission;
+import mars.rover.roverDSL.MissionType;
+import mars.rover.roverDSL.RoverDSLFactory;
+import mars.rover.roverDSL.RoverDSLPackage;
+import mars.rover.roverDSL.Safety;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -67,6 +73,7 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
     switch (eClass.getClassifierID())
     {
       case RoverDSLPackage.MISSION: return createMission();
+      case RoverDSLPackage.INTEGER: return createInteger();
       case RoverDSLPackage.COLOR: return createColor();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -125,6 +132,18 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
   {
     MissionImpl mission = new MissionImpl();
     return mission;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public mars.rover.roverDSL.Integer createInteger()
+  {
+    IntegerImpl integer = new IntegerImpl();
+    return integer;
   }
 
   /**

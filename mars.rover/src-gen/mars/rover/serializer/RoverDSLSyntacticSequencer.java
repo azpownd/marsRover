@@ -57,13 +57,13 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     beginsentence=STRING (ambiguity) 'End:' terminationcondition=STRING
 	 *     bordercolor=Color (ambiguity) 'End:' terminationcondition=STRING
-	 *     forwardspeed=INT (ambiguity) 'End:' terminationcondition=STRING
+	 *     forwardspeed=Integer (ambiguity) 'End:' terminationcondition=STRING
 	 *     lakelist+=Colors (ambiguity) 'End:' terminationcondition=STRING
 	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     objectdistance=INT (ambiguity) 'End:' terminationcondition=STRING
-	 *     reversespeed=INT (ambiguity) 'End:' terminationcondition=STRING
+	 *     objectdistance=Integer (ambiguity) 'End:' terminationcondition=STRING
+	 *     reversespeed=Integer (ambiguity) 'End:' terminationcondition=STRING
 	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     turndirection=INT (ambiguity) 'End:' terminationcondition=STRING
+	 *     turndirection=Integer (ambiguity) 'End:' terminationcondition=STRING
 	 */
 	protected void emit_Mission_ColorsKeyword_10_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -74,22 +74,22 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'LakeColors:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     missiontype=MissionType (ambiguity) 'AvoidObjects:' objectdistance=INT
+	 *     missiontype=MissionType (ambiguity) 'AvoidObjects:' objectdistance=Integer
 	 *     missiontype=MissionType (ambiguity) 'BeginSentence:' beginsentence=STRING
 	 *     missiontype=MissionType (ambiguity) 'Colors:' colorlist+=Colors
 	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
-	 *     missiontype=MissionType (ambiguity) 'ForwardSpeed:' forwardspeed=INT
+	 *     missiontype=MissionType (ambiguity) 'ForwardSpeed:' forwardspeed=Integer
 	 *     missiontype=MissionType (ambiguity) 'OuterBorder:' bordercolor=Color
-	 *     missiontype=MissionType (ambiguity) 'ReverseSpeed:' reversespeed=INT
-	 *     missiontype=MissionType (ambiguity) 'TurnDirection:' turndirection=INT
-	 *     safetyproperty=Safety (ambiguity) 'AvoidObjects:' objectdistance=INT
+	 *     missiontype=MissionType (ambiguity) 'ReverseSpeed:' reversespeed=Integer
+	 *     missiontype=MissionType (ambiguity) 'TurnDirection:' turndirection=Integer
+	 *     safetyproperty=Safety (ambiguity) 'AvoidObjects:' objectdistance=Integer
 	 *     safetyproperty=Safety (ambiguity) 'BeginSentence:' beginsentence=STRING
 	 *     safetyproperty=Safety (ambiguity) 'Colors:' colorlist+=Colors
 	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
-	 *     safetyproperty=Safety (ambiguity) 'ForwardSpeed:' forwardspeed=INT
+	 *     safetyproperty=Safety (ambiguity) 'ForwardSpeed:' forwardspeed=Integer
 	 *     safetyproperty=Safety (ambiguity) 'OuterBorder:' bordercolor=Color
-	 *     safetyproperty=Safety (ambiguity) 'ReverseSpeed:' reversespeed=INT
-	 *     safetyproperty=Safety (ambiguity) 'TurnDirection:' turndirection=INT
+	 *     safetyproperty=Safety (ambiguity) 'ReverseSpeed:' reversespeed=Integer
+	 *     safetyproperty=Safety (ambiguity) 'TurnDirection:' turndirection=Integer
 	 */
 	protected void emit_Mission_LakeColorsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

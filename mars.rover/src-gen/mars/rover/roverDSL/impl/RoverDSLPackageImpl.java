@@ -39,6 +39,13 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass integerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass colorEClass = null;
 
   /**
@@ -175,9 +182,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Objectdistance()
+  public EReference getMission_Objectdistance()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(3);
+    return (EReference)missionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -208,9 +215,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Forwardspeed()
+  public EReference getMission_Forwardspeed()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(6);
+    return (EReference)missionEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -219,9 +226,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Reversespeed()
+  public EReference getMission_Reversespeed()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(7);
+    return (EReference)missionEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -230,9 +237,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Turndirection()
+  public EReference getMission_Turndirection()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(8);
+    return (EReference)missionEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -263,9 +270,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Flashingcolor()
+  public EReference getMission_Flashingcolor()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(11);
+    return (EReference)missionEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -277,6 +284,28 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
   public EAttribute getMission_Finalsentence()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(12);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getInteger()
+  {
+    return integerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getInteger_Integer()
+  {
+    return (EAttribute)integerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -369,16 +398,19 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     createEAttribute(missionEClass, MISSION__MISSIONTYPE);
     createEAttribute(missionEClass, MISSION__SAFETYPROPERTY);
     createEAttribute(missionEClass, MISSION__LAKELIST);
-    createEAttribute(missionEClass, MISSION__OBJECTDISTANCE);
+    createEReference(missionEClass, MISSION__OBJECTDISTANCE);
     createEAttribute(missionEClass, MISSION__BEGINSENTENCE);
     createEReference(missionEClass, MISSION__BORDERCOLOR);
-    createEAttribute(missionEClass, MISSION__FORWARDSPEED);
-    createEAttribute(missionEClass, MISSION__REVERSESPEED);
-    createEAttribute(missionEClass, MISSION__TURNDIRECTION);
+    createEReference(missionEClass, MISSION__FORWARDSPEED);
+    createEReference(missionEClass, MISSION__REVERSESPEED);
+    createEReference(missionEClass, MISSION__TURNDIRECTION);
     createEAttribute(missionEClass, MISSION__COLORLIST);
     createEAttribute(missionEClass, MISSION__TERMINATIONCONDITION);
-    createEAttribute(missionEClass, MISSION__FLASHINGCOLOR);
+    createEReference(missionEClass, MISSION__FLASHINGCOLOR);
     createEAttribute(missionEClass, MISSION__FINALSENTENCE);
+
+    integerEClass = createEClass(INTEGER);
+    createEAttribute(integerEClass, INTEGER__INTEGER);
 
     colorEClass = createEClass(COLOR);
     createEAttribute(colorEClass, COLOR__COLOR);
@@ -424,16 +456,19 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     initEAttribute(getMission_Missiontype(), this.getMissionType(), "missiontype", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Safetyproperty(), this.getSafety(), "safetyproperty", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Lakelist(), this.getColors(), "lakelist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Objectdistance(), ecorePackage.getEInt(), "objectdistance", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Objectdistance(), this.getInteger(), null, "objectdistance", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Beginsentence(), ecorePackage.getEString(), "beginsentence", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMission_Bordercolor(), this.getColor(), null, "bordercolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Forwardspeed(), ecorePackage.getEInt(), "forwardspeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Reversespeed(), ecorePackage.getEInt(), "reversespeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Turndirection(), ecorePackage.getEInt(), "turndirection", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Forwardspeed(), this.getInteger(), null, "forwardspeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Reversespeed(), this.getInteger(), null, "reversespeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Turndirection(), this.getInteger(), null, "turndirection", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Colorlist(), this.getColors(), "colorlist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Terminationcondition(), ecorePackage.getEString(), "terminationcondition", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Flashingcolor(), this.getColors(), "flashingcolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Flashingcolor(), this.getColor(), null, "flashingcolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Finalsentence(), ecorePackage.getEString(), "finalsentence", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(integerEClass, mars.rover.roverDSL.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInteger_Integer(), ecorePackage.getEInt(), "integer", null, 0, 1, mars.rover.roverDSL.Integer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(colorEClass, Color.class, "Color", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getColor_Color(), this.getColors(), "color", null, 0, 1, Color.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

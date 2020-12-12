@@ -22,9 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Mission:'", "'Safety:'", "'LakeColors:'", "'AvoidObjects:'", "'BeginSentence:'", "'OuterBorder:'", "'ForwardSpeed:'", "'ReverseSpeed:'", "'TurnDirection:'", "'Colors:'", "'End:'", "'FlashingColor:'", "'FinalSentence:'", "'AvoidColors'", "'FindColors'", "'White'", "'Red'", "'Blue'", "'Yellow'", "'Black'", "'On'", "'Off'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Mission:'", "'Safety:'", "'LakeColors:'", "'AvoidObjects:'", "'BeginSentence:'", "'OuterBorder:'", "'ForwardSpeed:'", "'ReverseSpeed:'", "'TurnDirection:'", "'Colors:'", "'End:'", "'FlashingColor:'", "'FinalSentence:'", "'AvoidColors'", "'FindColors'", "'White'", "'Red'", "'Blue'", "'Yellow'", "'Black'", "'On'", "'Off'"
     };
-    public static final int RULE_STRING=5;
+    public static final int RULE_STRING=4;
     public static final int RULE_SL_COMMENT=8;
     public static final int T__19=19;
     public static final int T__15=15;
@@ -45,7 +45,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
-    public static final int RULE_INT=4;
+    public static final int RULE_INT=5;
     public static final int T__29=29;
     public static final int T__22=22;
     public static final int RULE_ML_COMMENT=7;
@@ -131,7 +131,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMission"
-    // InternalRoverDSL.g:72:1: ruleMission returns [EObject current=null] : (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? ) ;
+    // InternalRoverDSL.g:72:1: ruleMission returns [EObject current=null] : (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleMission() throws RecognitionException {
         EObject current = null;
 
@@ -139,16 +139,12 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
         Token otherlv_2=null;
         Token otherlv_4=null;
         Token otherlv_6=null;
-        Token lv_objectdistance_7_0=null;
         Token otherlv_8=null;
         Token lv_beginsentence_9_0=null;
         Token otherlv_10=null;
         Token otherlv_12=null;
-        Token lv_forwardspeed_13_0=null;
         Token otherlv_14=null;
-        Token lv_reversespeed_15_0=null;
         Token otherlv_16=null;
-        Token lv_turndirection_17_0=null;
         Token otherlv_18=null;
         Token otherlv_20=null;
         Token lv_terminationcondition_21_0=null;
@@ -161,22 +157,30 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
         Enumerator lv_lakelist_5_0 = null;
 
+        EObject lv_objectdistance_7_0 = null;
+
         EObject lv_bordercolor_11_0 = null;
+
+        EObject lv_forwardspeed_13_0 = null;
+
+        EObject lv_reversespeed_15_0 = null;
+
+        EObject lv_turndirection_17_0 = null;
 
         Enumerator lv_colorlist_19_0 = null;
 
-        Enumerator lv_flashingcolor_23_0 = null;
+        EObject lv_flashingcolor_23_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalRoverDSL.g:78:2: ( (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? ) )
-            // InternalRoverDSL.g:79:2: (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? )
+            // InternalRoverDSL.g:78:2: ( (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? ) )
+            // InternalRoverDSL.g:79:2: (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? )
             {
-            // InternalRoverDSL.g:79:2: (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? )
-            // InternalRoverDSL.g:80:3: otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )?
+            // InternalRoverDSL.g:79:2: (otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )? )
+            // InternalRoverDSL.g:80:3: otherlv_0= 'Mission:' ( (lv_missiontype_1_0= ruleMissionType ) ) (otherlv_2= 'Safety:' ( (lv_safetyproperty_3_0= ruleSafety ) ) )? (otherlv_4= 'LakeColors:' ( (lv_lakelist_5_0= ruleColors ) )* )? (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) ) )? (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )? (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )? (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) ) )? (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) ) )? (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) ) )? (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )? otherlv_20= 'End:' ( (lv_terminationcondition_21_0= RULE_STRING ) ) (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) ) )? (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )?
             {
             otherlv_0=(Token)match(input,11,FOLLOW_3); 
 
@@ -335,7 +339,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:153:3: (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) ) )?
+            // InternalRoverDSL.g:153:3: (otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -344,31 +348,36 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalRoverDSL.g:154:4: otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= RULE_INT ) )
+                    // InternalRoverDSL.g:154:4: otherlv_6= 'AvoidObjects:' ( (lv_objectdistance_7_0= ruleInteger ) )
                     {
                     otherlv_6=(Token)match(input,14,FOLLOW_8); 
 
                     				newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getAvoidObjectsKeyword_4_0());
                     			
-                    // InternalRoverDSL.g:158:4: ( (lv_objectdistance_7_0= RULE_INT ) )
-                    // InternalRoverDSL.g:159:5: (lv_objectdistance_7_0= RULE_INT )
+                    // InternalRoverDSL.g:158:4: ( (lv_objectdistance_7_0= ruleInteger ) )
+                    // InternalRoverDSL.g:159:5: (lv_objectdistance_7_0= ruleInteger )
                     {
-                    // InternalRoverDSL.g:159:5: (lv_objectdistance_7_0= RULE_INT )
-                    // InternalRoverDSL.g:160:6: lv_objectdistance_7_0= RULE_INT
+                    // InternalRoverDSL.g:159:5: (lv_objectdistance_7_0= ruleInteger )
+                    // InternalRoverDSL.g:160:6: lv_objectdistance_7_0= ruleInteger
                     {
-                    lv_objectdistance_7_0=(Token)match(input,RULE_INT,FOLLOW_9); 
 
-                    						newLeafNode(lv_objectdistance_7_0, grammarAccess.getMissionAccess().getObjectdistanceINTTerminalRuleCall_4_1_0());
+                    						newCompositeNode(grammarAccess.getMissionAccess().getObjectdistanceIntegerParserRuleCall_4_1_0());
                     					
+                    pushFollow(FOLLOW_9);
+                    lv_objectdistance_7_0=ruleInteger();
+
+                    state._fsp--;
+
 
                     						if (current==null) {
-                    							current = createModelElement(grammarAccess.getMissionRule());
+                    							current = createModelElementForParent(grammarAccess.getMissionRule());
                     						}
-                    						setWithLastConsumed(
+                    						set(
                     							current,
                     							"objectdistance",
                     							lv_objectdistance_7_0,
-                    							"org.eclipse.xtext.common.Terminals.INT");
+                    							"mars.rover.RoverDSL.Integer");
+                    						afterParserOrEnumRuleCall();
                     					
 
                     }
@@ -382,7 +391,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:177:3: (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )?
+            // InternalRoverDSL.g:178:3: (otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) ) )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -391,17 +400,17 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt5) {
                 case 1 :
-                    // InternalRoverDSL.g:178:4: otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) )
+                    // InternalRoverDSL.g:179:4: otherlv_8= 'BeginSentence:' ( (lv_beginsentence_9_0= RULE_STRING ) )
                     {
                     otherlv_8=(Token)match(input,15,FOLLOW_10); 
 
                     				newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getBeginSentenceKeyword_5_0());
                     			
-                    // InternalRoverDSL.g:182:4: ( (lv_beginsentence_9_0= RULE_STRING ) )
-                    // InternalRoverDSL.g:183:5: (lv_beginsentence_9_0= RULE_STRING )
+                    // InternalRoverDSL.g:183:4: ( (lv_beginsentence_9_0= RULE_STRING ) )
+                    // InternalRoverDSL.g:184:5: (lv_beginsentence_9_0= RULE_STRING )
                     {
-                    // InternalRoverDSL.g:183:5: (lv_beginsentence_9_0= RULE_STRING )
-                    // InternalRoverDSL.g:184:6: lv_beginsentence_9_0= RULE_STRING
+                    // InternalRoverDSL.g:184:5: (lv_beginsentence_9_0= RULE_STRING )
+                    // InternalRoverDSL.g:185:6: lv_beginsentence_9_0= RULE_STRING
                     {
                     lv_beginsentence_9_0=(Token)match(input,RULE_STRING,FOLLOW_11); 
 
@@ -429,7 +438,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:201:3: (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )?
+            // InternalRoverDSL.g:202:3: (otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) ) )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -438,17 +447,17 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalRoverDSL.g:202:4: otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) )
+                    // InternalRoverDSL.g:203:4: otherlv_10= 'OuterBorder:' ( (lv_bordercolor_11_0= ruleColor ) )
                     {
                     otherlv_10=(Token)match(input,16,FOLLOW_12); 
 
                     				newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getOuterBorderKeyword_6_0());
                     			
-                    // InternalRoverDSL.g:206:4: ( (lv_bordercolor_11_0= ruleColor ) )
-                    // InternalRoverDSL.g:207:5: (lv_bordercolor_11_0= ruleColor )
+                    // InternalRoverDSL.g:207:4: ( (lv_bordercolor_11_0= ruleColor ) )
+                    // InternalRoverDSL.g:208:5: (lv_bordercolor_11_0= ruleColor )
                     {
-                    // InternalRoverDSL.g:207:5: (lv_bordercolor_11_0= ruleColor )
-                    // InternalRoverDSL.g:208:6: lv_bordercolor_11_0= ruleColor
+                    // InternalRoverDSL.g:208:5: (lv_bordercolor_11_0= ruleColor )
+                    // InternalRoverDSL.g:209:6: lv_bordercolor_11_0= ruleColor
                     {
 
                     						newCompositeNode(grammarAccess.getMissionAccess().getBordercolorColorParserRuleCall_6_1_0());
@@ -481,7 +490,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:226:3: (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) ) )?
+            // InternalRoverDSL.g:227:3: (otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) ) )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -490,31 +499,36 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalRoverDSL.g:227:4: otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= RULE_INT ) )
+                    // InternalRoverDSL.g:228:4: otherlv_12= 'ForwardSpeed:' ( (lv_forwardspeed_13_0= ruleInteger ) )
                     {
                     otherlv_12=(Token)match(input,17,FOLLOW_8); 
 
                     				newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getForwardSpeedKeyword_7_0());
                     			
-                    // InternalRoverDSL.g:231:4: ( (lv_forwardspeed_13_0= RULE_INT ) )
-                    // InternalRoverDSL.g:232:5: (lv_forwardspeed_13_0= RULE_INT )
+                    // InternalRoverDSL.g:232:4: ( (lv_forwardspeed_13_0= ruleInteger ) )
+                    // InternalRoverDSL.g:233:5: (lv_forwardspeed_13_0= ruleInteger )
                     {
-                    // InternalRoverDSL.g:232:5: (lv_forwardspeed_13_0= RULE_INT )
-                    // InternalRoverDSL.g:233:6: lv_forwardspeed_13_0= RULE_INT
+                    // InternalRoverDSL.g:233:5: (lv_forwardspeed_13_0= ruleInteger )
+                    // InternalRoverDSL.g:234:6: lv_forwardspeed_13_0= ruleInteger
                     {
-                    lv_forwardspeed_13_0=(Token)match(input,RULE_INT,FOLLOW_14); 
 
-                    						newLeafNode(lv_forwardspeed_13_0, grammarAccess.getMissionAccess().getForwardspeedINTTerminalRuleCall_7_1_0());
+                    						newCompositeNode(grammarAccess.getMissionAccess().getForwardspeedIntegerParserRuleCall_7_1_0());
                     					
+                    pushFollow(FOLLOW_14);
+                    lv_forwardspeed_13_0=ruleInteger();
+
+                    state._fsp--;
+
 
                     						if (current==null) {
-                    							current = createModelElement(grammarAccess.getMissionRule());
+                    							current = createModelElementForParent(grammarAccess.getMissionRule());
                     						}
-                    						setWithLastConsumed(
+                    						set(
                     							current,
                     							"forwardspeed",
                     							lv_forwardspeed_13_0,
-                    							"org.eclipse.xtext.common.Terminals.INT");
+                    							"mars.rover.RoverDSL.Integer");
+                    						afterParserOrEnumRuleCall();
                     					
 
                     }
@@ -528,7 +542,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:250:3: (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) ) )?
+            // InternalRoverDSL.g:252:3: (otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) ) )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -537,31 +551,36 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalRoverDSL.g:251:4: otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= RULE_INT ) )
+                    // InternalRoverDSL.g:253:4: otherlv_14= 'ReverseSpeed:' ( (lv_reversespeed_15_0= ruleInteger ) )
                     {
                     otherlv_14=(Token)match(input,18,FOLLOW_8); 
 
                     				newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getReverseSpeedKeyword_8_0());
                     			
-                    // InternalRoverDSL.g:255:4: ( (lv_reversespeed_15_0= RULE_INT ) )
-                    // InternalRoverDSL.g:256:5: (lv_reversespeed_15_0= RULE_INT )
+                    // InternalRoverDSL.g:257:4: ( (lv_reversespeed_15_0= ruleInteger ) )
+                    // InternalRoverDSL.g:258:5: (lv_reversespeed_15_0= ruleInteger )
                     {
-                    // InternalRoverDSL.g:256:5: (lv_reversespeed_15_0= RULE_INT )
-                    // InternalRoverDSL.g:257:6: lv_reversespeed_15_0= RULE_INT
+                    // InternalRoverDSL.g:258:5: (lv_reversespeed_15_0= ruleInteger )
+                    // InternalRoverDSL.g:259:6: lv_reversespeed_15_0= ruleInteger
                     {
-                    lv_reversespeed_15_0=(Token)match(input,RULE_INT,FOLLOW_15); 
 
-                    						newLeafNode(lv_reversespeed_15_0, grammarAccess.getMissionAccess().getReversespeedINTTerminalRuleCall_8_1_0());
+                    						newCompositeNode(grammarAccess.getMissionAccess().getReversespeedIntegerParserRuleCall_8_1_0());
                     					
+                    pushFollow(FOLLOW_15);
+                    lv_reversespeed_15_0=ruleInteger();
+
+                    state._fsp--;
+
 
                     						if (current==null) {
-                    							current = createModelElement(grammarAccess.getMissionRule());
+                    							current = createModelElementForParent(grammarAccess.getMissionRule());
                     						}
-                    						setWithLastConsumed(
+                    						set(
                     							current,
                     							"reversespeed",
                     							lv_reversespeed_15_0,
-                    							"org.eclipse.xtext.common.Terminals.INT");
+                    							"mars.rover.RoverDSL.Integer");
+                    						afterParserOrEnumRuleCall();
                     					
 
                     }
@@ -575,7 +594,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:274:3: (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) ) )?
+            // InternalRoverDSL.g:277:3: (otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) ) )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -584,31 +603,36 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalRoverDSL.g:275:4: otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= RULE_INT ) )
+                    // InternalRoverDSL.g:278:4: otherlv_16= 'TurnDirection:' ( (lv_turndirection_17_0= ruleInteger ) )
                     {
                     otherlv_16=(Token)match(input,19,FOLLOW_8); 
 
                     				newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getTurnDirectionKeyword_9_0());
                     			
-                    // InternalRoverDSL.g:279:4: ( (lv_turndirection_17_0= RULE_INT ) )
-                    // InternalRoverDSL.g:280:5: (lv_turndirection_17_0= RULE_INT )
+                    // InternalRoverDSL.g:282:4: ( (lv_turndirection_17_0= ruleInteger ) )
+                    // InternalRoverDSL.g:283:5: (lv_turndirection_17_0= ruleInteger )
                     {
-                    // InternalRoverDSL.g:280:5: (lv_turndirection_17_0= RULE_INT )
-                    // InternalRoverDSL.g:281:6: lv_turndirection_17_0= RULE_INT
+                    // InternalRoverDSL.g:283:5: (lv_turndirection_17_0= ruleInteger )
+                    // InternalRoverDSL.g:284:6: lv_turndirection_17_0= ruleInteger
                     {
-                    lv_turndirection_17_0=(Token)match(input,RULE_INT,FOLLOW_16); 
 
-                    						newLeafNode(lv_turndirection_17_0, grammarAccess.getMissionAccess().getTurndirectionINTTerminalRuleCall_9_1_0());
+                    						newCompositeNode(grammarAccess.getMissionAccess().getTurndirectionIntegerParserRuleCall_9_1_0());
                     					
+                    pushFollow(FOLLOW_16);
+                    lv_turndirection_17_0=ruleInteger();
+
+                    state._fsp--;
+
 
                     						if (current==null) {
-                    							current = createModelElement(grammarAccess.getMissionRule());
+                    							current = createModelElementForParent(grammarAccess.getMissionRule());
                     						}
-                    						setWithLastConsumed(
+                    						set(
                     							current,
                     							"turndirection",
                     							lv_turndirection_17_0,
-                    							"org.eclipse.xtext.common.Terminals.INT");
+                    							"mars.rover.RoverDSL.Integer");
+                    						afterParserOrEnumRuleCall();
                     					
 
                     }
@@ -622,7 +646,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:298:3: (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )?
+            // InternalRoverDSL.g:302:3: (otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )* )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -631,13 +655,13 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // InternalRoverDSL.g:299:4: otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )*
+                    // InternalRoverDSL.g:303:4: otherlv_18= 'Colors:' ( (lv_colorlist_19_0= ruleColors ) )*
                     {
                     otherlv_18=(Token)match(input,20,FOLLOW_17); 
 
                     				newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getColorsKeyword_10_0());
                     			
-                    // InternalRoverDSL.g:303:4: ( (lv_colorlist_19_0= ruleColors ) )*
+                    // InternalRoverDSL.g:307:4: ( (lv_colorlist_19_0= ruleColors ) )*
                     loop10:
                     do {
                         int alt10=2;
@@ -650,10 +674,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // InternalRoverDSL.g:304:5: (lv_colorlist_19_0= ruleColors )
+                    	    // InternalRoverDSL.g:308:5: (lv_colorlist_19_0= ruleColors )
                     	    {
-                    	    // InternalRoverDSL.g:304:5: (lv_colorlist_19_0= ruleColors )
-                    	    // InternalRoverDSL.g:305:6: lv_colorlist_19_0= ruleColors
+                    	    // InternalRoverDSL.g:308:5: (lv_colorlist_19_0= ruleColors )
+                    	    // InternalRoverDSL.g:309:6: lv_colorlist_19_0= ruleColors
                     	    {
 
                     	    						newCompositeNode(grammarAccess.getMissionAccess().getColorlistColorsEnumRuleCall_10_1_0());
@@ -696,11 +720,11 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getEndKeyword_11());
             		
-            // InternalRoverDSL.g:327:3: ( (lv_terminationcondition_21_0= RULE_STRING ) )
-            // InternalRoverDSL.g:328:4: (lv_terminationcondition_21_0= RULE_STRING )
+            // InternalRoverDSL.g:331:3: ( (lv_terminationcondition_21_0= RULE_STRING ) )
+            // InternalRoverDSL.g:332:4: (lv_terminationcondition_21_0= RULE_STRING )
             {
-            // InternalRoverDSL.g:328:4: (lv_terminationcondition_21_0= RULE_STRING )
-            // InternalRoverDSL.g:329:5: lv_terminationcondition_21_0= RULE_STRING
+            // InternalRoverDSL.g:332:4: (lv_terminationcondition_21_0= RULE_STRING )
+            // InternalRoverDSL.g:333:5: lv_terminationcondition_21_0= RULE_STRING
             {
             lv_terminationcondition_21_0=(Token)match(input,RULE_STRING,FOLLOW_18); 
 
@@ -722,7 +746,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:345:3: (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) ) )?
+            // InternalRoverDSL.g:349:3: (otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) ) )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -731,23 +755,23 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalRoverDSL.g:346:4: otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColors ) )
+                    // InternalRoverDSL.g:350:4: otherlv_22= 'FlashingColor:' ( (lv_flashingcolor_23_0= ruleColor ) )
                     {
                     otherlv_22=(Token)match(input,22,FOLLOW_12); 
 
                     				newLeafNode(otherlv_22, grammarAccess.getMissionAccess().getFlashingColorKeyword_13_0());
                     			
-                    // InternalRoverDSL.g:350:4: ( (lv_flashingcolor_23_0= ruleColors ) )
-                    // InternalRoverDSL.g:351:5: (lv_flashingcolor_23_0= ruleColors )
+                    // InternalRoverDSL.g:354:4: ( (lv_flashingcolor_23_0= ruleColor ) )
+                    // InternalRoverDSL.g:355:5: (lv_flashingcolor_23_0= ruleColor )
                     {
-                    // InternalRoverDSL.g:351:5: (lv_flashingcolor_23_0= ruleColors )
-                    // InternalRoverDSL.g:352:6: lv_flashingcolor_23_0= ruleColors
+                    // InternalRoverDSL.g:355:5: (lv_flashingcolor_23_0= ruleColor )
+                    // InternalRoverDSL.g:356:6: lv_flashingcolor_23_0= ruleColor
                     {
 
-                    						newCompositeNode(grammarAccess.getMissionAccess().getFlashingcolorColorsEnumRuleCall_13_1_0());
+                    						newCompositeNode(grammarAccess.getMissionAccess().getFlashingcolorColorParserRuleCall_13_1_0());
                     					
                     pushFollow(FOLLOW_19);
-                    lv_flashingcolor_23_0=ruleColors();
+                    lv_flashingcolor_23_0=ruleColor();
 
                     state._fsp--;
 
@@ -759,7 +783,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     							current,
                     							"flashingcolor",
                     							lv_flashingcolor_23_0,
-                    							"mars.rover.RoverDSL.Colors");
+                    							"mars.rover.RoverDSL.Color");
                     						afterParserOrEnumRuleCall();
                     					
 
@@ -774,7 +798,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRoverDSL.g:370:3: (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )?
+            // InternalRoverDSL.g:374:3: (otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) ) )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -783,17 +807,17 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // InternalRoverDSL.g:371:4: otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) )
+                    // InternalRoverDSL.g:375:4: otherlv_24= 'FinalSentence:' ( (lv_finalsentence_25_0= RULE_STRING ) )
                     {
                     otherlv_24=(Token)match(input,23,FOLLOW_10); 
 
                     				newLeafNode(otherlv_24, grammarAccess.getMissionAccess().getFinalSentenceKeyword_14_0());
                     			
-                    // InternalRoverDSL.g:375:4: ( (lv_finalsentence_25_0= RULE_STRING ) )
-                    // InternalRoverDSL.g:376:5: (lv_finalsentence_25_0= RULE_STRING )
+                    // InternalRoverDSL.g:379:4: ( (lv_finalsentence_25_0= RULE_STRING ) )
+                    // InternalRoverDSL.g:380:5: (lv_finalsentence_25_0= RULE_STRING )
                     {
-                    // InternalRoverDSL.g:376:5: (lv_finalsentence_25_0= RULE_STRING )
-                    // InternalRoverDSL.g:377:6: lv_finalsentence_25_0= RULE_STRING
+                    // InternalRoverDSL.g:380:5: (lv_finalsentence_25_0= RULE_STRING )
+                    // InternalRoverDSL.g:381:6: lv_finalsentence_25_0= RULE_STRING
                     {
                     lv_finalsentence_25_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
@@ -843,8 +867,103 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleMission"
 
 
+    // $ANTLR start "entryRuleInteger"
+    // InternalRoverDSL.g:402:1: entryRuleInteger returns [EObject current=null] : iv_ruleInteger= ruleInteger EOF ;
+    public final EObject entryRuleInteger() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleInteger = null;
+
+
+        try {
+            // InternalRoverDSL.g:402:48: (iv_ruleInteger= ruleInteger EOF )
+            // InternalRoverDSL.g:403:2: iv_ruleInteger= ruleInteger EOF
+            {
+             newCompositeNode(grammarAccess.getIntegerRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleInteger=ruleInteger();
+
+            state._fsp--;
+
+             current =iv_ruleInteger; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleInteger"
+
+
+    // $ANTLR start "ruleInteger"
+    // InternalRoverDSL.g:409:1: ruleInteger returns [EObject current=null] : ( (lv_integer_0_0= RULE_INT ) ) ;
+    public final EObject ruleInteger() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_integer_0_0=null;
+
+
+        	enterRule();
+
+        try {
+            // InternalRoverDSL.g:415:2: ( ( (lv_integer_0_0= RULE_INT ) ) )
+            // InternalRoverDSL.g:416:2: ( (lv_integer_0_0= RULE_INT ) )
+            {
+            // InternalRoverDSL.g:416:2: ( (lv_integer_0_0= RULE_INT ) )
+            // InternalRoverDSL.g:417:3: (lv_integer_0_0= RULE_INT )
+            {
+            // InternalRoverDSL.g:417:3: (lv_integer_0_0= RULE_INT )
+            // InternalRoverDSL.g:418:4: lv_integer_0_0= RULE_INT
+            {
+            lv_integer_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
+
+            				newLeafNode(lv_integer_0_0, grammarAccess.getIntegerAccess().getIntegerINTTerminalRuleCall_0());
+            			
+
+            				if (current==null) {
+            					current = createModelElement(grammarAccess.getIntegerRule());
+            				}
+            				setWithLastConsumed(
+            					current,
+            					"integer",
+            					lv_integer_0_0,
+            					"org.eclipse.xtext.common.Terminals.INT");
+            			
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleInteger"
+
+
     // $ANTLR start "entryRuleColor"
-    // InternalRoverDSL.g:398:1: entryRuleColor returns [EObject current=null] : iv_ruleColor= ruleColor EOF ;
+    // InternalRoverDSL.g:437:1: entryRuleColor returns [EObject current=null] : iv_ruleColor= ruleColor EOF ;
     public final EObject entryRuleColor() throws RecognitionException {
         EObject current = null;
 
@@ -852,8 +971,8 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalRoverDSL.g:398:46: (iv_ruleColor= ruleColor EOF )
-            // InternalRoverDSL.g:399:2: iv_ruleColor= ruleColor EOF
+            // InternalRoverDSL.g:437:46: (iv_ruleColor= ruleColor EOF )
+            // InternalRoverDSL.g:438:2: iv_ruleColor= ruleColor EOF
             {
              newCompositeNode(grammarAccess.getColorRule()); 
             pushFollow(FOLLOW_1);
@@ -880,7 +999,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleColor"
-    // InternalRoverDSL.g:405:1: ruleColor returns [EObject current=null] : ( (lv_color_0_0= ruleColors ) ) ;
+    // InternalRoverDSL.g:444:1: ruleColor returns [EObject current=null] : ( (lv_color_0_0= ruleColors ) ) ;
     public final EObject ruleColor() throws RecognitionException {
         EObject current = null;
 
@@ -891,14 +1010,14 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalRoverDSL.g:411:2: ( ( (lv_color_0_0= ruleColors ) ) )
-            // InternalRoverDSL.g:412:2: ( (lv_color_0_0= ruleColors ) )
+            // InternalRoverDSL.g:450:2: ( ( (lv_color_0_0= ruleColors ) ) )
+            // InternalRoverDSL.g:451:2: ( (lv_color_0_0= ruleColors ) )
             {
-            // InternalRoverDSL.g:412:2: ( (lv_color_0_0= ruleColors ) )
-            // InternalRoverDSL.g:413:3: (lv_color_0_0= ruleColors )
+            // InternalRoverDSL.g:451:2: ( (lv_color_0_0= ruleColors ) )
+            // InternalRoverDSL.g:452:3: (lv_color_0_0= ruleColors )
             {
-            // InternalRoverDSL.g:413:3: (lv_color_0_0= ruleColors )
-            // InternalRoverDSL.g:414:4: lv_color_0_0= ruleColors
+            // InternalRoverDSL.g:452:3: (lv_color_0_0= ruleColors )
+            // InternalRoverDSL.g:453:4: lv_color_0_0= ruleColors
             {
 
             				newCompositeNode(grammarAccess.getColorAccess().getColorColorsEnumRuleCall_0());
@@ -945,7 +1064,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMissionType"
-    // InternalRoverDSL.g:434:1: ruleMissionType returns [Enumerator current=null] : ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) ) ;
+    // InternalRoverDSL.g:473:1: ruleMissionType returns [Enumerator current=null] : ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) ) ;
     public final Enumerator ruleMissionType() throws RecognitionException {
         Enumerator current = null;
 
@@ -956,10 +1075,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalRoverDSL.g:440:2: ( ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) ) )
-            // InternalRoverDSL.g:441:2: ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) )
+            // InternalRoverDSL.g:479:2: ( ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) ) )
+            // InternalRoverDSL.g:480:2: ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) )
             {
-            // InternalRoverDSL.g:441:2: ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) )
+            // InternalRoverDSL.g:480:2: ( (enumLiteral_0= 'AvoidColors' ) | (enumLiteral_1= 'FindColors' ) )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -977,10 +1096,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt14) {
                 case 1 :
-                    // InternalRoverDSL.g:442:3: (enumLiteral_0= 'AvoidColors' )
+                    // InternalRoverDSL.g:481:3: (enumLiteral_0= 'AvoidColors' )
                     {
-                    // InternalRoverDSL.g:442:3: (enumLiteral_0= 'AvoidColors' )
-                    // InternalRoverDSL.g:443:4: enumLiteral_0= 'AvoidColors'
+                    // InternalRoverDSL.g:481:3: (enumLiteral_0= 'AvoidColors' )
+                    // InternalRoverDSL.g:482:4: enumLiteral_0= 'AvoidColors'
                     {
                     enumLiteral_0=(Token)match(input,24,FOLLOW_2); 
 
@@ -994,10 +1113,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalRoverDSL.g:450:3: (enumLiteral_1= 'FindColors' )
+                    // InternalRoverDSL.g:489:3: (enumLiteral_1= 'FindColors' )
                     {
-                    // InternalRoverDSL.g:450:3: (enumLiteral_1= 'FindColors' )
-                    // InternalRoverDSL.g:451:4: enumLiteral_1= 'FindColors'
+                    // InternalRoverDSL.g:489:3: (enumLiteral_1= 'FindColors' )
+                    // InternalRoverDSL.g:490:4: enumLiteral_1= 'FindColors'
                     {
                     enumLiteral_1=(Token)match(input,25,FOLLOW_2); 
 
@@ -1033,7 +1152,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleColors"
-    // InternalRoverDSL.g:461:1: ruleColors returns [Enumerator current=null] : ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) ) ;
+    // InternalRoverDSL.g:500:1: ruleColors returns [Enumerator current=null] : ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) ) ;
     public final Enumerator ruleColors() throws RecognitionException {
         Enumerator current = null;
 
@@ -1047,10 +1166,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalRoverDSL.g:467:2: ( ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) ) )
-            // InternalRoverDSL.g:468:2: ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) )
+            // InternalRoverDSL.g:506:2: ( ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) ) )
+            // InternalRoverDSL.g:507:2: ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) )
             {
-            // InternalRoverDSL.g:468:2: ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) )
+            // InternalRoverDSL.g:507:2: ( (enumLiteral_0= 'White' ) | (enumLiteral_1= 'Red' ) | (enumLiteral_2= 'Blue' ) | (enumLiteral_3= 'Yellow' ) | (enumLiteral_4= 'Black' ) )
             int alt15=5;
             switch ( input.LA(1) ) {
             case 26:
@@ -1087,10 +1206,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
             switch (alt15) {
                 case 1 :
-                    // InternalRoverDSL.g:469:3: (enumLiteral_0= 'White' )
+                    // InternalRoverDSL.g:508:3: (enumLiteral_0= 'White' )
                     {
-                    // InternalRoverDSL.g:469:3: (enumLiteral_0= 'White' )
-                    // InternalRoverDSL.g:470:4: enumLiteral_0= 'White'
+                    // InternalRoverDSL.g:508:3: (enumLiteral_0= 'White' )
+                    // InternalRoverDSL.g:509:4: enumLiteral_0= 'White'
                     {
                     enumLiteral_0=(Token)match(input,26,FOLLOW_2); 
 
@@ -1104,10 +1223,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalRoverDSL.g:477:3: (enumLiteral_1= 'Red' )
+                    // InternalRoverDSL.g:516:3: (enumLiteral_1= 'Red' )
                     {
-                    // InternalRoverDSL.g:477:3: (enumLiteral_1= 'Red' )
-                    // InternalRoverDSL.g:478:4: enumLiteral_1= 'Red'
+                    // InternalRoverDSL.g:516:3: (enumLiteral_1= 'Red' )
+                    // InternalRoverDSL.g:517:4: enumLiteral_1= 'Red'
                     {
                     enumLiteral_1=(Token)match(input,27,FOLLOW_2); 
 
@@ -1121,10 +1240,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalRoverDSL.g:485:3: (enumLiteral_2= 'Blue' )
+                    // InternalRoverDSL.g:524:3: (enumLiteral_2= 'Blue' )
                     {
-                    // InternalRoverDSL.g:485:3: (enumLiteral_2= 'Blue' )
-                    // InternalRoverDSL.g:486:4: enumLiteral_2= 'Blue'
+                    // InternalRoverDSL.g:524:3: (enumLiteral_2= 'Blue' )
+                    // InternalRoverDSL.g:525:4: enumLiteral_2= 'Blue'
                     {
                     enumLiteral_2=(Token)match(input,28,FOLLOW_2); 
 
@@ -1138,10 +1257,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalRoverDSL.g:493:3: (enumLiteral_3= 'Yellow' )
+                    // InternalRoverDSL.g:532:3: (enumLiteral_3= 'Yellow' )
                     {
-                    // InternalRoverDSL.g:493:3: (enumLiteral_3= 'Yellow' )
-                    // InternalRoverDSL.g:494:4: enumLiteral_3= 'Yellow'
+                    // InternalRoverDSL.g:532:3: (enumLiteral_3= 'Yellow' )
+                    // InternalRoverDSL.g:533:4: enumLiteral_3= 'Yellow'
                     {
                     enumLiteral_3=(Token)match(input,29,FOLLOW_2); 
 
@@ -1155,10 +1274,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalRoverDSL.g:501:3: (enumLiteral_4= 'Black' )
+                    // InternalRoverDSL.g:540:3: (enumLiteral_4= 'Black' )
                     {
-                    // InternalRoverDSL.g:501:3: (enumLiteral_4= 'Black' )
-                    // InternalRoverDSL.g:502:4: enumLiteral_4= 'Black'
+                    // InternalRoverDSL.g:540:3: (enumLiteral_4= 'Black' )
+                    // InternalRoverDSL.g:541:4: enumLiteral_4= 'Black'
                     {
                     enumLiteral_4=(Token)match(input,30,FOLLOW_2); 
 
@@ -1194,7 +1313,7 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSafety"
-    // InternalRoverDSL.g:512:1: ruleSafety returns [Enumerator current=null] : ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) ) ;
+    // InternalRoverDSL.g:551:1: ruleSafety returns [Enumerator current=null] : ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) ) ;
     public final Enumerator ruleSafety() throws RecognitionException {
         Enumerator current = null;
 
@@ -1205,10 +1324,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalRoverDSL.g:518:2: ( ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) ) )
-            // InternalRoverDSL.g:519:2: ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) )
+            // InternalRoverDSL.g:557:2: ( ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) ) )
+            // InternalRoverDSL.g:558:2: ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) )
             {
-            // InternalRoverDSL.g:519:2: ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) )
+            // InternalRoverDSL.g:558:2: ( (enumLiteral_0= 'On' ) | (enumLiteral_1= 'Off' ) )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -1226,10 +1345,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
             }
             switch (alt16) {
                 case 1 :
-                    // InternalRoverDSL.g:520:3: (enumLiteral_0= 'On' )
+                    // InternalRoverDSL.g:559:3: (enumLiteral_0= 'On' )
                     {
-                    // InternalRoverDSL.g:520:3: (enumLiteral_0= 'On' )
-                    // InternalRoverDSL.g:521:4: enumLiteral_0= 'On'
+                    // InternalRoverDSL.g:559:3: (enumLiteral_0= 'On' )
+                    // InternalRoverDSL.g:560:4: enumLiteral_0= 'On'
                     {
                     enumLiteral_0=(Token)match(input,31,FOLLOW_2); 
 
@@ -1243,10 +1362,10 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalRoverDSL.g:528:3: (enumLiteral_1= 'Off' )
+                    // InternalRoverDSL.g:567:3: (enumLiteral_1= 'Off' )
                     {
-                    // InternalRoverDSL.g:528:3: (enumLiteral_1= 'Off' )
-                    // InternalRoverDSL.g:529:4: enumLiteral_1= 'Off'
+                    // InternalRoverDSL.g:567:3: (enumLiteral_1= 'Off' )
+                    // InternalRoverDSL.g:568:4: enumLiteral_1= 'Off'
                     {
                     enumLiteral_1=(Token)match(input,32,FOLLOW_2); 
 
@@ -1292,9 +1411,9 @@ public class InternalRoverDSLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000180000000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x00000000003FE000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x000000007C3FC000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x00000000003F8000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x00000000003F0000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x000000007C000000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00000000003E0000L});

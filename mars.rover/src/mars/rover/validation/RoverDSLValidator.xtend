@@ -9,7 +9,7 @@ import mars.rover.roverDSL.Mission
 import mars.rover.roverDSL.Colors
 import mars.rover.roverDSL.Safety
 import mars.rover.roverDSL.Color
-
+import mars.rover.roverDSL.RoverDSLPackage$Literals
 /** 
  * This class contains custom validation rules. 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
@@ -36,7 +36,7 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	// warn when safety is off, warn if lake colors are not given when Safety: On
 	def checkSafety(Mission mission) {
 		if (mission.safetyproperty == Safety.OFF) {
-			warning("Are you sure you want to turn off safety features?",null)
+			warning("Are you sure you want to turn off safety features?",Literals.MISSION__SAFETYPROPERTY)
 		} else {
 			if (mission.lakelist.isEmpty()) {
 				warning("Are you sure there are no lakes on the map?",null)
@@ -46,8 +46,10 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	
 	@Check
 	def checkLakeColors(Mission mission) {
-		if(mission.bordercolor === null) {
-			warning("test!!",null)
+		if (mission.bordercolor !== null) {
+			if(mission.lakelist.contains(mission.bordercolor.color)) {
+				warning("Are you sure the border has the same color as a lake?",Literals.MISSION__BORDERCOLOR)
+			}
 		}
 	}
 	
@@ -59,32 +61,40 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	@Check
 	// warn if the border is not default (white)
 	def checkOuterBorder(Mission mission) {
-		if (mission.bordercolor.color != Colors.WHITE) {
-			warning("Are you sure this is the color of the border?", null)
+		if (mission.bordercolor !== null) {
+			if (mission.bordercolor.color != Colors.WHITE) {
+				warning("Are you sure this is the color of the border?", Literals.MISSION__BORDERCOLOR)
+			}
 		}
 	}
 	
 	@Check
 	// check input
 	def checkForwardSpeed(Mission mission) {
-		if(mission.forwardspeed < 1 || mission.forwardspeed > 100) {
-			error("Please give a correct speed value (1-100)",null)
+		if(mission.forwardspeed !== null) {
+			if(mission.forwardspeed.integer < 1 || mission.forwardspeed.integer > 100) {
+				error("Please give a correct speed value (1-100).",Literals.MISSION__FORWARDSPEED)
+			}
 		}
 	}
 	
 	@Check
 	// check input
 	def checkReverseSpeed(Mission mission) {
-		if(mission.reversespeed < 1 || mission.reversespeed > 100) {
-			error("Please give a correct speed value (1-100)",null)
+		if(mission.reversespeed !== null) {	
+			if(mission.reversespeed.integer < 1 || mission.reversespeed.integer > 100) {
+				error("Please give a correct speed value (1-100).",Literals.MISSION__REVERSESPEED)
+			}
 		}
 	}
 	
 	@Check
 	// check input
 	def checkTurnDirection(Mission mission) {
-		if(mission.turndirection < 1 || mission.turndirection > 360){
-			error("Please give a correct turndirection value (1-360) ",null)
+		if(mission.turndirection !== null) {	
+			if(mission.turndirection.integer < 1 || mission.turndirection.integer > 360){
+				error("Please give a correct turndirection value (1-360).",Literals.MISSION__TURNDIRECTION)
+			}
 		}
 	}
 	
@@ -96,12 +106,12 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 			// avoid using the same color twice
 			for (var j = i+1; j < clist.size; j++) {
 				if (clist.get(i).equals(clist.get(j))) {
-					error("Double color.",null)
+					error("Cannot use the same color twice for the mission.",Literals.MISSION__COLORLIST)
 				}
 			}
 			// avoid conflicts for using the border color in the mission
-			if (clist.get(i) == mission.bordercolor && mission.missiontype != MissionType.AVOID_COLORS) {
-				error("The color of the border is reused for the mission.",null)
+			if (clist.get(i) == mission.bordercolor.color && mission.missiontype != MissionType.AVOID_COLORS) {
+				error("The color of the border is reused for the mission.",Literals.MISSION__BORDERCOLOR)
 			}
 		}
 	}

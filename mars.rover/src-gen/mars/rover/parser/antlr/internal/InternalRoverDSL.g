@@ -157,19 +157,20 @@ ruleMission returns [EObject current=null]
 			}
 			(
 				(
-					lv_objectdistance_7_0=RULE_INT
 					{
-						newLeafNode(lv_objectdistance_7_0, grammarAccess.getMissionAccess().getObjectdistanceINTTerminalRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getObjectdistanceIntegerParserRuleCall_4_1_0());
 					}
+					lv_objectdistance_7_0=ruleInteger
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getMissionRule());
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"objectdistance",
 							lv_objectdistance_7_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -230,19 +231,20 @@ ruleMission returns [EObject current=null]
 			}
 			(
 				(
-					lv_forwardspeed_13_0=RULE_INT
 					{
-						newLeafNode(lv_forwardspeed_13_0, grammarAccess.getMissionAccess().getForwardspeedINTTerminalRuleCall_7_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getForwardspeedIntegerParserRuleCall_7_1_0());
 					}
+					lv_forwardspeed_13_0=ruleInteger
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getMissionRule());
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"forwardspeed",
 							lv_forwardspeed_13_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -254,19 +256,20 @@ ruleMission returns [EObject current=null]
 			}
 			(
 				(
-					lv_reversespeed_15_0=RULE_INT
 					{
-						newLeafNode(lv_reversespeed_15_0, grammarAccess.getMissionAccess().getReversespeedINTTerminalRuleCall_8_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getReversespeedIntegerParserRuleCall_8_1_0());
 					}
+					lv_reversespeed_15_0=ruleInteger
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getMissionRule());
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"reversespeed",
 							lv_reversespeed_15_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -278,19 +281,20 @@ ruleMission returns [EObject current=null]
 			}
 			(
 				(
-					lv_turndirection_17_0=RULE_INT
 					{
-						newLeafNode(lv_turndirection_17_0, grammarAccess.getMissionAccess().getTurndirectionINTTerminalRuleCall_9_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getTurndirectionIntegerParserRuleCall_9_1_0());
 					}
+					lv_turndirection_17_0=ruleInteger
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getMissionRule());
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
 							"turndirection",
 							lv_turndirection_17_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -350,9 +354,9 @@ ruleMission returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMissionAccess().getFlashingcolorColorsEnumRuleCall_13_1_0());
+						newCompositeNode(grammarAccess.getMissionAccess().getFlashingcolorColorParserRuleCall_13_1_0());
 					}
-					lv_flashingcolor_23_0=ruleColors
+					lv_flashingcolor_23_0=ruleColor
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMissionRule());
@@ -361,7 +365,7 @@ ruleMission returns [EObject current=null]
 							$current,
 							"flashingcolor",
 							lv_flashingcolor_23_0,
-							"mars.rover.RoverDSL.Colors");
+							"mars.rover.RoverDSL.Color");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -391,6 +395,41 @@ ruleMission returns [EObject current=null]
 				)
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleInteger
+entryRuleInteger returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIntegerRule()); }
+	iv_ruleInteger=ruleInteger
+	{ $current=$iv_ruleInteger.current; }
+	EOF;
+
+// Rule Integer
+ruleInteger returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_integer_0_0=RULE_INT
+			{
+				newLeafNode(lv_integer_0_0, grammarAccess.getIntegerAccess().getIntegerINTTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getIntegerRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"integer",
+					lv_integer_0_0,
+					"org.eclipse.xtext.common.Terminals.INT");
+			}
+		)
 	)
 ;
 

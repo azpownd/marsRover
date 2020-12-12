@@ -3,7 +3,9 @@
  */
 package mars.rover.roverDSL.util;
 
-import mars.rover.roverDSL.*;
+import mars.rover.roverDSL.Color;
+import mars.rover.roverDSL.Mission;
+import mars.rover.roverDSL.RoverDSLPackage;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -81,6 +83,11 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
         return createMissionAdapter();
       }
       @Override
+      public Adapter caseInteger(mars.rover.roverDSL.Integer object)
+      {
+        return createIntegerAdapter();
+      }
+      @Override
       public Adapter caseColor(Color object)
       {
         return createColorAdapter();
@@ -118,6 +125,21 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMissionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Integer <em>Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mars.rover.roverDSL.Integer
+   * @generated
+   */
+  public Adapter createIntegerAdapter()
   {
     return null;
   }

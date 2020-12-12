@@ -87,6 +87,7 @@ class PythonGeneratorM {
 	        sock_out.write("nothing" + '\n')
 	        sock_out.flush()
 	        #print('Sent ' + str(data))
+
 	
 	#-------------------------CHANGING CODE---------------------------------------
 	«IF root.safetyproperty.equals(Safety.ON)»
@@ -95,23 +96,36 @@ class PythonGeneratorM {
 	    done = False # When / how set to done? Given as input or smth? (set to done is needed for terminating program correctly?
 	    prio = 10 # Higher = more important
 	    def takeControl(self):
-	        return not self.done and (cs_l.color == 6 or cs_m.color == 6 or cs_r.color == 6
-	                                  or us_b.distance_centimeters > 100) #white (border) # Note: Change if lake depth changes!
+	        return not self.done and (cs_l.color == «toInt(root.bordercolor.color)» or cs_m.color == «toInt(root.bordercolor.color)» or cs_r.color == «toInt(root.bordercolor.color)» 
+	        							or us_b.distance_centimeters > 100) #white (border) # Note: Change if lake depth changes!
 	        
 	    def action(self):
+	        outer_border_color = «toInt(root.bordercolor.color)» # White
+	        rotation_speed_right = «0.8*100» # 80% of max speed forwards
+	        rotation_speed_left = -80 # 80% of max speed backwards
+	        rotation_degrees = 90 # How far you want to turn
+	
 	        s.speak("Found border", play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
-	        if cs_l.color == 6:
+	        if cs_l.color == outer_border_color:
 	            print("Border on left side")
-	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
-	        elif cs_m.color == 6:
+	            #tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	            #tank_drive.on_for_degrees(speed=80, degrees=90)  # Turn left (backwards)
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
+	        elif cs_m.color == outer_border_color:
 	            print("Border in front")
-	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
-	        elif cs_r.color == 6:
+	            #tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	            #tank_drive.on_for_degrees(speed=80, degrees=90)
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
+	        elif cs_r.color == outer_border_color:
 	            print("Border on right side")
-	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1) # Turn left (backwards)
+	            #tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1) # Turn left (backwards)
+	            #tank_drive.on_for_degrees(speed=80, degrees=90)
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
 	        elif us_b.distance_centimeters > 100: # Note: Change if lake depth changes!
 	            print("Border behind")
-	            tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(0), 1)  # Turn right (forward)
+	            #tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(0), 1)  # Turn right (forward)
+	            #tank_drive.on_for_degrees(speed=80, degrees=90)
+	            tank_drive.on_for_degrees(left_speed=rotation_speed_right, right_speed=0, degrees=rotation_degrees)
 	
 	    def suppress(self):
 	       print("StayInLine suppressed!") # Should never happen!
@@ -296,4 +310,13 @@ class PythonGeneratorM {
 	run(server_mac, is_master)
 
 	'''
+	def static int toInt(Colors c) {
+		switch(c){
+			case Colors.WHITE: return 6
+			case Colors.RED: return 2
+			case Colors.BLUE: return 5
+			case Colors.YELLOW: return 4
+			case Colors.BLACK: return 1
+		}
+	}
 }

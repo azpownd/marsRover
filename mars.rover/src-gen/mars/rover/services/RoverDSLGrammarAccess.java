@@ -41,7 +41,7 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cAvoidObjectsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cObjectdistanceAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cObjectdistanceINTTerminalRuleCall_4_1_0 = (RuleCall)cObjectdistanceAssignment_4_1.eContents().get(0);
+		private final RuleCall cObjectdistanceIntegerParserRuleCall_4_1_0 = (RuleCall)cObjectdistanceAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cBeginSentenceKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cBeginsentenceAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
@@ -53,15 +53,15 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cForwardSpeedKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
 		private final Assignment cForwardspeedAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cForwardspeedINTTerminalRuleCall_7_1_0 = (RuleCall)cForwardspeedAssignment_7_1.eContents().get(0);
+		private final RuleCall cForwardspeedIntegerParserRuleCall_7_1_0 = (RuleCall)cForwardspeedAssignment_7_1.eContents().get(0);
 		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
 		private final Keyword cReverseSpeedKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
 		private final Assignment cReversespeedAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
-		private final RuleCall cReversespeedINTTerminalRuleCall_8_1_0 = (RuleCall)cReversespeedAssignment_8_1.eContents().get(0);
+		private final RuleCall cReversespeedIntegerParserRuleCall_8_1_0 = (RuleCall)cReversespeedAssignment_8_1.eContents().get(0);
 		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
 		private final Keyword cTurnDirectionKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
 		private final Assignment cTurndirectionAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
-		private final RuleCall cTurndirectionINTTerminalRuleCall_9_1_0 = (RuleCall)cTurndirectionAssignment_9_1.eContents().get(0);
+		private final RuleCall cTurndirectionIntegerParserRuleCall_9_1_0 = (RuleCall)cTurndirectionAssignment_9_1.eContents().get(0);
 		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
 		private final Keyword cColorsKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
 		private final Assignment cColorlistAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
@@ -72,7 +72,7 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
 		private final Keyword cFlashingColorKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
 		private final Assignment cFlashingcolorAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
-		private final RuleCall cFlashingcolorColorsEnumRuleCall_13_1_0 = (RuleCall)cFlashingcolorAssignment_13_1.eContents().get(0);
+		private final RuleCall cFlashingcolorColorParserRuleCall_13_1_0 = (RuleCall)cFlashingcolorAssignment_13_1.eContents().get(0);
 		private final Group cGroup_14 = (Group)cGroup.eContents().get(14);
 		private final Keyword cFinalSentenceKeyword_14_0 = (Keyword)cGroup_14.eContents().get(0);
 		private final Assignment cFinalsentenceAssignment_14_1 = (Assignment)cGroup_14.eContents().get(1);
@@ -80,19 +80,19 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//Mission:
 		//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
-		//	('AvoidObjects:' objectdistance=INT)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' bordercolor=Color)?
-		//	('ForwardSpeed:' forwardspeed=INT)? ('ReverseSpeed:' reversespeed=INT)? ('TurnDirection:' turndirection=INT)?
-		//	('Colors:' colorlist+=Colors*)?
+		//	('AvoidObjects:' objectdistance=Integer)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:'
+		//	bordercolor=Color)? ('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
+		//	turndirection=Integer)? ('Colors:' colorlist+=Colors*)?
 		//	//('Sensors:' sensorlist += Sensors*)?
-		//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Colors)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
+		//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Color)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
-		//('AvoidObjects:' objectdistance=INT)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' bordercolor=Color)?
-		//('ForwardSpeed:' forwardspeed=INT)? ('ReverseSpeed:' reversespeed=INT)? ('TurnDirection:' turndirection=INT)?
-		//('Colors:' colorlist+=Colors*)? //('Sensors:' sensorlist += Sensors*)?
-		//'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Colors)? ('FinalSentence:' finalsentence=STRING)?
+		//('AvoidObjects:' objectdistance=Integer)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' bordercolor=Color)?
+		//('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
+		//turndirection=Integer)? ('Colors:' colorlist+=Colors*)? //('Sensors:' sensorlist += Sensors*)?
+		//'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Color)? ('FinalSentence:' finalsentence=STRING)?
 		public Group getGroup() { return cGroup; }
 		
 		//'Mission:'
@@ -128,17 +128,17 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Colors
 		public RuleCall getLakelistColorsEnumRuleCall_3_1_0() { return cLakelistColorsEnumRuleCall_3_1_0; }
 		
-		//('AvoidObjects:' objectdistance=INT)?
+		//('AvoidObjects:' objectdistance=Integer)?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//'AvoidObjects:'
 		public Keyword getAvoidObjectsKeyword_4_0() { return cAvoidObjectsKeyword_4_0; }
 		
-		//objectdistance=INT
+		//objectdistance=Integer
 		public Assignment getObjectdistanceAssignment_4_1() { return cObjectdistanceAssignment_4_1; }
 		
-		//INT
-		public RuleCall getObjectdistanceINTTerminalRuleCall_4_1_0() { return cObjectdistanceINTTerminalRuleCall_4_1_0; }
+		//Integer
+		public RuleCall getObjectdistanceIntegerParserRuleCall_4_1_0() { return cObjectdistanceIntegerParserRuleCall_4_1_0; }
 		
 		//('BeginSentence:' beginsentence=STRING)?
 		public Group getGroup_5() { return cGroup_5; }
@@ -164,41 +164,41 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Color
 		public RuleCall getBordercolorColorParserRuleCall_6_1_0() { return cBordercolorColorParserRuleCall_6_1_0; }
 		
-		//('ForwardSpeed:' forwardspeed=INT)?
+		//('ForwardSpeed:' forwardspeed=Integer)?
 		public Group getGroup_7() { return cGroup_7; }
 		
 		//'ForwardSpeed:'
 		public Keyword getForwardSpeedKeyword_7_0() { return cForwardSpeedKeyword_7_0; }
 		
-		//forwardspeed=INT
+		//forwardspeed=Integer
 		public Assignment getForwardspeedAssignment_7_1() { return cForwardspeedAssignment_7_1; }
 		
-		//INT
-		public RuleCall getForwardspeedINTTerminalRuleCall_7_1_0() { return cForwardspeedINTTerminalRuleCall_7_1_0; }
+		//Integer
+		public RuleCall getForwardspeedIntegerParserRuleCall_7_1_0() { return cForwardspeedIntegerParserRuleCall_7_1_0; }
 		
-		//('ReverseSpeed:' reversespeed=INT)?
+		//('ReverseSpeed:' reversespeed=Integer)?
 		public Group getGroup_8() { return cGroup_8; }
 		
 		//'ReverseSpeed:'
 		public Keyword getReverseSpeedKeyword_8_0() { return cReverseSpeedKeyword_8_0; }
 		
-		//reversespeed=INT
+		//reversespeed=Integer
 		public Assignment getReversespeedAssignment_8_1() { return cReversespeedAssignment_8_1; }
 		
-		//INT
-		public RuleCall getReversespeedINTTerminalRuleCall_8_1_0() { return cReversespeedINTTerminalRuleCall_8_1_0; }
+		//Integer
+		public RuleCall getReversespeedIntegerParserRuleCall_8_1_0() { return cReversespeedIntegerParserRuleCall_8_1_0; }
 		
-		//('TurnDirection:' turndirection=INT)?
+		//('TurnDirection:' turndirection=Integer)?
 		public Group getGroup_9() { return cGroup_9; }
 		
 		//'TurnDirection:'
 		public Keyword getTurnDirectionKeyword_9_0() { return cTurnDirectionKeyword_9_0; }
 		
-		//turndirection=INT
+		//turndirection=Integer
 		public Assignment getTurndirectionAssignment_9_1() { return cTurndirectionAssignment_9_1; }
 		
-		//INT
-		public RuleCall getTurndirectionINTTerminalRuleCall_9_1_0() { return cTurndirectionINTTerminalRuleCall_9_1_0; }
+		//Integer
+		public RuleCall getTurndirectionIntegerParserRuleCall_9_1_0() { return cTurndirectionIntegerParserRuleCall_9_1_0; }
 		
 		//('Colors:' colorlist+=Colors*)?
 		public Group getGroup_10() { return cGroup_10; }
@@ -222,17 +222,17 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//STRING
 		public RuleCall getTerminationconditionSTRINGTerminalRuleCall_12_0() { return cTerminationconditionSTRINGTerminalRuleCall_12_0; }
 		
-		//('FlashingColor:' flashingcolor=Colors)?
+		//('FlashingColor:' flashingcolor=Color)?
 		public Group getGroup_13() { return cGroup_13; }
 		
 		//'FlashingColor:'
 		public Keyword getFlashingColorKeyword_13_0() { return cFlashingColorKeyword_13_0; }
 		
-		//flashingcolor=Colors
+		//flashingcolor=Color
 		public Assignment getFlashingcolorAssignment_13_1() { return cFlashingcolorAssignment_13_1; }
 		
-		//Colors
-		public RuleCall getFlashingcolorColorsEnumRuleCall_13_1_0() { return cFlashingcolorColorsEnumRuleCall_13_1_0; }
+		//Color
+		public RuleCall getFlashingcolorColorParserRuleCall_13_1_0() { return cFlashingcolorColorParserRuleCall_13_1_0; }
 		
 		//('FinalSentence:' finalsentence=STRING)?
 		public Group getGroup_14() { return cGroup_14; }
@@ -246,12 +246,27 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//STRING
 		public RuleCall getFinalsentenceSTRINGTerminalRuleCall_14_1_0() { return cFinalsentenceSTRINGTerminalRuleCall_14_1_0; }
 	}
+	public class IntegerElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Integer");
+		private final Assignment cIntegerAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cIntegerINTTerminalRuleCall_0 = (RuleCall)cIntegerAssignment.eContents().get(0);
+		
+		////Colors: color = STRING;
+		//Integer:
+		//	integer=INT;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//integer=INT
+		public Assignment getIntegerAssignment() { return cIntegerAssignment; }
+		
+		//INT
+		public RuleCall getIntegerINTTerminalRuleCall_0() { return cIntegerINTTerminalRuleCall_0; }
+	}
 	public class ColorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Color");
 		private final Assignment cColorAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cColorColorsEnumRuleCall_0 = (RuleCall)cColorAssignment.eContents().get(0);
 		
-		////Colors: color = STRING;
 		////Sensors: sensor = STRING;
 		//Color:
 		//	color=Colors;
@@ -372,6 +387,7 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	private final MissionElements pMission;
 	private final MissionTypeElements eMissionType;
+	private final IntegerElements pInteger;
 	private final ColorElements pColor;
 	private final ColorsElements eColors;
 	private final SafetyElements eSafety;
@@ -387,6 +403,7 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.gaTerminals = gaTerminals;
 		this.pMission = new MissionElements();
 		this.eMissionType = new MissionTypeElements();
+		this.pInteger = new IntegerElements();
 		this.pColor = new ColorElements();
 		this.eColors = new ColorsElements();
 		this.eSafety = new SafetyElements();
@@ -421,11 +438,11 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	//Mission:
 	//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
-	//	('AvoidObjects:' objectdistance=INT)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' bordercolor=Color)?
-	//	('ForwardSpeed:' forwardspeed=INT)? ('ReverseSpeed:' reversespeed=INT)? ('TurnDirection:' turndirection=INT)?
-	//	('Colors:' colorlist+=Colors*)?
+	//	('AvoidObjects:' objectdistance=Integer)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:'
+	//	bordercolor=Color)? ('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
+	//	turndirection=Integer)? ('Colors:' colorlist+=Colors*)?
 	//	//('Sensors:' sensorlist += Sensors*)?
-	//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Colors)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
+	//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Color)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
 	//;
 	public MissionElements getMissionAccess() {
 		return pMission;
@@ -446,6 +463,16 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	////Colors: color = STRING;
+	//Integer:
+	//	integer=INT;
+	public IntegerElements getIntegerAccess() {
+		return pInteger;
+	}
+	
+	public ParserRule getIntegerRule() {
+		return getIntegerAccess().getRule();
+	}
+	
 	////Sensors: sensor = STRING;
 	//Color:
 	//	color=Colors;

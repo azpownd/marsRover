@@ -33,6 +33,15 @@ public interface RoverDSLFactory extends EFactory
   Mission createMission();
 
   /**
+   * Returns a new object of class '<em>Integer</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Integer</em>'.
+   * @generated
+   */
+  Integer createInteger();
+
+  /**
    * Returns a new object of class '<em>Color</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

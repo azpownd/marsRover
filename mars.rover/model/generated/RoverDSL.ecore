@@ -6,22 +6,30 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="safetyproperty" eType="#//Safety"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lakelist" unique="false"
         upperBound="-1" eType="#//Colors"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectdistance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectdistance" eType="#//Integer"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="beginsentence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bordercolor" eType="#//Color"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forwardspeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reversespeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="turndirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forwardspeed" eType="#//Integer"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reversespeed" eType="#//Integer"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turndirection" eType="#//Integer"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="colorlist" unique="false"
         upperBound="-1" eType="#//Colors"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminationcondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flashingcolor" eType="#//Colors"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flashingcolor" eType="#//Color"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finalsentence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="MissionType">
     <eLiterals name="AvoidColors" literal="AvoidColors"/>
     <eLiterals name="FindColors" value="1" literal="FindColors"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Integer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="integer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Color">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Colors"/>

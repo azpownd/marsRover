@@ -96,7 +96,7 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__LAKELIST = 2;
 
   /**
-   * The feature id for the '<em><b>Objectdistance</b></em>' attribute.
+   * The feature id for the '<em><b>Objectdistance</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -123,7 +123,7 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__BORDERCOLOR = 5;
 
   /**
-   * The feature id for the '<em><b>Forwardspeed</b></em>' attribute.
+   * The feature id for the '<em><b>Forwardspeed</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -132,7 +132,7 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__FORWARDSPEED = 6;
 
   /**
-   * The feature id for the '<em><b>Reversespeed</b></em>' attribute.
+   * The feature id for the '<em><b>Reversespeed</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -141,7 +141,7 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__REVERSESPEED = 7;
 
   /**
-   * The feature id for the '<em><b>Turndirection</b></em>' attribute.
+   * The feature id for the '<em><b>Turndirection</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -168,7 +168,7 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__TERMINATIONCONDITION = 10;
 
   /**
-   * The feature id for the '<em><b>Flashingcolor</b></em>' attribute.
+   * The feature id for the '<em><b>Flashingcolor</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -195,6 +195,34 @@ public interface RoverDSLPackage extends EPackage
   int MISSION_FEATURE_COUNT = 13;
 
   /**
+   * The meta object id for the '{@link mars.rover.roverDSL.impl.IntegerImpl <em>Integer</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mars.rover.roverDSL.impl.IntegerImpl
+   * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getInteger()
+   * @generated
+   */
+  int INTEGER = 1;
+
+  /**
+   * The feature id for the '<em><b>Integer</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER__INTEGER = 0;
+
+  /**
+   * The number of structural features of the '<em>Integer</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link mars.rover.roverDSL.impl.ColorImpl <em>Color</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -202,7 +230,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getColor()
    * @generated
    */
-  int COLOR = 1;
+  int COLOR = 2;
 
   /**
    * The feature id for the '<em><b>Color</b></em>' attribute.
@@ -230,7 +258,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getMissionType()
    * @generated
    */
-  int MISSION_TYPE = 2;
+  int MISSION_TYPE = 3;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.Colors <em>Colors</em>}' enum.
@@ -240,7 +268,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getColors()
    * @generated
    */
-  int COLORS = 3;
+  int COLORS = 4;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.Safety <em>Safety</em>}' enum.
@@ -250,7 +278,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getSafety()
    * @generated
    */
-  int SAFETY = 4;
+  int SAFETY = 5;
 
 
   /**
@@ -297,15 +325,15 @@ public interface RoverDSLPackage extends EPackage
   EAttribute getMission_Lakelist();
 
   /**
-   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getObjectdistance <em>Objectdistance</em>}'.
+   * Returns the meta object for the containment reference '{@link mars.rover.roverDSL.Mission#getObjectdistance <em>Objectdistance</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Objectdistance</em>'.
+   * @return the meta object for the containment reference '<em>Objectdistance</em>'.
    * @see mars.rover.roverDSL.Mission#getObjectdistance()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Objectdistance();
+  EReference getMission_Objectdistance();
 
   /**
    * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getBeginsentence <em>Beginsentence</em>}'.
@@ -330,37 +358,37 @@ public interface RoverDSLPackage extends EPackage
   EReference getMission_Bordercolor();
 
   /**
-   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getForwardspeed <em>Forwardspeed</em>}'.
+   * Returns the meta object for the containment reference '{@link mars.rover.roverDSL.Mission#getForwardspeed <em>Forwardspeed</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Forwardspeed</em>'.
+   * @return the meta object for the containment reference '<em>Forwardspeed</em>'.
    * @see mars.rover.roverDSL.Mission#getForwardspeed()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Forwardspeed();
+  EReference getMission_Forwardspeed();
 
   /**
-   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getReversespeed <em>Reversespeed</em>}'.
+   * Returns the meta object for the containment reference '{@link mars.rover.roverDSL.Mission#getReversespeed <em>Reversespeed</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Reversespeed</em>'.
+   * @return the meta object for the containment reference '<em>Reversespeed</em>'.
    * @see mars.rover.roverDSL.Mission#getReversespeed()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Reversespeed();
+  EReference getMission_Reversespeed();
 
   /**
-   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getTurndirection <em>Turndirection</em>}'.
+   * Returns the meta object for the containment reference '{@link mars.rover.roverDSL.Mission#getTurndirection <em>Turndirection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Turndirection</em>'.
+   * @return the meta object for the containment reference '<em>Turndirection</em>'.
    * @see mars.rover.roverDSL.Mission#getTurndirection()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Turndirection();
+  EReference getMission_Turndirection();
 
   /**
    * Returns the meta object for the attribute list '{@link mars.rover.roverDSL.Mission#getColorlist <em>Colorlist</em>}'.
@@ -385,15 +413,15 @@ public interface RoverDSLPackage extends EPackage
   EAttribute getMission_Terminationcondition();
 
   /**
-   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getFlashingcolor <em>Flashingcolor</em>}'.
+   * Returns the meta object for the containment reference '{@link mars.rover.roverDSL.Mission#getFlashingcolor <em>Flashingcolor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Flashingcolor</em>'.
+   * @return the meta object for the containment reference '<em>Flashingcolor</em>'.
    * @see mars.rover.roverDSL.Mission#getFlashingcolor()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Flashingcolor();
+  EReference getMission_Flashingcolor();
 
   /**
    * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getFinalsentence <em>Finalsentence</em>}'.
@@ -405,6 +433,27 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    */
   EAttribute getMission_Finalsentence();
+
+  /**
+   * Returns the meta object for class '{@link mars.rover.roverDSL.Integer <em>Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Integer</em>'.
+   * @see mars.rover.roverDSL.Integer
+   * @generated
+   */
+  EClass getInteger();
+
+  /**
+   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Integer#getInteger <em>Integer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Integer</em>'.
+   * @see mars.rover.roverDSL.Integer#getInteger()
+   * @see #getInteger()
+   * @generated
+   */
+  EAttribute getInteger_Integer();
 
   /**
    * Returns the meta object for class '{@link mars.rover.roverDSL.Color <em>Color</em>}'.
@@ -515,12 +564,12 @@ public interface RoverDSLPackage extends EPackage
     EAttribute MISSION__LAKELIST = eINSTANCE.getMission_Lakelist();
 
     /**
-     * The meta object literal for the '<em><b>Objectdistance</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Objectdistance</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__OBJECTDISTANCE = eINSTANCE.getMission_Objectdistance();
+    EReference MISSION__OBJECTDISTANCE = eINSTANCE.getMission_Objectdistance();
 
     /**
      * The meta object literal for the '<em><b>Beginsentence</b></em>' attribute feature.
@@ -539,28 +588,28 @@ public interface RoverDSLPackage extends EPackage
     EReference MISSION__BORDERCOLOR = eINSTANCE.getMission_Bordercolor();
 
     /**
-     * The meta object literal for the '<em><b>Forwardspeed</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Forwardspeed</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__FORWARDSPEED = eINSTANCE.getMission_Forwardspeed();
+    EReference MISSION__FORWARDSPEED = eINSTANCE.getMission_Forwardspeed();
 
     /**
-     * The meta object literal for the '<em><b>Reversespeed</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Reversespeed</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__REVERSESPEED = eINSTANCE.getMission_Reversespeed();
+    EReference MISSION__REVERSESPEED = eINSTANCE.getMission_Reversespeed();
 
     /**
-     * The meta object literal for the '<em><b>Turndirection</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Turndirection</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__TURNDIRECTION = eINSTANCE.getMission_Turndirection();
+    EReference MISSION__TURNDIRECTION = eINSTANCE.getMission_Turndirection();
 
     /**
      * The meta object literal for the '<em><b>Colorlist</b></em>' attribute list feature.
@@ -579,12 +628,12 @@ public interface RoverDSLPackage extends EPackage
     EAttribute MISSION__TERMINATIONCONDITION = eINSTANCE.getMission_Terminationcondition();
 
     /**
-     * The meta object literal for the '<em><b>Flashingcolor</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Flashingcolor</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__FLASHINGCOLOR = eINSTANCE.getMission_Flashingcolor();
+    EReference MISSION__FLASHINGCOLOR = eINSTANCE.getMission_Flashingcolor();
 
     /**
      * The meta object literal for the '<em><b>Finalsentence</b></em>' attribute feature.
@@ -593,6 +642,24 @@ public interface RoverDSLPackage extends EPackage
      * @generated
      */
     EAttribute MISSION__FINALSENTENCE = eINSTANCE.getMission_Finalsentence();
+
+    /**
+     * The meta object literal for the '{@link mars.rover.roverDSL.impl.IntegerImpl <em>Integer</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mars.rover.roverDSL.impl.IntegerImpl
+     * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getInteger()
+     * @generated
+     */
+    EClass INTEGER = eINSTANCE.getInteger();
+
+    /**
+     * The meta object literal for the '<em><b>Integer</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INTEGER__INTEGER = eINSTANCE.getInteger_Integer();
 
     /**
      * The meta object literal for the '{@link mars.rover.roverDSL.impl.ColorImpl <em>Color</em>}' class.

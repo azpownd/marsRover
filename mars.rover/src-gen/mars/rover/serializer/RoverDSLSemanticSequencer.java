@@ -36,6 +36,9 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case RoverDSLPackage.COLOR:
 				sequence_Color(context, (Color) semanticObject); 
 				return; 
+			case RoverDSLPackage.INTEGER:
+				sequence_Integer(context, (mars.rover.roverDSL.Integer) semanticObject); 
+				return; 
 			case RoverDSLPackage.MISSION:
 				sequence_Mission(context, (Mission) semanticObject); 
 				return; 
@@ -64,6 +67,24 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Integer returns Integer
+	 *
+	 * Constraint:
+	 *     integer=INT
+	 */
+	protected void sequence_Integer(ISerializationContext context, mars.rover.roverDSL.Integer semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, RoverDSLPackage.Literals.INTEGER__INTEGER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RoverDSLPackage.Literals.INTEGER__INTEGER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIntegerAccess().getIntegerINTTerminalRuleCall_0(), semanticObject.getInteger());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Mission returns Mission
 	 *
 	 * Constraint:
@@ -71,15 +92,15 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         missiontype=MissionType 
 	 *         safetyproperty=Safety? 
 	 *         lakelist+=Colors* 
-	 *         objectdistance=INT? 
+	 *         objectdistance=Integer? 
 	 *         beginsentence=STRING? 
 	 *         bordercolor=Color? 
-	 *         forwardspeed=INT? 
-	 *         reversespeed=INT? 
-	 *         turndirection=INT? 
+	 *         forwardspeed=Integer? 
+	 *         reversespeed=Integer? 
+	 *         turndirection=Integer? 
 	 *         colorlist+=Colors* 
 	 *         terminationcondition=STRING 
-	 *         flashingcolor=Colors? 
+	 *         flashingcolor=Color? 
 	 *         finalsentence=STRING?
 	 *     )
 	 */

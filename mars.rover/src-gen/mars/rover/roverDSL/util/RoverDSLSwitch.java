@@ -3,7 +3,9 @@
  */
 package mars.rover.roverDSL.util;
 
-import mars.rover.roverDSL.*;
+import mars.rover.roverDSL.Color;
+import mars.rover.roverDSL.Mission;
+import mars.rover.roverDSL.RoverDSLPackage;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -80,6 +82,13 @@ public class RoverDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RoverDSLPackage.INTEGER:
+      {
+        mars.rover.roverDSL.Integer integer = (mars.rover.roverDSL.Integer)theEObject;
+        T result = caseInteger(integer);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RoverDSLPackage.COLOR:
       {
         Color color = (Color)theEObject;
@@ -103,6 +112,22 @@ public class RoverDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMission(Mission object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Integer</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Integer</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInteger(mars.rover.roverDSL.Integer object)
   {
     return null;
   }
