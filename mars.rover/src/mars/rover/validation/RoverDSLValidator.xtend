@@ -8,6 +8,7 @@ import mars.rover.roverDSL.MissionType
 import mars.rover.roverDSL.Mission
 import mars.rover.roverDSL.Colors
 import mars.rover.roverDSL.Safety
+import mars.rover.roverDSL.Color
 
 /** 
  * This class contains custom validation rules. 
@@ -45,7 +46,9 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	
 	@Check
 	def checkLakeColors(Mission mission) {
-		//possible check
+		if(mission.bordercolor === null) {
+			warning("test!!",null)
+		}
 	}
 	
 	@Check
@@ -56,7 +59,7 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	@Check
 	// warn if the border is not default (white)
 	def checkOuterBorder(Mission mission) {
-		if (mission.border != Colors.WHITE) {
+		if (mission.bordercolor.color != Colors.WHITE) {
 			warning("Are you sure this is the color of the border?", null)
 		}
 	}
@@ -97,7 +100,7 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 				}
 			}
 			// avoid conflicts for using the border color in the mission
-			if (clist.get(i) == mission.border && mission.missiontype != MissionType.AVOID_COLORS) {
+			if (clist.get(i) == mission.bordercolor && mission.missiontype != MissionType.AVOID_COLORS) {
 				error("The color of the border is reused for the mission.",null)
 			}
 		}

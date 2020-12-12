@@ -3,6 +3,7 @@
  */
 package mars.rover.roverDSL.impl;
 
+import mars.rover.roverDSL.Color;
 import mars.rover.roverDSL.Colors;
 import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.MissionType;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -31,6 +33,13 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   private EClass missionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass colorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -166,7 +175,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Beginsentence()
+  public EAttribute getMission_Objectdistance()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(3);
   }
@@ -177,7 +186,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Border()
+  public EAttribute getMission_Beginsentence()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(4);
   }
@@ -188,9 +197,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Forwardspeed()
+  public EReference getMission_Bordercolor()
   {
-    return (EAttribute)missionEClass.getEStructuralFeatures().get(5);
+    return (EReference)missionEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -199,7 +208,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Reversespeed()
+  public EAttribute getMission_Forwardspeed()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(6);
   }
@@ -210,7 +219,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Turndirection()
+  public EAttribute getMission_Reversespeed()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(7);
   }
@@ -221,7 +230,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Colorlist()
+  public EAttribute getMission_Turndirection()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(8);
   }
@@ -232,7 +241,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Terminationcondition()
+  public EAttribute getMission_Colorlist()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(9);
   }
@@ -243,7 +252,7 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Flashingcolor()
+  public EAttribute getMission_Terminationcondition()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(10);
   }
@@ -254,9 +263,42 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getMission_Finalsentence()
+  public EAttribute getMission_Flashingcolor()
   {
     return (EAttribute)missionEClass.getEStructuralFeatures().get(11);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMission_Finalsentence()
+  {
+    return (EAttribute)missionEClass.getEStructuralFeatures().get(12);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getColor()
+  {
+    return colorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getColor_Color()
+  {
+    return (EAttribute)colorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -327,8 +369,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     createEAttribute(missionEClass, MISSION__MISSIONTYPE);
     createEAttribute(missionEClass, MISSION__SAFETYPROPERTY);
     createEAttribute(missionEClass, MISSION__LAKELIST);
+    createEAttribute(missionEClass, MISSION__OBJECTDISTANCE);
     createEAttribute(missionEClass, MISSION__BEGINSENTENCE);
-    createEAttribute(missionEClass, MISSION__BORDER);
+    createEReference(missionEClass, MISSION__BORDERCOLOR);
     createEAttribute(missionEClass, MISSION__FORWARDSPEED);
     createEAttribute(missionEClass, MISSION__REVERSESPEED);
     createEAttribute(missionEClass, MISSION__TURNDIRECTION);
@@ -336,6 +379,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     createEAttribute(missionEClass, MISSION__TERMINATIONCONDITION);
     createEAttribute(missionEClass, MISSION__FLASHINGCOLOR);
     createEAttribute(missionEClass, MISSION__FINALSENTENCE);
+
+    colorEClass = createEClass(COLOR);
+    createEAttribute(colorEClass, COLOR__COLOR);
 
     // Create enums
     missionTypeEEnum = createEEnum(MISSION_TYPE);
@@ -378,8 +424,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     initEAttribute(getMission_Missiontype(), this.getMissionType(), "missiontype", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Safetyproperty(), this.getSafety(), "safetyproperty", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Lakelist(), this.getColors(), "lakelist", null, 0, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMission_Objectdistance(), ecorePackage.getEInt(), "objectdistance", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Beginsentence(), ecorePackage.getEString(), "beginsentence", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMission_Border(), this.getColors(), "border", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMission_Bordercolor(), this.getColor(), null, "bordercolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Forwardspeed(), ecorePackage.getEInt(), "forwardspeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Reversespeed(), ecorePackage.getEInt(), "reversespeed", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Turndirection(), ecorePackage.getEInt(), "turndirection", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -387,6 +434,9 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     initEAttribute(getMission_Terminationcondition(), ecorePackage.getEString(), "terminationcondition", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Flashingcolor(), this.getColors(), "flashingcolor", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMission_Finalsentence(), ecorePackage.getEString(), "finalsentence", null, 0, 1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(colorEClass, Color.class, "Color", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getColor_Color(), this.getColors(), "color", null, 0, 1, Color.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(missionTypeEEnum, MissionType.class, "MissionType");
@@ -399,7 +449,6 @@ public class RoverDSLPackageImpl extends EPackageImpl implements RoverDSLPackage
     addEEnumLiteral(colorsEEnum, Colors.BLUE);
     addEEnumLiteral(colorsEEnum, Colors.YELLOW);
     addEEnumLiteral(colorsEEnum, Colors.BLACK);
-    addEEnumLiteral(colorsEEnum, Colors.ORANGE);
 
     initEEnum(safetyEEnum, Safety.class, "Safety");
     addEEnumLiteral(safetyEEnum, Safety.ON);

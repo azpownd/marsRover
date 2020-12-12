@@ -81,6 +81,11 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
         return createMissionAdapter();
       }
       @Override
+      public Adapter caseColor(Color object)
+      {
+        return createColorAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -113,6 +118,21 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMissionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Color <em>Color</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mars.rover.roverDSL.Color
+   * @generated
+   */
+  public Adapter createColorAdapter()
   {
     return null;
   }

@@ -4,13 +4,14 @@ generate roverDSL "http://www.rover.mars/RoverDSL"
 
 Mission:
 	'Mission:' missiontype = MissionType
-	('Safety:' safetyproperty = Safety)? // only ON and OFF or more specific?
-	('LakeColors:' lakelist += Colors*)?
-	('BeginSentence:' beginsentence = STRING)? // For robot to say when mission is start (cuz multiple in a row) Maybe change final sentence to song? (validate options) Optional, default white
-	('OuterBorder:' border = Colors)? // Optional, default white
+	('Safety:' safetyproperty = Safety)? // ON or OFF, stayinline
+	('LakeColors:' lakelist += Colors*)? // if there are lakes, specify colors. Default none?
+	('AvoidObjects:' objectdistance = INT)? // on based on safety, distance in cm, default 15 cm
+	('BeginSentence:' beginsentence = STRING)? // For robot to say when mission is start (cuz multiple in a row)
+	('OuterBorder:' bordercolor = Color)? // Optional, default white
 	('ForwardSpeed:' forwardspeed = INT)? // Optional, default 50 or smth (validation 0-100)
 	('ReverseSpeed:' reversespeed = INT)? // Optional, default 20 I guess? (validation 0-100)
-	('TurnDirection:' turndirection = INT)? // Optional, default right. (validation -100 to 100?) (left right, etc.) (diff direction for backwrds or nah?)
+	('TurnDirection:' turndirection = INT)? // Optional, default right. (validation 0-360)(diff direction for backwrds or nah?)
 	('Colors:' colorlist += Colors*)?
 	//('Sensors:' sensorlist += Sensors*)?
 	'End:' terminationcondition = STRING // add validation for types of termination values (based on mission)
@@ -23,8 +24,9 @@ enum MissionType: AvoidColors | FindColors;
 //Colors: color = STRING;
 
 //Sensors: sensor = STRING;
+Color: color = Colors;
 
-enum Colors: White | Red | Blue | Yellow | Black | Orange;
+enum Colors: White | Red | Blue | Yellow | Black;
 
 enum Safety: On | Off;
 //enum Sensors: Touch | Ultrasonic | Color;

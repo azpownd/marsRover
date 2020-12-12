@@ -3,6 +3,7 @@ package mars.rover.generator
 import mars.rover.roverDSL.Mission
 import mars.rover.roverDSL.MissionType
 import mars.rover.roverDSL.Safety
+import mars.rover.roverDSL.Colors
 
 class PythonGeneratorM {
 	def static toText(Mission root)'''
@@ -124,9 +125,14 @@ class PythonGeneratorM {
 	    stop = False
 	    prio = 9 # Higher = more important
 	    lake_colors = {
-	        2: "Blue",
-	        4: "Yellow",
-	        5: "Red"
+			«FOR c: root.lakelist SEPARATOR ","»«IF c.equals(Colors.WHITE)»
+				6: "White"«ELSEIF c.equals(Colors.RED)»
+				5: "Red"«ELSEIF c.equals(Colors.BLUE)»
+				2: "Blue"«ELSEIF c.equals(Colors.YELLOW)»
+				4: "Yellow"«ELSEIF c.equals(Colors.BLACK)»
+				1: "Black"
+    			«ENDIF»
+			«ENDFOR»
 	    }
 	    def takeControl(self):
 	        return cs_l.color in self.lake_colors or cs_m.color in self.lake_colors or cs_r.color in self.lake_colors \
@@ -280,7 +286,7 @@ class PythonGeneratorM {
 	    
 	    while True:
 	        #print("Nieuwe ronde!")
-	        tank_drive.on(SpeedPercent(20), SpeedPercent(20)) # default movement speed
+	        tank_drive.on(SpeedPercent(«IF !(root.forwardspeed == 0)»«root.forwardspeed»«ELSE»20«ENDIF»), SpeedPercent(20)) # default movement speed
 	        behaviour = next(b for b in behaviours if b.takeControl())
 	        behaviour.action()
 	        #behaviour.stop = False

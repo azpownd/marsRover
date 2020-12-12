@@ -20,13 +20,13 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected RoverDSLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Mission_ColorsKeyword_9_0_q;
+	protected AbstractElementAlias match_Mission_ColorsKeyword_10_0_q;
 	protected AbstractElementAlias match_Mission_LakeColorsKeyword_3_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (RoverDSLGrammarAccess) access;
-		match_Mission_ColorsKeyword_9_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_9_0());
+		match_Mission_ColorsKeyword_10_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_10_0());
 		match_Mission_LakeColorsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getLakeColorsKeyword_3_0());
 	}
 	
@@ -42,8 +42,8 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Mission_ColorsKeyword_9_0_q.equals(syntax))
-				emit_Mission_ColorsKeyword_9_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Mission_ColorsKeyword_10_0_q.equals(syntax))
+				emit_Mission_ColorsKeyword_10_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Mission_LakeColorsKeyword_3_0_q.equals(syntax))
 				emit_Mission_LakeColorsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -56,15 +56,16 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     beginsentence=STRING (ambiguity) 'End:' terminationcondition=STRING
-	 *     border=Colors (ambiguity) 'End:' terminationcondition=STRING
+	 *     bordercolor=Color (ambiguity) 'End:' terminationcondition=STRING
 	 *     forwardspeed=INT (ambiguity) 'End:' terminationcondition=STRING
 	 *     lakelist+=Colors (ambiguity) 'End:' terminationcondition=STRING
 	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
+	 *     objectdistance=INT (ambiguity) 'End:' terminationcondition=STRING
 	 *     reversespeed=INT (ambiguity) 'End:' terminationcondition=STRING
 	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
 	 *     turndirection=INT (ambiguity) 'End:' terminationcondition=STRING
 	 */
-	protected void emit_Mission_ColorsKeyword_9_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_ColorsKeyword_10_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -73,18 +74,20 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'LakeColors:'?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     missiontype=MissionType (ambiguity) 'AvoidObjects:' objectdistance=INT
 	 *     missiontype=MissionType (ambiguity) 'BeginSentence:' beginsentence=STRING
 	 *     missiontype=MissionType (ambiguity) 'Colors:' colorlist+=Colors
 	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
 	 *     missiontype=MissionType (ambiguity) 'ForwardSpeed:' forwardspeed=INT
-	 *     missiontype=MissionType (ambiguity) 'OuterBorder:' border=Colors
+	 *     missiontype=MissionType (ambiguity) 'OuterBorder:' bordercolor=Color
 	 *     missiontype=MissionType (ambiguity) 'ReverseSpeed:' reversespeed=INT
 	 *     missiontype=MissionType (ambiguity) 'TurnDirection:' turndirection=INT
+	 *     safetyproperty=Safety (ambiguity) 'AvoidObjects:' objectdistance=INT
 	 *     safetyproperty=Safety (ambiguity) 'BeginSentence:' beginsentence=STRING
 	 *     safetyproperty=Safety (ambiguity) 'Colors:' colorlist+=Colors
 	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
 	 *     safetyproperty=Safety (ambiguity) 'ForwardSpeed:' forwardspeed=INT
-	 *     safetyproperty=Safety (ambiguity) 'OuterBorder:' border=Colors
+	 *     safetyproperty=Safety (ambiguity) 'OuterBorder:' bordercolor=Color
 	 *     safetyproperty=Safety (ambiguity) 'ReverseSpeed:' reversespeed=INT
 	 *     safetyproperty=Safety (ambiguity) 'TurnDirection:' turndirection=INT
 	 */

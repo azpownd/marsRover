@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,22 +96,31 @@ public interface RoverDSLPackage extends EPackage
   int MISSION__LAKELIST = 2;
 
   /**
+   * The feature id for the '<em><b>Objectdistance</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MISSION__OBJECTDISTANCE = 3;
+
+  /**
    * The feature id for the '<em><b>Beginsentence</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__BEGINSENTENCE = 3;
+  int MISSION__BEGINSENTENCE = 4;
 
   /**
-   * The feature id for the '<em><b>Border</b></em>' attribute.
+   * The feature id for the '<em><b>Bordercolor</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MISSION__BORDER = 4;
+  int MISSION__BORDERCOLOR = 5;
 
   /**
    * The feature id for the '<em><b>Forwardspeed</b></em>' attribute.
@@ -119,7 +129,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FORWARDSPEED = 5;
+  int MISSION__FORWARDSPEED = 6;
 
   /**
    * The feature id for the '<em><b>Reversespeed</b></em>' attribute.
@@ -128,7 +138,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__REVERSESPEED = 6;
+  int MISSION__REVERSESPEED = 7;
 
   /**
    * The feature id for the '<em><b>Turndirection</b></em>' attribute.
@@ -137,7 +147,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__TURNDIRECTION = 7;
+  int MISSION__TURNDIRECTION = 8;
 
   /**
    * The feature id for the '<em><b>Colorlist</b></em>' attribute list.
@@ -146,7 +156,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__COLORLIST = 8;
+  int MISSION__COLORLIST = 9;
 
   /**
    * The feature id for the '<em><b>Terminationcondition</b></em>' attribute.
@@ -155,7 +165,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__TERMINATIONCONDITION = 9;
+  int MISSION__TERMINATIONCONDITION = 10;
 
   /**
    * The feature id for the '<em><b>Flashingcolor</b></em>' attribute.
@@ -164,7 +174,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FLASHINGCOLOR = 10;
+  int MISSION__FLASHINGCOLOR = 11;
 
   /**
    * The feature id for the '<em><b>Finalsentence</b></em>' attribute.
@@ -173,7 +183,7 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION__FINALSENTENCE = 11;
+  int MISSION__FINALSENTENCE = 12;
 
   /**
    * The number of structural features of the '<em>Mission</em>' class.
@@ -182,7 +192,35 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MISSION_FEATURE_COUNT = 12;
+  int MISSION_FEATURE_COUNT = 13;
+
+  /**
+   * The meta object id for the '{@link mars.rover.roverDSL.impl.ColorImpl <em>Color</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see mars.rover.roverDSL.impl.ColorImpl
+   * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getColor()
+   * @generated
+   */
+  int COLOR = 1;
+
+  /**
+   * The feature id for the '<em><b>Color</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLOR__COLOR = 0;
+
+  /**
+   * The number of structural features of the '<em>Color</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLOR_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.MissionType <em>Mission Type</em>}' enum.
@@ -192,7 +230,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getMissionType()
    * @generated
    */
-  int MISSION_TYPE = 1;
+  int MISSION_TYPE = 2;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.Colors <em>Colors</em>}' enum.
@@ -202,7 +240,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getColors()
    * @generated
    */
-  int COLORS = 2;
+  int COLORS = 3;
 
   /**
    * The meta object id for the '{@link mars.rover.roverDSL.Safety <em>Safety</em>}' enum.
@@ -212,7 +250,7 @@ public interface RoverDSLPackage extends EPackage
    * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getSafety()
    * @generated
    */
-  int SAFETY = 3;
+  int SAFETY = 4;
 
 
   /**
@@ -259,6 +297,17 @@ public interface RoverDSLPackage extends EPackage
   EAttribute getMission_Lakelist();
 
   /**
+   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getObjectdistance <em>Objectdistance</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Objectdistance</em>'.
+   * @see mars.rover.roverDSL.Mission#getObjectdistance()
+   * @see #getMission()
+   * @generated
+   */
+  EAttribute getMission_Objectdistance();
+
+  /**
    * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getBeginsentence <em>Beginsentence</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -270,15 +319,15 @@ public interface RoverDSLPackage extends EPackage
   EAttribute getMission_Beginsentence();
 
   /**
-   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getBorder <em>Border</em>}'.
+   * Returns the meta object for the containment reference '{@link mars.rover.roverDSL.Mission#getBordercolor <em>Bordercolor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Border</em>'.
-   * @see mars.rover.roverDSL.Mission#getBorder()
+   * @return the meta object for the containment reference '<em>Bordercolor</em>'.
+   * @see mars.rover.roverDSL.Mission#getBordercolor()
    * @see #getMission()
    * @generated
    */
-  EAttribute getMission_Border();
+  EReference getMission_Bordercolor();
 
   /**
    * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Mission#getForwardspeed <em>Forwardspeed</em>}'.
@@ -356,6 +405,27 @@ public interface RoverDSLPackage extends EPackage
    * @generated
    */
   EAttribute getMission_Finalsentence();
+
+  /**
+   * Returns the meta object for class '{@link mars.rover.roverDSL.Color <em>Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Color</em>'.
+   * @see mars.rover.roverDSL.Color
+   * @generated
+   */
+  EClass getColor();
+
+  /**
+   * Returns the meta object for the attribute '{@link mars.rover.roverDSL.Color#getColor <em>Color</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Color</em>'.
+   * @see mars.rover.roverDSL.Color#getColor()
+   * @see #getColor()
+   * @generated
+   */
+  EAttribute getColor_Color();
 
   /**
    * Returns the meta object for enum '{@link mars.rover.roverDSL.MissionType <em>Mission Type</em>}'.
@@ -445,6 +515,14 @@ public interface RoverDSLPackage extends EPackage
     EAttribute MISSION__LAKELIST = eINSTANCE.getMission_Lakelist();
 
     /**
+     * The meta object literal for the '<em><b>Objectdistance</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MISSION__OBJECTDISTANCE = eINSTANCE.getMission_Objectdistance();
+
+    /**
      * The meta object literal for the '<em><b>Beginsentence</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -453,12 +531,12 @@ public interface RoverDSLPackage extends EPackage
     EAttribute MISSION__BEGINSENTENCE = eINSTANCE.getMission_Beginsentence();
 
     /**
-     * The meta object literal for the '<em><b>Border</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Bordercolor</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MISSION__BORDER = eINSTANCE.getMission_Border();
+    EReference MISSION__BORDERCOLOR = eINSTANCE.getMission_Bordercolor();
 
     /**
      * The meta object literal for the '<em><b>Forwardspeed</b></em>' attribute feature.
@@ -515,6 +593,24 @@ public interface RoverDSLPackage extends EPackage
      * @generated
      */
     EAttribute MISSION__FINALSENTENCE = eINSTANCE.getMission_Finalsentence();
+
+    /**
+     * The meta object literal for the '{@link mars.rover.roverDSL.impl.ColorImpl <em>Color</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see mars.rover.roverDSL.impl.ColorImpl
+     * @see mars.rover.roverDSL.impl.RoverDSLPackageImpl#getColor()
+     * @generated
+     */
+    EClass COLOR = eINSTANCE.getColor();
+
+    /**
+     * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COLOR__COLOR = eINSTANCE.getColor_Color();
 
     /**
      * The meta object literal for the '{@link mars.rover.roverDSL.MissionType <em>Mission Type</em>}' enum.

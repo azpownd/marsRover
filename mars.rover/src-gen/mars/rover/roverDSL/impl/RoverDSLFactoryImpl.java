@@ -67,6 +67,7 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
     switch (eClass.getClassifierID())
     {
       case RoverDSLPackage.MISSION: return createMission();
+      case RoverDSLPackage.COLOR: return createColor();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -124,6 +125,18 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
   {
     MissionImpl mission = new MissionImpl();
     return mission;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Color createColor()
+  {
+    ColorImpl color = new ColorImpl();
+    return color;
   }
 
   /**

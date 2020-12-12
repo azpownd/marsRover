@@ -6,8 +6,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="safetyproperty" eType="#//Safety"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lakelist" unique="false"
         upperBound="-1" eType="#//Colors"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectdistance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="beginsentence" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="border" eType="#//Colors"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bordercolor" eType="#//Color"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="forwardspeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reversespeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="turndirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -21,13 +23,15 @@
     <eLiterals name="AvoidColors" literal="AvoidColors"/>
     <eLiterals name="FindColors" value="1" literal="FindColors"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Color">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//Colors"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Colors">
     <eLiterals name="White" literal="White"/>
     <eLiterals name="Red" value="1" literal="Red"/>
     <eLiterals name="Blue" value="2" literal="Blue"/>
     <eLiterals name="Yellow" value="3" literal="Yellow"/>
     <eLiterals name="Black" value="4" literal="Black"/>
-    <eLiterals name="Orange" value="5" literal="Orange"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Safety">
     <eLiterals name="On" literal="On"/>

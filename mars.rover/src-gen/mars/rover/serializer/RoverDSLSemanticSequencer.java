@@ -5,6 +5,7 @@ package mars.rover.serializer;
 
 import com.google.inject.Inject;
 import java.util.Set;
+import mars.rover.roverDSL.Color;
 import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.RoverDSLPackage;
 import mars.rover.services.RoverDSLGrammarAccess;
@@ -14,7 +15,9 @@ import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Parameter;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.serializer.ISerializationContext;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
+import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
 public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -30,6 +33,9 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == RoverDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case RoverDSLPackage.COLOR:
+				sequence_Color(context, (Color) semanticObject); 
+				return; 
 			case RoverDSLPackage.MISSION:
 				sequence_Mission(context, (Mission) semanticObject); 
 				return; 
@@ -40,6 +46,24 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Contexts:
+	 *     Color returns Color
+	 *
+	 * Constraint:
+	 *     color=Colors
+	 */
+	protected void sequence_Color(ISerializationContext context, Color semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, RoverDSLPackage.Literals.COLOR__COLOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RoverDSLPackage.Literals.COLOR__COLOR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getColorAccess().getColorColorsEnumRuleCall_0(), semanticObject.getColor());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Mission returns Mission
 	 *
 	 * Constraint:
@@ -47,8 +71,9 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         missiontype=MissionType 
 	 *         safetyproperty=Safety? 
 	 *         lakelist+=Colors* 
+	 *         objectdistance=INT? 
 	 *         beginsentence=STRING? 
-	 *         border=Colors? 
+	 *         bordercolor=Color? 
 	 *         forwardspeed=INT? 
 	 *         reversespeed=INT? 
 	 *         turndirection=INT? 

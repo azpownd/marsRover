@@ -16,7 +16,6 @@
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Colors/Blue"/>
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Colors/Yellow"/>
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Colors/Black"/>
-      <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Colors/Orange"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="RoverDSL.ecore#//Safety">
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Safety/On"/>
@@ -26,8 +25,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/missiontype"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/safetyproperty"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/lakelist"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/objectdistance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/beginsentence"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/border"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/bordercolor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/forwardspeed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/reversespeed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/turndirection"/>
@@ -35,6 +35,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/terminationcondition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/flashingcolor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/finalsentence"/>
+    </genClasses>
+    <genClasses ecoreClass="RoverDSL.ecore#//Color">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Color/color"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
