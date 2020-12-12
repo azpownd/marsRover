@@ -8,7 +8,6 @@ import mars.rover.roverDSL.MissionType
 import mars.rover.roverDSL.Mission
 import mars.rover.roverDSL.Colors
 import mars.rover.roverDSL.Safety
-import mars.rover.roverDSL.Color
 import mars.rover.roverDSL.RoverDSLPackage$Literals
 /** 
  * This class contains custom validation rules. 
@@ -19,16 +18,17 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	
 	@Check
 	def checkMissionType(Mission mission) {
-		if (mission.missiontype == MissionType.AVOID_COLORS) {
+		if (mission.missiontype == MissionType.FIND_COLORS) {
 			if (mission.colorlist.isEmpty()) {
 				error("For this mission, at least one color should be specified (Colors: <Color>).",null)
 			}
 		}
 		else {
+			error("Only FindColors is implemented at this moment.",null)
 			// mission has to be FindColors at this moment
-			if (mission.colorlist.isEmpty()) {
+			/**if (mission.colorlist.isEmpty()) {
 				error("For this mission, at least one color should be specified (Colors: <Color>).",null)
-			}
+			}**/
 		}
 	}
 	
@@ -110,8 +110,14 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 				}
 			}
 			// avoid conflicts for using the border color in the mission
-			if (clist.get(i) == mission.bordercolor.color && mission.missiontype != MissionType.AVOID_COLORS) {
-				error("The color of the border is reused for the mission.",Literals.MISSION__BORDERCOLOR)
+			if (mission.bordercolor !== null) {	
+				if (clist.get(i) == mission.bordercolor.color && mission.missiontype != MissionType.AVOID_COLORS) {
+					error("The color of the border is reused for the mission.",Literals.MISSION__BORDERCOLOR)
+				}
+			} else {
+				if (clist.get(i) == Colors.WHITE && mission.missiontype != MissionType.AVOID_COLORS) {
+					error("The color of the border is reused for the mission.",Literals.MISSION__BORDERCOLOR)
+				}
 			}
 		}
 	}

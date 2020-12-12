@@ -66,7 +66,7 @@ class PythonGeneratorS {
 	    i = 1
 	    sock_out.write(str(i) + '\n')
 	    sock_out.flush()
-	    print('Sent ' + str(i))
+	    #print('Sent ' + str(i))
 	    listen(sock_in, sock_out)
 	
 	
@@ -75,16 +75,16 @@ class PythonGeneratorS {
 	    global new_value
 	    print('Now listening...')
 	    while True:
-	        print('BLUETOOTH WAS HERE')
-	        print('IF CHECK == {}'.format(new_value_to_sent))
+	        #print('BLUETOOTH WAS HERE')
+	        #print('IF CHECK == {}'.format(new_value_to_sent))
 	        data = sock_in.readline()
-	        print('Received ' + str(data)) # crashes here or?
+	        #print('Received ' + str(data)) # crashes here or?
 	        if new_value_to_sent:
 	            #print('Brick1, avoid!')
 	            sock_out.write('Avoid\n')
 	            sock_out.flush()
 	            #print('Sent ' + str(data))
-	            print('Sent {}'.format(new_value))
+	            #print('Sent {}'.format(new_value))
 	            new_value_to_sent = False
 	        else:
 	            sock_out.write("nothing" + '\n')
@@ -99,17 +99,11 @@ class PythonGeneratorS {
 	    #global new_value
 	
 	    def takeControl(self):
-	        return ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < 30
+	        return ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < «IF !(root.objectdistance === null)»«root.objectdistance.integer»«ELSE»«30»«ENDIF»
 	
 	    def action(self):
 	        global new_value_to_sent
 	        global new_value
-	        #if ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < 5:
-	        #    print("Avoiding object!")
-	        #    sleep(1) # temporary
-	        #    print('Distance: {}'.format(us_f.distance_centimeters))
-	        #    new_value = 'Avoiding' # Can extend to sent brick 1 the sensor that determined this (diff turn or smth)
-	        #    new_value_to_sent = True
 	        if ts_b.is_pressed:
 	            print('touch back\n')
 	            new_value = 'Avoiding'  # Can extend to sent brick 1 the sensor that determined this (diff turn or smth)
@@ -158,7 +152,6 @@ class PythonGeneratorS {
 	
 	behaviour = ClassB2()
 	behaviours = [«IF root.safetyproperty.equals(Safety.ON)»AvoidObjects(),«ENDIF» ClassB2()] #list with missions, first = highest priority. NEED to be in order!
-	
 	
 	def monitoring():
 	    global behaviour

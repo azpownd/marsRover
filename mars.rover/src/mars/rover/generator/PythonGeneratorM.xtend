@@ -69,7 +69,7 @@ class PythonGeneratorM {
 	    i = 1
 	    sock_out.write(str(i) + '\n')
 	    sock_out.flush()
-	    print('Sent ' + str(i))
+	    #print('Sent ' + str(i))
 	    listen(sock_in, sock_out)
 	
 	
@@ -81,64 +81,57 @@ class PythonGeneratorM {
 	        if 'Avoid' in data:
 	            print('Avoid Received')
 	            avoid_object_bool = True
-	        else:
-	            print('Received ' + str(data))
+	        #else:
+	        #    print('Received ' + str(data))
 	        sleep(1)
 	        sock_out.write("nothing" + '\n')
 	        sock_out.flush()
 	        #print('Sent ' + str(data))
 
 	
-	#-------------------------CHANGING CODE---------------------------------------
-	«IF root.safetyproperty.equals(Safety.ON)»
+	#-------------------------MISSIONS CODE---------------------------------------
+	«IF root.safetyproperty.equals(Safety.ON)»	
 	class StayInLine:
 	    #stop = False
 	    done = False # When / how set to done? Given as input or smth? (set to done is needed for terminating program correctly?
 	    prio = 10 # Higher = more important
 	    def takeControl(self):
-	        return not self.done and (cs_l.color == «toInt(root.bordercolor.color)» or cs_m.color == «toInt(root.bordercolor.color)» or cs_r.color == «toInt(root.bordercolor.color)» 
-	        							or us_b.distance_centimeters > 100) #white (border) # Note: Change if lake depth changes!
+	        return not self.done and (cs_l.color == «IF (root.bordercolor === null)»6«ELSE»«toInt(root.bordercolor.color)»«ENDIF» or cs_m.color == «IF (root.bordercolor === null)»6«ELSE»«toInt(root.bordercolor.color)»«ENDIF» or cs_r.color == «IF (root.bordercolor === null)»6«ELSE»«toInt(root.bordercolor.color)»«ENDIF»
+	                                  or us_b.distance_centimeters > 100) #white (border) # Note: Change if lake depth changes!
 	        
 	    def action(self):
-	        outer_border_color = «toInt(root.bordercolor.color)» # White
-	        rotation_speed_right = «0.8*100» # 80% of max speed forwards
-	        rotation_speed_left = -80 # 80% of max speed backwards
-	        rotation_degrees = 90 # How far you want to turn
+	        outer_border_color = «IF (root.bordercolor === null)»6«ELSE»«toInt(root.bordercolor.color)»«ENDIF»
+	        rotation_speed_right = «IF !(root.forwardspeed === null)»«0.8*root.forwardspeed.integer»«ELSE»«0.8*20»«ENDIF» # 80% of max speed forwards
+	        rotation_speed_left = -«IF !(root.reversespeed === null)»«0.8*root.reversespeed.integer»«ELSE»«0.8*20»«ENDIF» # 80% of max speed backwards
+	        rotation_degrees = «IF !(root.turndirection === null)»«root.turndirection.integer»«ELSE»90«ENDIF» # How far you want to turn
 	
 	        s.speak("Found border", play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
 	        if cs_l.color == outer_border_color:
 	            print("Border on left side")
-	            #tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
-	            #tank_drive.on_for_degrees(speed=80, degrees=90)  # Turn left (backwards)
-	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees) # Turn left (backwards)
 	        elif cs_m.color == outer_border_color:
 	            print("Border in front")
-	            #tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
-	            #tank_drive.on_for_degrees(speed=80, degrees=90)
-	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees) # Turn left (backwards)
 	        elif cs_r.color == outer_border_color:
 	            print("Border on right side")
-	            #tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1) # Turn left (backwards)
-	            #tank_drive.on_for_degrees(speed=80, degrees=90)
-	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees) # Turn left (backwards)
 	        elif us_b.distance_centimeters > 100: # Note: Change if lake depth changes!
 	            print("Border behind")
-	            #tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(0), 1)  # Turn right (forward)
-	            #tank_drive.on_for_degrees(speed=80, degrees=90)
-	            tank_drive.on_for_degrees(left_speed=rotation_speed_right, right_speed=0, degrees=rotation_degrees)
+	            tank_drive.on_for_degrees(left_speed=rotation_speed_right, right_speed=0, degrees=rotation_degrees) # Turn right (forward)
 	
 	    def suppress(self):
 	       print("StayInLine suppressed!") # Should never happen!
 	       #self.stop = True
 	«ENDIF»
 	
-	«IF !root.lakelist.isEmpty()»
+	
 	new_lake_found = 0
 	
 	class AvoidLakes: # Only generate if no color tasks OR always have but add colors to colors found array if mission selected?
 	    stop = False
 	    prio = 9 # Higher = more important
 	    lake_colors = {
+			«IF !root.lakelist.isEmpty()»
 			«FOR c: root.lakelist SEPARATOR ","»«IF c.equals(Colors.WHITE)»
 				6: "White"«ELSEIF c.equals(Colors.RED)»
 				5: "Red"«ELSEIF c.equals(Colors.BLUE)»
@@ -147,34 +140,39 @@ class PythonGeneratorM {
 				1: "Black"
     			«ENDIF»
 			«ENDFOR»
+			«ENDIF»
 	    }
 	    def takeControl(self):
-	        return cs_l.color in self.lake_colors or cs_m.color in self.lake_colors or cs_r.color in self.lake_colors \
-	               or us_b.distance_centimeters > 100 # Note: Change if lake depth changes!
-	
+	           «IF !root.lakelist.isEmpty()» return cs_l.color in self.lake_colors or cs_m.color in self.lake_colors or cs_r.color in self.lake_colors \
+	                   or us_b.distance_centimeters > 100 # Note: Change if lake depth changes!«ELSE»return 0«ENDIF»
+	    
 	    def action(self):
+	        rotation_speed_right = «IF !(root.forwardspeed === null)»«0.8*root.forwardspeed.integer»«ELSE»«0.8*20»«ENDIF» # 80% of max speed forwards
+	        rotation_speed_left = -«IF !(root.reversespeed === null)»«0.8*root.reversespeed.integer»«ELSE»«0.8*20»«ENDIF» # 80% of max speed backwards
+	        rotation_degrees = «IF !(root.turndirection === null)»«root.turndirection.integer»«ELSE»90«ENDIF» # How far you want to turn
+	    
 	        global new_lake_found # Used for find colors
 	        s.speak("Found lake", play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
 	        if cs_l.color in self.lake_colors:
-	            print("{} lake on left side".format(self.lake_colors[cs_l.color]))
-	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
-	            new_lake_found = cs_l.color # Used for find colors
+	            new_lake_found = cs_l.color  # Used for find colors
+	            print("{} lake on left side".format(self.lake_colors[new_lake_found]))
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees) # Turn left (backwards)
 	        elif cs_m.color in self.lake_colors:
+	            new_lake_found = cs_m.color  # Used for find colors
 	            print("{} lake in front".format(self.lake_colors[cs_m.color]))
-	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
-	            new_lake_found = cs_m.color # Used for find colors
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees) # Turn left (backwards)
 	        elif cs_r.color in self.lake_colors:
+	            new_lake_found = cs_r.color  # Used for find colors
 	            print("{} lake on right side".format(self.lake_colors[cs_r.color]))
-	            tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1) # Turn left (backwards)
-	            new_lake_found = cs_r.color # Used for find colors
+	            tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees) # Turn left (backwards)
+	            #print("Appended new lake RIGHT: {}\n\n".format(new_lake_found))
 	            print(cs_r.color)
 	        elif us_b.distance_centimeters > 100: # Note: Change if lake depth changes!
 	            print("Lake behind")
-	            tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(0), 1)  # Turn right (forward)
-	
+	            tank_drive.on_for_degrees(left_speed=rotation_speed_right, right_speed=0, degrees=rotation_degrees) # Turn right (forward)
 	    def suppress(self):
-	       print("StayInLine suppressed!") # Can only be done by StayInLine
-	«ENDIF»
+	        print("StayInLine suppressed!") # Can only be done by StayInLine
+	
 	
 	«IF root.safetyproperty.equals(Safety.ON)»
 	class AvoidObjects: # Add sensor checks to brick 2. Action code can be here. Take control if signal from brick 1?
@@ -191,10 +189,14 @@ class PythonGeneratorM {
 	        return avoid_object_bool
 	
 	    def action(self):
+	        rotation_speed_left = -«IF !(root.reversespeed === null)»«0.8*root.reversespeed.integer»«ELSE»«0.8*20»«ENDIF» # 80% of max speed backwards
+	        rotation_degrees = «IF !(root.turndirection === null)»«root.turndirection.integer»«ELSE»90«ENDIF» # How far you want to turn
+	
 	        global avoid_object_bool
 	        avoid_object_bool = False
 	        print("Avoiding object") # Can extend if wanted to different turn side for each bumper or something
-	        tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	        # tank_drive.on_for_rotations(SpeedPercent(0), SpeedPercent(-50), 1)  # Turn left (backwards)
+	        tank_drive.on_for_degrees(left_speed=0, right_speed=rotation_speed_left, degrees=rotation_degrees)
 	
 	    def suppress(self):
 	        print("AvoidObjects suppressed!")
@@ -218,28 +220,33 @@ class PythonGeneratorM {
 	        global found_colors
 	        global new_lake_found
 	        self.old_lake_found = new_lake_found # allows 1 run of this action, then they are equal egain
-	        mission_colors = ["Blue", "Red", "Yellow"]  # Give as input
+	        mission_colors = ["«FOR c: root.colorlist SEPARATOR "\",\"" »«c»«ENDFOR»"]  # Give as input
 	        all_colors_on_field = {
+	            1: "Black",
 	            2: "Blue",
 	            4: "Yellow",
-	            5: "Red"
+	            5: "Red",
+	            6: "White"
 	        }
-	        print('\n(Re)Starting the color search!\n')
-	        print('Old lake: {} and new lake: {}'.format(self.old_lake_found, new_lake_found))
+	        #print('\n(Re)Starting the color search!\n')
+	        #print('Old lake: {} and new lake: {}'.format(self.old_lake_found, new_lake_found))
 	
 	        if not self.done:
 	            if self.old_lake_found in all_colors_on_field:  # check if old_lake_found is a key value in our dictionary
-	                found_color = all_colors_on_field[old_lake_found] # Determines which color is attached to this key value
+	                found_color = all_colors_on_field[self.old_lake_found] # Determines which color is attached to this key value
 	                #print(found_color)
 	                if found_color in mission_colors and found_color not in found_colors:
 	                    s.speak(found_color, play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
-	                    print("New color found: {}".format(found_color))
 	                    found_colors.append(found_color)
+	                    print("New color found: {}".format(found_color))
+	                    #print("New color array: {}\n".format(found_colors))
+	                    #print("Mission color array: {}\n".format(mission_colors))
 	            if len(found_colors) == len(mission_colors):
 	                print("ALL COLORS FOUND!")
 	                tank_drive.on(SpeedPercent(0), SpeedPercent(0)) # turn off instead?
-	                Leds().animate_flash('AMBER', sleeptime=0.75, duration=5,
-	                                     block=True)  # blocking to prevent early exit()
+	                #Leds().animate_flash('AMBER', sleeptime=0.75, duration=5,
+	                #                     block=True)  # blocking to prevent early exit()
+	                s.speak("All colors found! Good Job!", play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
 	                self.done = True
 	                # break # Or exit if last / only program? Discuss program flow multiple missions
 	
@@ -278,7 +285,7 @@ class PythonGeneratorM {
 	«IF root.missiontype.equals(MissionType.FIND_COLORS)»FindColors(),«ENDIF» 
 	ClassB2()] #list with missions, first = highest priority. NEED to be in order!
 	
-	#-------------------------CHANGING CODE---------------------------------------
+	#-------------------------MISSIONS CODE---------------------------------------
 	
 	def monitoring():
 	    global behaviour
@@ -297,10 +304,11 @@ class PythonGeneratorM {
 	    
 	    monitor = threading.Thread(target=monitoring)
 	    monitor.start()
+	    drive_forward_speed = «IF !(root.forwardspeed === null)»«root.forwardspeed.integer»«ELSE»«50»«ENDIF» # Give as input
 	    
 	    while True:
 	        #print("Nieuwe ronde!")
-	        tank_drive.on(SpeedPercent(«IF !(root.forwardspeed == 0)»«root.forwardspeed»«ELSE»20«ENDIF»), SpeedPercent(20)) # default movement speed
+	        tank_drive.on(SpeedPercent(drive_forward_speed), SpeedPercent(drive_forward_speed)) # default movement speed
 	        behaviour = next(b for b in behaviours if b.takeControl())
 	        behaviour.action()
 	        #behaviour.stop = False
@@ -309,12 +317,13 @@ class PythonGeneratorM {
 	s.speak("start")
 	run(server_mac, is_master)
 
+
 	'''
 	def static int toInt(Colors c) {
 		switch(c){
 			case Colors.WHITE: return 6
-			case Colors.RED: return 2
-			case Colors.BLUE: return 5
+			case Colors.RED: return 5
+			case Colors.BLUE: return 2
 			case Colors.YELLOW: return 4
 			case Colors.BLACK: return 1
 		}
