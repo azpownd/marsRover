@@ -57,6 +57,7 @@ class PythonGeneratorM {
 	
 	# code variables
 	mission_end = True
+	mission_end_block = False
 	lake_depth = 800
 	avoid_object_bool = False
 	stop_bool = False
@@ -309,21 +310,24 @@ class PythonGeneratorM {
 	                                        rotations=1.07)  # Turn left 90 degrees(backwards)
 	            # if the turn (parking) completed, end mission
 	            if not self.done:
+	                mission_end_block = True
+	                mission_end = True
 	                turn_state = 0
 	                s.speak(final_sentence)
 	                print("Parked")
+	
 	                Leds().animate_flash('AMBER', sleeptime=0.75, duration=1,
 	                                     block=True)  # blocking to prevent early exit()
 	
 	                # Determining duration time of this mission
 	                mission_endtime = math.floor(time())
 	                mission_duration = mission_endtime - mission_start_time
-	
+	                
 	                # Call mission report function
 	                missionReport('Parking', mission_duration)
 	
 	                park = False
-	                mission_end = True
+	                mission_end_block = False
 	
 	                # else if we were not turning yet
 	        elif turn_state == 0:
@@ -426,6 +430,8 @@ class PythonGeneratorM {
 	                                        rotations=turn_direction)  # Turn left (backwards)
 	            # if we measured all colors
 	            if (len(measured_colors) == len(measurement_list)):
+	                mission_end_block = True
+	                mission_end = True
 	                print(measured_colors)
 	                s.speak(final_sentence, play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
 	                print("Measurements performed")
@@ -440,8 +446,7 @@ class PythonGeneratorM {
 	                missionReport('Measuring', mission_duration)
 	
 	                measure = False
-	                mission_end = True
-	
+	                mission_end_block = False
 	                # if not measuring
 	        else:
 	            if cs_l.color in lake_list:
@@ -539,6 +544,8 @@ class PythonGeneratorM {
 	                    print("{} lake added to found colors. {} colors left to find.\n".format(found_color, remaining_color_amount))
 	
 	            if len(found_colors) == len(mission_colors):
+	                mission_end_block = True
+	                mission_end = True
 	                # Mission completion sequence initiated
 	                print("ALL COLORS FOUND!\n")
 	                tank_drive.off(brake=True) # Stops rover to prevent it from driving off the edge
@@ -553,8 +560,8 @@ class PythonGeneratorM {
 	                missionReport('Find Colors', mission_duration)
 	
 	                # Signals that this mission is completed to the rest of the code
-	                mission_end = True
 	                self.done = True
+	                mission_end_block = False
 	
 	    def suppress(self):
 	        print("FindColors suppressed!")
@@ -631,6 +638,8 @@ class PythonGeneratorM {
 	            break
 	        # pausing if mission ended to allow loading next mission
 	        if (mission_end):
+	            while mission_end_block:
+	                #just wait
 	            sleep(1)
 	            endtime = time() + timeout
 	        # switching to the needed behaviour
@@ -668,6 +677,8 @@ class PythonGeneratorM {
 	        # stop driving and go to next mission
 	        if (mission_end):
 	            tank_drive.stop()
+	            while mission_end_block:
+	                # just wait
 	            sleep(1)
 	            # stop program if this was the last mission
 	            if (mission_index == len(mission_list)):
