@@ -31,5 +31,3 @@ enum Safety: On | Off;
 Integer: integer = INT;
 
 Color: color = Colors;
-
-

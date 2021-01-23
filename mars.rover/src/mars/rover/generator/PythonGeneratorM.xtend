@@ -583,8 +583,8 @@ class PythonGeneratorM {
 	
 	«FOR m: root.missionlist»
 	def «String.valueOf(m.missiontype).toLowerCase()»«root.missionlist.indexOf(m)»():
-	    «IF m.missiontype.equals(MissionType.PARK)»global park«ENDIF»
-	    «IF m.missiontype.equals(MissionType.MEASURE)»global measure«ENDIF»
+	    global park
+	    global measure
 	    global begin_sentence
 	    global final_sentence
 	    global forward_speed
@@ -605,7 +605,7 @@ class PythonGeneratorM {
 	    park = «IF m.missiontype.equals(MissionType.PARK)»True«ELSE»False«ENDIF»
 	    measure = «IF m.missiontype.equals(MissionType.MEASURE)»True«ELSE»False«ENDIF»
 	    begin_sentence = "«m.beginsentence»"
-	    finalsentence = "«m.finalsentence»"
+	    final_sentence = "«m.finalsentence»"
 	    forward_speed = «IF !(m.forwardspeed === null)»«m.forwardspeed.integer»«ELSE»50«ENDIF»
 	    reverse_speed = «IF !(m.reversespeed === null)»-«m.reversespeed.integer»«ELSE»-20«ENDIF»
 	    turn_direction = («IF !(m.turndirection === null)»«m.turndirection.integer»«ELSE»90«ENDIF»/360)*4.28
