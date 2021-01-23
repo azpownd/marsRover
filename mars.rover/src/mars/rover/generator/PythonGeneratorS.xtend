@@ -1,7 +1,6 @@
 package mars.rover.generator
 
 import mars.rover.roverDSL.Tasks
-import mars.rover.roverDSL.Safety
 
 class PythonGeneratorS {
 	def static toText(Tasks root)'''	
@@ -28,6 +27,9 @@ class PythonGeneratorS {
 	
 	new_value_to_sent = False
 	new_value = ''
+	
+	stop_bool = False
+	object_distance = 15
 	
 	def connect(server_mac, is_master = True):
 	    port = 3
@@ -73,11 +75,24 @@ class PythonGeneratorS {
 	def listen(sock_in, sock_out):
 	    global new_value_to_sent
 	    global new_value
+	    global stop_bool
+	    global object_distance
 	    print('Now listening...')
 	    while True:
 	        #print('BLUETOOTH WAS HERE')
 	        #print('IF CHECK == {}'.format(new_value_to_sent))
 	        data = sock_in.readline()
+	        #print(str(data))
+	        if str(data) == 'stop\n':
+	            print("Stopping!")
+	            stop_bool = True
+	            break
+	        # change the object distance when needed
+	        if 'obj' in data:
+	            #print("new distance received")
+	            object_distance = int(data[3:(len(data)-1)])
+	            #print("obj dist (str): ", str(data[3:(len(data)-1)]))
+	            #print("obj dist (int): ", object_distance)
 	        #print('Received ' + str(data)) # crashes here or?
 	        if new_value_to_sent:
 	            #print('Brick1, avoid!')
@@ -91,7 +106,6 @@ class PythonGeneratorS {
 	            sock_out.flush()
 	        sleep(1)
 	
-	«FOR m:root.missionlist»«IF (m.safetyproperty.equals(Safety.ON))»
 	
 	class AvoidObjects:
 	    stop = False
@@ -100,11 +114,13 @@ class PythonGeneratorS {
 	    #global new_value
 	
 	    def takeControl(self):
-	        return ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < «IF !(m.objectdistance === null)»«m.objectdistance.integer»«ELSE»«15»«ENDIF»
+	        global object_distance
+	        return ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < object_distance
 	
 	    def action(self):
 	        global new_value_to_sent
 	        global new_value
+	        global object_distance
 	        if ts_b.is_pressed:
 	            print('touch back\n')
 	            new_value = 'Avoiding'  # Can extend to sent brick 1 the sensor that determined this (diff turn or smth)
@@ -117,7 +133,7 @@ class PythonGeneratorS {
 	            print('touch right\n')
 	            new_value = 'Avoiding'  # Can extend to sent brick 1 the sensor that determined this (diff turn or smth)
 	            new_value_to_sent = True
-	        elif us_f.distance_centimeters < 30:
+	        elif us_f.distance_centimeters < object_distance:
 	            print('us front\n')
 	            print('Distance: {}'.format(us_f.distance_centimeters))
 	            new_value = 'Avoiding'  # Can extend to sent brick 1 the sensor that determined this (diff turn or smth)
@@ -128,7 +144,7 @@ class PythonGeneratorS {
 	    def suppress(self):
 	       print("AvoidObjects suppressed!")
 	       self.stop = True
-	«ENDIF»«ENDFOR»
+	
 	
 	class ClassB2:  # DONT DELETE!!! ONLY IF OTHER CLASS IS ALWAYS TRUE!!!
 	    stop = False
@@ -152,13 +168,17 @@ class PythonGeneratorS {
 	
 	
 	behaviour = ClassB2()
-	behaviours = [«FOR m:root.missionlist»«IF (m.safetyproperty.equals(Safety.ON))»AvoidObjects(), «ENDIF»«ENDFOR»
-	ClassB2()] #list with missions, first = highest priority. NEED to be in order!
+	behaviours = [AvoidObjects(), ClassB2()] #list with missions, first = highest priority. NEED to be in order!
+	
 	
 	def monitoring():
 	    global behaviour
 	    global behaviours
+	    global stop_bool
 	    while True:
+	        if stop_bool:
+	            behaviour.suppress()
+	            break
 	        for b in behaviours:
 	            if behaviour.prio < b.prio and b.takeControl():
 	                print("interrupting prio: ", behaviour.prio)
@@ -175,6 +195,8 @@ class PythonGeneratorS {
 	    monitor.start()
 	
 	    while True:
+	        if stop_bool:
+	            break
 	        # print("Nieuwe ronde!")
 	        #tank_drive.on(SpeedPercent(20), SpeedPercent(20))  # default movement speed
 	        behaviour = next(b for b in behaviours if b.takeControl())

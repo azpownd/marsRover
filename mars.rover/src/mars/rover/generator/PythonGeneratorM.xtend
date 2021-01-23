@@ -58,6 +58,7 @@ class PythonGeneratorM {
 	# code variables
 	mission_end = True
 	mission_end_block = False
+	new_mission = False
 	lake_depth = 800
 	avoid_object_bool = False
 	stop_bool = False
@@ -113,6 +114,7 @@ class PythonGeneratorM {
 	def listen(sock_in, sock_out):
 	    global avoid_object_bool
 	    global stop_bool
+	    global new_mission
 	    print('Now listening...')
 	    while True:
 	        data = sock_in.readline()
@@ -126,8 +128,13 @@ class PythonGeneratorM {
 	            sock_out.write("stop" + '\n')
 	            sock_out.flush()
 	            break
+	        if new_mission:
+	            print("New distance sent")
+	            sock_out.write("obj"+str(object_distance)+'\n')
+	            new_mission = False
 	        # keeping connection alive
-	        sock_out.write("nothing" + '\n')
+	        else:
+	            sock_out.write("nothing" + '\n')
 	        sock_out.flush()
 	
 	
@@ -258,6 +265,7 @@ class PythonGeneratorM {
 	        global park
 	        global mission_start_time
 	        global mission_end
+	        global mission_end_block
 	        self.done = False
 	        left = False
 	        right = False
@@ -383,6 +391,7 @@ class PythonGeneratorM {
 	        global forward_speed
 	        global reverse_speed
 	        global mission_end
+	        global mission_end_block
 	        global measured_colors
 	        global measurement_list
 	        global final_sentence
@@ -516,6 +525,7 @@ class PythonGeneratorM {
 	        global new_lake_found
 	        global mission_start_time
 	        global mission_end
+	        global mission_end_block
 	
 	        # Determining mission start time. Only called true at the first time this part class is ran.
 	        if self.start_time_set == False:
@@ -622,6 +632,7 @@ class PythonGeneratorM {
 	    global behaviours
 	    global stop_bool
 	    global mission_end
+	    global mission_end_block
 	
 	    # tracking time for time out
 	    endtime = time() + timeout
@@ -640,6 +651,7 @@ class PythonGeneratorM {
 	        if (mission_end):
 	            while mission_end_block:
 	                #just wait
+	                sleep(0.1)
 	            sleep(1)
 	            endtime = time() + timeout
 	        # switching to the needed behaviour
@@ -661,6 +673,8 @@ class PythonGeneratorM {
 	    global forward_speed
 	    global mission_list
 	    global mission_end
+	    global mission_end_block
+	    global new_mission
 	
 	    mission_index = 0
 	    monitor = threading.Thread(target=monitoring)
@@ -679,6 +693,7 @@ class PythonGeneratorM {
 	            tank_drive.stop()
 	            while mission_end_block:
 	                # just wait
+	                sleep(0.1)
 	            sleep(1)
 	            # stop program if this was the last mission
 	            if (mission_index == len(mission_list)):
@@ -691,6 +706,7 @@ class PythonGeneratorM {
 	                mission_list[mission_index]()
 	                mission_index += 1
 	                mission_end = False
+	                new_mission = True
 	                sleep(1)
 	                s.speak(begin_sentence, play_type=Sound.PLAY_NO_WAIT_FOR_COMPLETE)
 	                # continue driving and go to the next behaviour
