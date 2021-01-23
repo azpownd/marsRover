@@ -1,10 +1,10 @@
 package mars.rover.generator
 
-import mars.rover.roverDSL.Mission
+import mars.rover.roverDSL.Tasks
 import mars.rover.roverDSL.Safety
 
 class PythonGeneratorS {
-	def static toText(Mission root)'''
+	def static toText(Tasks root)'''	
 	#!/usr/bin/python3
 	from ev3dev2.motor import MoveTank, OUTPUT_A, OUTPUT_D, SpeedPercent
 	from ev3dev2.sound import Sound
@@ -91,6 +91,7 @@ class PythonGeneratorS {
 	            sock_out.flush()
 	        sleep(1)
 	
+	«FOR m:root.missionlist»«IF (m.safetyproperty.equals(Safety.ON))»
 	
 	class AvoidObjects:
 	    stop = False
@@ -99,7 +100,7 @@ class PythonGeneratorS {
 	    #global new_value
 	
 	    def takeControl(self):
-	        return ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < «IF !(root.objectdistance === null)»«root.objectdistance.integer»«ELSE»«30»«ENDIF»
+	        return ts_b.is_pressed or ts_l.is_pressed or ts_r.is_pressed or us_f.distance_centimeters < «IF !(m.objectdistance === null)»«m.objectdistance.integer»«ELSE»«15»«ENDIF»
 	
 	    def action(self):
 	        global new_value_to_sent
@@ -127,7 +128,7 @@ class PythonGeneratorS {
 	    def suppress(self):
 	       print("AvoidObjects suppressed!")
 	       self.stop = True
-	
+	«ENDIF»«ENDFOR»
 	
 	class ClassB2:  # DONT DELETE!!! ONLY IF OTHER CLASS IS ALWAYS TRUE!!!
 	    stop = False
@@ -151,7 +152,8 @@ class PythonGeneratorS {
 	
 	
 	behaviour = ClassB2()
-	behaviours = [«IF root.safetyproperty.equals(Safety.ON)»AvoidObjects(),«ENDIF» ClassB2()] #list with missions, first = highest priority. NEED to be in order!
+	behaviours = [«FOR m:root.missionlist»«IF (m.safetyproperty.equals(Safety.ON))»AvoidObjects(), «ENDIF»«ENDFOR»
+	ClassB2()] #list with missions, first = highest priority. NEED to be in order!
 	
 	def monitoring():
 	    global behaviour

@@ -10,6 +10,7 @@ import mars.rover.roverDSL.MissionType;
 import mars.rover.roverDSL.RoverDSLFactory;
 import mars.rover.roverDSL.RoverDSLPackage;
 import mars.rover.roverDSL.Safety;
+import mars.rover.roverDSL.Tasks;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -72,6 +73,7 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
   {
     switch (eClass.getClassifierID())
     {
+      case RoverDSLPackage.TASKS: return createTasks();
       case RoverDSLPackage.MISSION: return createMission();
       case RoverDSLPackage.INTEGER: return createInteger();
       case RoverDSLPackage.COLOR: return createColor();
@@ -120,6 +122,18 @@ public class RoverDSLFactoryImpl extends EFactoryImpl implements RoverDSLFactory
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Tasks createTasks()
+  {
+    TasksImpl tasks = new TasksImpl();
+    return tasks;
   }
 
   /**

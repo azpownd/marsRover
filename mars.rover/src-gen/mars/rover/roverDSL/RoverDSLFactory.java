@@ -24,6 +24,15 @@ public interface RoverDSLFactory extends EFactory
   RoverDSLFactory eINSTANCE = mars.rover.roverDSL.impl.RoverDSLFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Tasks</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tasks</em>'.
+   * @generated
+   */
+  Tasks createTasks();
+
+  /**
    * Returns a new object of class '<em>Mission</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

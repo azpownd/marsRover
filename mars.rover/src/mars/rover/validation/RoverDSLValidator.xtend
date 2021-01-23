@@ -9,12 +9,12 @@ import mars.rover.roverDSL.Mission
 import mars.rover.roverDSL.Colors
 import mars.rover.roverDSL.Safety
 import mars.rover.roverDSL.RoverDSLPackage$Literals
+
 /** 
  * This class contains custom validation rules. 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static final String INVALID_NAME = "invalidName";
-	
 	
 	@Check
 	def checkMissionType(Mission mission) {
@@ -23,33 +23,25 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 				error("For this mission, at least one color should be specified (Colors: <Color>).",null)
 			}
 		}
+		else if (mission.missiontype == MissionType.MEASURE) {
+			if (mission.measurelist.isEmpty()) {
+				error("For this mission, at least one measurement color should be specified (MeasurementColors: <Color>).",Literals.MISSION__MEASURELIST)
+			}
+			if (mission.lakelist.isEmpty()) {
+				error("For this mission, at least one lake color should be specified (LakeColors: <Color>).",Literals.MISSION__LAKELIST)
+			}
+			for (c: mission.measurelist) {
+				if (!mission.lakelist.contains(c)) {
+					error("All colors to be measured should be in the lake colors as well (LakeColors: <Color>).",null)
+				}
+			}
+		}
 		else {
-			error("Only FindColors is implemented at this moment.",null)
+			//error("Only FindColors is implemented at this moment.",null)
 			// mission has to be FindColors at this moment
 			/**if (mission.colorlist.isEmpty()) {
 				error("For this mission, at least one color should be specified (Colors: <Color>).",null)
 			}**/
-		}
-	}
-	
-	@Check
-	// warn when safety is off, warn if lake colors are not given when Safety: On
-	def checkSafety(Mission mission) {
-		if (mission.safetyproperty == Safety.OFF) {
-			warning("Are you sure you want to turn off safety features?",Literals.MISSION__SAFETYPROPERTY)
-		} else {
-			if (mission.lakelist.isEmpty()) {
-				warning("Are you sure there are no lakes on the map?",null)
-			}
-		}
-	}
-	
-	@Check
-	def checkLakeColors(Mission mission) {
-		if (mission.bordercolor !== null) {
-			if(mission.lakelist.contains(mission.bordercolor.color)) {
-				warning("Are you sure the border has the same color as a lake?",Literals.MISSION__BORDERCOLOR)
-			}
 		}
 	}
 	
@@ -59,13 +51,8 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	}
 	
 	@Check
-	// warn if the border is not default (white)
-	def checkOuterBorder(Mission mission) {
-		if (mission.bordercolor !== null) {
-			if (mission.bordercolor.color != Colors.WHITE) {
-				warning("Are you sure this is the color of the border?", Literals.MISSION__BORDERCOLOR)
-			}
-		}
+	def checkFinalSentence(Mission mission) {
+		//possible check
 	}
 	
 	@Check
@@ -99,6 +86,50 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	}
 	
 	@Check
+	// warn when safety is off, warn if lake colors are not given when Safety: On
+	def checkSafety(Mission mission) {
+		if (mission.safetyproperty == Safety.OFF) {
+			warning("Are you sure you want to turn off safety features?",Literals.MISSION__SAFETYPROPERTY)
+		} else {
+			if (mission.lakelist.isEmpty()) {
+				warning("Are you sure there are no lakes on the map?",null)
+			}
+		}
+	}
+	
+	@Check
+	def checkObjectDistance(Mission mission) {
+		if (mission.safetyproperty == Safety.OFF) {
+			if (mission.objectdistance !== null) {
+				warning("When safety is OFF, AvoidObjects does not have to be specified.",Literals.MISSION__OBJECTDISTANCE)
+			}
+		} else {
+			if (mission.objectdistance !== null && (mission.objectdistance.integer <10 || mission.objectdistance.integer > 99)) {
+				error("The AvoidObject distance should be between 9 and 100 cm.",Literals.MISSION__OBJECTDISTANCE)
+			}
+		}
+	}
+	
+	@Check
+	// warn if the border is not default (white)
+	def checkOuterBorder(Mission mission) {
+		if (mission.bordercolor !== null) {
+			if (mission.bordercolor.color != Colors.WHITE) {
+				warning("Are you sure this is the color of the border?", Literals.MISSION__BORDERCOLOR)
+			}
+		}
+	}
+	
+	@Check
+	def checkLakeColors(Mission mission) {
+		if (mission.bordercolor !== null) {
+			if(mission.lakelist.contains(mission.bordercolor.color)) {
+				warning("Are you sure the border has the same color as a lake?",Literals.MISSION__BORDERCOLOR)
+			}
+		}
+	}
+	
+	@Check
 	// check for colors being used twice
 	def checkColors(Mission mission) {
 		var clist = mission.colorlist
@@ -106,11 +137,11 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 			// avoid using the same color twice
 			for (var j = i+1; j < clist.size; j++) {
 				if (clist.get(i).equals(clist.get(j))) {
-					error("Cannot use the same color twice for the mission.",Literals.MISSION__COLORLIST)
+					error("Cannot use the same color twice for the FindColors mission.",Literals.MISSION__COLORLIST)
 				}
 			}
 			// avoid conflicts for using the border color in the mission
-			if (mission.bordercolor !== null) {	
+			/*if (mission.bordercolor !== null) {	
 				if (clist.get(i) == mission.bordercolor.color && mission.missiontype != MissionType.AVOID_COLORS) {
 					error("The color of the border is reused for the mission.",Literals.MISSION__BORDERCOLOR)
 				}
@@ -118,13 +149,22 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 				if (clist.get(i) == Colors.WHITE && mission.missiontype != MissionType.AVOID_COLORS) {
 					error("The color of the border is reused for the mission.",Literals.MISSION__BORDERCOLOR)
 				}
-			}
+			}*/
 		}
 	}
 	
 	@Check
-	def checkEnd(Mission mission) {
-		//possible check
+	// check for colors being used twice
+	def checkMeasurementColors(Mission mission) {
+		var clist = mission.measurelist
+		for (var i=0; i< clist.size;i++) {
+			// avoid using the same color twice
+			for (var j = i+1; j < clist.size; j++) {
+				if (clist.get(i).equals(clist.get(j))) {
+					error("Cannot use the same color twice for the Measurement mission.",Literals.MISSION__MEASURELIST)
+				}
+			}
+		}
 	}
 	
 	@Check
@@ -133,28 +173,11 @@ class RoverDSLValidator extends AbstractRoverDSLValidator { //	public static fin
 	}
 	
 	@Check
-	def checkFinalSentence(Mission mission) {
-		//possible check
+	def checkTimeout(Mission mission) {
+		if (mission.timeout !== null && (mission.timeout.integer < 20 || mission.timeout.integer > 599)) {
+			error("Please give a timeout value between 19 and 600 seconds.",Literals.MISSION__TIMEOUT)
+		}
 	}
 	
-	/** @Check
-	// check input
-	def checkColor(Colors c) {
-		if (c.color != 'White' && c.color != 'Red' && c.color != 'Yellow' && c.color != 'Blue' && c.color != 'Black') {
-			error("Please give a viable color ('White', 'Red', 'Yellow', 'Blue' or 'Black').",null)
-		}
-	}**/
-	
-	/**@Check
-	// check input
-	def checkSensor(Sensors s) {
-		if (s.sensor != 'Touch' && s.sensor != 'Ultrasonic' && s.sensor != 'Color') {
-			error("Please give a viable sensor ('Color', 'Ultrasonic' or 'Touch').",null)
-		}
-	}**/
-	
-	/**@Check
-	def checkSensors(Mission mission) {
-		//possible check
-	}**/
+
 }

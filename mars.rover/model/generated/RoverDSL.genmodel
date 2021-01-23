@@ -7,8 +7,9 @@
   <genPackages prefix="RoverDSL" basePackage="mars.rover" disposableProviderFactory="true"
       fileExtensions="rdsl" ecorePackage="RoverDSL.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="RoverDSL.ecore#//MissionType">
-      <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//MissionType/AvoidColors"/>
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//MissionType/FindColors"/>
+      <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//MissionType/Measure"/>
+      <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//MissionType/Park"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="RoverDSL.ecore#//Colors">
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Colors/White"/>
@@ -21,20 +22,24 @@
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Safety/On"/>
       <genEnumLiterals ecoreEnumLiteral="RoverDSL.ecore#//Safety/Off"/>
     </genEnums>
+    <genClasses ecoreClass="RoverDSL.ecore#//Tasks">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Tasks/missionlist"/>
+    </genClasses>
     <genClasses ecoreClass="RoverDSL.ecore#//Mission">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/missiontype"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/safetyproperty"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/lakelist"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/objectdistance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/beginsentence"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/bordercolor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/finalsentence"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/forwardspeed"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/reversespeed"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/turndirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/safetyproperty"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/objectdistance"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/bordercolor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/lakelist"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/colorlist"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/terminationcondition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/measurelist"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/flashingcolor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Mission/finalsentence"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RoverDSL.ecore#//Mission/timeout"/>
     </genClasses>
     <genClasses ecoreClass="RoverDSL.ecore#//Integer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RoverDSL.ecore#//Integer/integer"/>

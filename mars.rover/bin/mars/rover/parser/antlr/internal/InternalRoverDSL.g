@@ -44,7 +44,7 @@ import mars.rover.services.RoverDSLGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "Mission";
+    	return "Tasks";
    	}
 
    	@Override
@@ -60,6 +60,42 @@ import mars.rover.services.RoverDSLGrammarAccess;
         appendSkippedTokens();
     }
 }
+
+// Entry rule entryRuleTasks
+entryRuleTasks returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTasksRule()); }
+	iv_ruleTasks=ruleTasks
+	{ $current=$iv_ruleTasks.current; }
+	EOF;
+
+// Rule Tasks
+ruleTasks returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getTasksAccess().getMissionlistMissionParserRuleCall_0());
+			}
+			lv_missionlist_0_0=ruleMission
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getTasksRule());
+				}
+				add(
+					$current,
+					"missionlist",
+					lv_missionlist_0_0,
+					"mars.rover.RoverDSL.Mission");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)+
+;
 
 // Entry rule entryRuleMission
 entryRuleMission returns [EObject current=null]:
@@ -101,90 +137,15 @@ ruleMission returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_2='Safety:'
+			otherlv_2='BeginSentence:'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getMissionAccess().getSafetyKeyword_2_0());
+				newLeafNode(otherlv_2, grammarAccess.getMissionAccess().getBeginSentenceKeyword_2_0());
 			}
 			(
 				(
+					lv_beginsentence_3_0=RULE_STRING
 					{
-						newCompositeNode(grammarAccess.getMissionAccess().getSafetypropertySafetyEnumRuleCall_2_1_0());
-					}
-					lv_safetyproperty_3_0=ruleSafety
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"safetyproperty",
-							lv_safetyproperty_3_0,
-							"mars.rover.RoverDSL.Safety");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_4='LakeColors:'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getMissionAccess().getLakeColorsKeyword_3_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getLakelistColorsEnumRuleCall_3_1_0());
-					}
-					lv_lakelist_5_0=ruleColors
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						add(
-							$current,
-							"lakelist",
-							lv_lakelist_5_0,
-							"mars.rover.RoverDSL.Colors");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)*
-		)?
-		(
-			otherlv_6='AvoidObjects:'
-			{
-				newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getAvoidObjectsKeyword_4_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getObjectdistanceIntegerParserRuleCall_4_1_0());
-					}
-					lv_objectdistance_7_0=ruleInteger
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"objectdistance",
-							lv_objectdistance_7_0,
-							"mars.rover.RoverDSL.Integer");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_8='BeginSentence:'
-			{
-				newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getBeginSentenceKeyword_5_0());
-			}
-			(
-				(
-					lv_beginsentence_9_0=RULE_STRING
-					{
-						newLeafNode(lv_beginsentence_9_0, grammarAccess.getMissionAccess().getBeginsentenceSTRINGTerminalRuleCall_5_1_0());
+						newLeafNode(lv_beginsentence_3_0, grammarAccess.getMissionAccess().getBeginsentenceSTRINGTerminalRuleCall_2_1_0());
 					}
 					{
 						if ($current==null) {
@@ -193,194 +154,22 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"beginsentence",
-							lv_beginsentence_9_0,
+							lv_beginsentence_3_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)
 		)?
 		(
-			otherlv_10='OuterBorder:'
+			otherlv_4='FinalSentence:'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getOuterBorderKeyword_6_0());
+				newLeafNode(otherlv_4, grammarAccess.getMissionAccess().getFinalSentenceKeyword_3_0());
 			}
 			(
 				(
+					lv_finalsentence_5_0=RULE_STRING
 					{
-						newCompositeNode(grammarAccess.getMissionAccess().getBordercolorColorParserRuleCall_6_1_0());
-					}
-					lv_bordercolor_11_0=ruleColor
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"bordercolor",
-							lv_bordercolor_11_0,
-							"mars.rover.RoverDSL.Color");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_12='ForwardSpeed:'
-			{
-				newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getForwardSpeedKeyword_7_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getForwardspeedIntegerParserRuleCall_7_1_0());
-					}
-					lv_forwardspeed_13_0=ruleInteger
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"forwardspeed",
-							lv_forwardspeed_13_0,
-							"mars.rover.RoverDSL.Integer");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_14='ReverseSpeed:'
-			{
-				newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getReverseSpeedKeyword_8_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getReversespeedIntegerParserRuleCall_8_1_0());
-					}
-					lv_reversespeed_15_0=ruleInteger
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"reversespeed",
-							lv_reversespeed_15_0,
-							"mars.rover.RoverDSL.Integer");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_16='TurnDirection:'
-			{
-				newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getTurnDirectionKeyword_9_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getTurndirectionIntegerParserRuleCall_9_1_0());
-					}
-					lv_turndirection_17_0=ruleInteger
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"turndirection",
-							lv_turndirection_17_0,
-							"mars.rover.RoverDSL.Integer");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_18='Colors:'
-			{
-				newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getColorsKeyword_10_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getColorlistColorsEnumRuleCall_10_1_0());
-					}
-					lv_colorlist_19_0=ruleColors
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						add(
-							$current,
-							"colorlist",
-							lv_colorlist_19_0,
-							"mars.rover.RoverDSL.Colors");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)*
-		)?
-		otherlv_20='End:'
-		{
-			newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getEndKeyword_11());
-		}
-		(
-			(
-				lv_terminationcondition_21_0=RULE_STRING
-				{
-					newLeafNode(lv_terminationcondition_21_0, grammarAccess.getMissionAccess().getTerminationconditionSTRINGTerminalRuleCall_12_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMissionRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"terminationcondition",
-						lv_terminationcondition_21_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
-				}
-			)
-		)
-		(
-			otherlv_22='FlashingColor:'
-			{
-				newLeafNode(otherlv_22, grammarAccess.getMissionAccess().getFlashingColorKeyword_13_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMissionAccess().getFlashingcolorColorParserRuleCall_13_1_0());
-					}
-					lv_flashingcolor_23_0=ruleColor
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMissionRule());
-						}
-						set(
-							$current,
-							"flashingcolor",
-							lv_flashingcolor_23_0,
-							"mars.rover.RoverDSL.Color");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
-		(
-			otherlv_24='FinalSentence:'
-			{
-				newLeafNode(otherlv_24, grammarAccess.getMissionAccess().getFinalSentenceKeyword_14_0());
-			}
-			(
-				(
-					lv_finalsentence_25_0=RULE_STRING
-					{
-						newLeafNode(lv_finalsentence_25_0, grammarAccess.getMissionAccess().getFinalsentenceSTRINGTerminalRuleCall_14_1_0());
+						newLeafNode(lv_finalsentence_5_0, grammarAccess.getMissionAccess().getFinalsentenceSTRINGTerminalRuleCall_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -389,12 +178,291 @@ ruleMission returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"finalsentence",
-							lv_finalsentence_25_0,
+							lv_finalsentence_5_0,
 							"org.eclipse.xtext.common.Terminals.STRING");
 					}
 				)
 			)
 		)?
+		(
+			otherlv_6='ForwardSpeed:'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getMissionAccess().getForwardSpeedKeyword_4_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getForwardspeedIntegerParserRuleCall_4_1_0());
+					}
+					lv_forwardspeed_7_0=ruleInteger
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"forwardspeed",
+							lv_forwardspeed_7_0,
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_8='ReverseSpeed:'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getMissionAccess().getReverseSpeedKeyword_5_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getReversespeedIntegerParserRuleCall_5_1_0());
+					}
+					lv_reversespeed_9_0=ruleInteger
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"reversespeed",
+							lv_reversespeed_9_0,
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_10='TurnDirection:'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getMissionAccess().getTurnDirectionKeyword_6_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getTurndirectionIntegerParserRuleCall_6_1_0());
+					}
+					lv_turndirection_11_0=ruleInteger
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"turndirection",
+							lv_turndirection_11_0,
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_12='Safety:'
+			{
+				newLeafNode(otherlv_12, grammarAccess.getMissionAccess().getSafetyKeyword_7_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getSafetypropertySafetyEnumRuleCall_7_1_0());
+					}
+					lv_safetyproperty_13_0=ruleSafety
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"safetyproperty",
+							lv_safetyproperty_13_0,
+							"mars.rover.RoverDSL.Safety");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_14='AvoidObjects:'
+			{
+				newLeafNode(otherlv_14, grammarAccess.getMissionAccess().getAvoidObjectsKeyword_8_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getObjectdistanceIntegerParserRuleCall_8_1_0());
+					}
+					lv_objectdistance_15_0=ruleInteger
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"objectdistance",
+							lv_objectdistance_15_0,
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_16='OuterBorder:'
+			{
+				newLeafNode(otherlv_16, grammarAccess.getMissionAccess().getOuterBorderKeyword_9_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getBordercolorColorParserRuleCall_9_1_0());
+					}
+					lv_bordercolor_17_0=ruleColor
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"bordercolor",
+							lv_bordercolor_17_0,
+							"mars.rover.RoverDSL.Color");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_18='LakeColors:'
+			{
+				newLeafNode(otherlv_18, grammarAccess.getMissionAccess().getLakeColorsKeyword_10_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getLakelistColorsEnumRuleCall_10_1_0());
+					}
+					lv_lakelist_19_0=ruleColors
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						add(
+							$current,
+							"lakelist",
+							lv_lakelist_19_0,
+							"mars.rover.RoverDSL.Colors");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+		)?
+		(
+			otherlv_20='Colors:'
+			{
+				newLeafNode(otherlv_20, grammarAccess.getMissionAccess().getColorsKeyword_11_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getColorlistColorsEnumRuleCall_11_1_0());
+					}
+					lv_colorlist_21_0=ruleColors
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						add(
+							$current,
+							"colorlist",
+							lv_colorlist_21_0,
+							"mars.rover.RoverDSL.Colors");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+		)?
+		(
+			otherlv_22='MeasurementColors:'
+			{
+				newLeafNode(otherlv_22, grammarAccess.getMissionAccess().getMeasurementColorsKeyword_12_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getMeasurelistColorsEnumRuleCall_12_1_0());
+					}
+					lv_measurelist_23_0=ruleColors
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						add(
+							$current,
+							"measurelist",
+							lv_measurelist_23_0,
+							"mars.rover.RoverDSL.Colors");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+		)?
+		(
+			otherlv_24='FlashingColor:'
+			{
+				newLeafNode(otherlv_24, grammarAccess.getMissionAccess().getFlashingColorKeyword_13_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getFlashingcolorColorParserRuleCall_13_1_0());
+					}
+					lv_flashingcolor_25_0=ruleColor
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"flashingcolor",
+							lv_flashingcolor_25_0,
+							"mars.rover.RoverDSL.Color");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		(
+			otherlv_26='Timeout:'
+			{
+				newLeafNode(otherlv_26, grammarAccess.getMissionAccess().getTimeoutKeyword_14_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMissionAccess().getTimeoutIntegerParserRuleCall_14_1_0());
+					}
+					lv_timeout_27_0=ruleInteger
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMissionRule());
+						}
+						set(
+							$current,
+							"timeout",
+							lv_timeout_27_0,
+							"mars.rover.RoverDSL.Integer");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_28='End'
+		{
+			newLeafNode(otherlv_28, grammarAccess.getMissionAccess().getEndKeyword_15());
+		}
 	)
 ;
 
@@ -479,18 +547,26 @@ ruleMissionType returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='AvoidColors'
+			enumLiteral_0='FindColors'
 			{
-				$current = grammarAccess.getMissionTypeAccess().getAvoidColorsEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getMissionTypeAccess().getAvoidColorsEnumLiteralDeclaration_0());
+				$current = grammarAccess.getMissionTypeAccess().getFindColorsEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getMissionTypeAccess().getFindColorsEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='FindColors'
+			enumLiteral_1='Measure'
 			{
-				$current = grammarAccess.getMissionTypeAccess().getFindColorsEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getMissionTypeAccess().getFindColorsEnumLiteralDeclaration_1());
+				$current = grammarAccess.getMissionTypeAccess().getMeasureEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getMissionTypeAccess().getMeasureEnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='Park'
+			{
+				$current = grammarAccess.getMissionTypeAccess().getParkEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getMissionTypeAccess().getParkEnumLiteralDeclaration_2());
 			}
 		)
 	)

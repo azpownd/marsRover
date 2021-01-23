@@ -6,6 +6,7 @@ package mars.rover.roverDSL.util;
 import mars.rover.roverDSL.Color;
 import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.RoverDSLPackage;
+import mars.rover.roverDSL.Tasks;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -75,6 +76,13 @@ public class RoverDSLSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
+      case RoverDSLPackage.TASKS:
+      {
+        Tasks tasks = (Tasks)theEObject;
+        T result = caseTasks(tasks);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RoverDSLPackage.MISSION:
       {
         Mission mission = (Mission)theEObject;
@@ -98,6 +106,22 @@ public class RoverDSLSwitch<T> extends Switch<T>
       }
       default: return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tasks</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tasks</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTasks(Tasks object)
+  {
+    return null;
   }
 
   /**

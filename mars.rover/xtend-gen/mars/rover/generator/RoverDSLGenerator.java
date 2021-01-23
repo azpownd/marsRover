@@ -5,7 +5,7 @@ package mars.rover.generator;
 
 import mars.rover.generator.PythonGeneratorM;
 import mars.rover.generator.PythonGeneratorS;
-import mars.rover.roverDSL.Mission;
+import mars.rover.roverDSL.Tasks;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
@@ -23,7 +23,7 @@ public class RoverDSLGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IteratorExtensions.<EObject>head(resource.getAllContents());
-    final Mission root = ((Mission) _head);
+    final Tasks root = ((Tasks) _head);
     if ((root != null)) {
       fsa.generateFile("master.py", PythonGeneratorM.toText(root));
       fsa.generateFile("slave.py", PythonGeneratorS.toText(root));

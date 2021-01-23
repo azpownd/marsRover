@@ -24,6 +24,21 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammarElementFinder {
 	
+	public class TasksElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Tasks");
+		private final Assignment cMissionlistAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cMissionlistMissionParserRuleCall_0 = (RuleCall)cMissionlistAssignment.eContents().get(0);
+		
+		//Tasks:
+		//	missionlist+=Mission+;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//missionlist+=Mission+
+		public Assignment getMissionlistAssignment() { return cMissionlistAssignment; }
+		
+		//Mission
+		public RuleCall getMissionlistMissionParserRuleCall_0() { return cMissionlistMissionParserRuleCall_0; }
+	}
 	public class MissionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Mission");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -31,68 +46,75 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Assignment cMissiontypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cMissiontypeMissionTypeEnumRuleCall_1_0 = (RuleCall)cMissiontypeAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cSafetyKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSafetypropertyAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cSafetypropertySafetyEnumRuleCall_2_1_0 = (RuleCall)cSafetypropertyAssignment_2_1.eContents().get(0);
+		private final Keyword cBeginSentenceKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cBeginsentenceAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cBeginsentenceSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cBeginsentenceAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cLakeColorsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cLakelistAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cLakelistColorsEnumRuleCall_3_1_0 = (RuleCall)cLakelistAssignment_3_1.eContents().get(0);
+		private final Keyword cFinalSentenceKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cFinalsentenceAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cFinalsentenceSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cFinalsentenceAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cAvoidObjectsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cObjectdistanceAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cObjectdistanceIntegerParserRuleCall_4_1_0 = (RuleCall)cObjectdistanceAssignment_4_1.eContents().get(0);
+		private final Keyword cForwardSpeedKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cForwardspeedAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cForwardspeedIntegerParserRuleCall_4_1_0 = (RuleCall)cForwardspeedAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cBeginSentenceKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cBeginsentenceAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cBeginsentenceSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cBeginsentenceAssignment_5_1.eContents().get(0);
+		private final Keyword cReverseSpeedKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cReversespeedAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cReversespeedIntegerParserRuleCall_5_1_0 = (RuleCall)cReversespeedAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cOuterBorderKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cBordercolorAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cBordercolorColorParserRuleCall_6_1_0 = (RuleCall)cBordercolorAssignment_6_1.eContents().get(0);
+		private final Keyword cTurnDirectionKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cTurndirectionAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cTurndirectionIntegerParserRuleCall_6_1_0 = (RuleCall)cTurndirectionAssignment_6_1.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cForwardSpeedKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cForwardspeedAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cForwardspeedIntegerParserRuleCall_7_1_0 = (RuleCall)cForwardspeedAssignment_7_1.eContents().get(0);
+		private final Keyword cSafetyKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cSafetypropertyAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cSafetypropertySafetyEnumRuleCall_7_1_0 = (RuleCall)cSafetypropertyAssignment_7_1.eContents().get(0);
 		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Keyword cReverseSpeedKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Assignment cReversespeedAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
-		private final RuleCall cReversespeedIntegerParserRuleCall_8_1_0 = (RuleCall)cReversespeedAssignment_8_1.eContents().get(0);
+		private final Keyword cAvoidObjectsKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cObjectdistanceAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cObjectdistanceIntegerParserRuleCall_8_1_0 = (RuleCall)cObjectdistanceAssignment_8_1.eContents().get(0);
 		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
-		private final Keyword cTurnDirectionKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
-		private final Assignment cTurndirectionAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
-		private final RuleCall cTurndirectionIntegerParserRuleCall_9_1_0 = (RuleCall)cTurndirectionAssignment_9_1.eContents().get(0);
+		private final Keyword cOuterBorderKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Assignment cBordercolorAssignment_9_1 = (Assignment)cGroup_9.eContents().get(1);
+		private final RuleCall cBordercolorColorParserRuleCall_9_1_0 = (RuleCall)cBordercolorAssignment_9_1.eContents().get(0);
 		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
-		private final Keyword cColorsKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
-		private final Assignment cColorlistAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
-		private final RuleCall cColorlistColorsEnumRuleCall_10_1_0 = (RuleCall)cColorlistAssignment_10_1.eContents().get(0);
-		private final Keyword cEndKeyword_11 = (Keyword)cGroup.eContents().get(11);
-		private final Assignment cTerminationconditionAssignment_12 = (Assignment)cGroup.eContents().get(12);
-		private final RuleCall cTerminationconditionSTRINGTerminalRuleCall_12_0 = (RuleCall)cTerminationconditionAssignment_12.eContents().get(0);
+		private final Keyword cLakeColorsKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cLakelistAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cLakelistColorsEnumRuleCall_10_1_0 = (RuleCall)cLakelistAssignment_10_1.eContents().get(0);
+		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
+		private final Keyword cColorsKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
+		private final Assignment cColorlistAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
+		private final RuleCall cColorlistColorsEnumRuleCall_11_1_0 = (RuleCall)cColorlistAssignment_11_1.eContents().get(0);
+		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
+		private final Keyword cMeasurementColorsKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
+		private final Assignment cMeasurelistAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
+		private final RuleCall cMeasurelistColorsEnumRuleCall_12_1_0 = (RuleCall)cMeasurelistAssignment_12_1.eContents().get(0);
 		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
 		private final Keyword cFlashingColorKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
 		private final Assignment cFlashingcolorAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
 		private final RuleCall cFlashingcolorColorParserRuleCall_13_1_0 = (RuleCall)cFlashingcolorAssignment_13_1.eContents().get(0);
 		private final Group cGroup_14 = (Group)cGroup.eContents().get(14);
-		private final Keyword cFinalSentenceKeyword_14_0 = (Keyword)cGroup_14.eContents().get(0);
-		private final Assignment cFinalsentenceAssignment_14_1 = (Assignment)cGroup_14.eContents().get(1);
-		private final RuleCall cFinalsentenceSTRINGTerminalRuleCall_14_1_0 = (RuleCall)cFinalsentenceAssignment_14_1.eContents().get(0);
+		private final Keyword cTimeoutKeyword_14_0 = (Keyword)cGroup_14.eContents().get(0);
+		private final Assignment cTimeoutAssignment_14_1 = (Assignment)cGroup_14.eContents().get(1);
+		private final RuleCall cTimeoutIntegerParserRuleCall_14_1_0 = (RuleCall)cTimeoutAssignment_14_1.eContents().get(0);
+		private final Keyword cEndKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		
 		//Mission:
-		//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
-		//	('AvoidObjects:' objectdistance=Integer)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:'
-		//	bordercolor=Color)? ('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
-		//	turndirection=Integer)? ('Colors:' colorlist+=Colors*)?
-		//	//('Sensors:' sensorlist += Sensors*)?
-		//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Color)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
+		//	'Mission:' missiontype=MissionType ('BeginSentence:' beginsentence=STRING)? ('FinalSentence:' finalsentence=STRING)?
+		//	('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
+		//	turndirection=Integer)? ('Safety:' safetyproperty=Safety)? ('AvoidObjects:' objectdistance=Integer)? ('OuterBorder:'
+		//	bordercolor=Color)? ('LakeColors:' lakelist+=Colors*)? ('Colors:' colorlist+=Colors*)? ('MeasurementColors:'
+		//	measurelist+=Colors*)? ('FlashingColor:' flashingcolor=Color)? ('Timeout:' timeout=Integer)? // Optional, default 120 (minimum 10)
+		//	'End' // add validation for types of termination values (based on mission)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
-		//('AvoidObjects:' objectdistance=Integer)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:' bordercolor=Color)?
+		//'Mission:' missiontype=MissionType ('BeginSentence:' beginsentence=STRING)? ('FinalSentence:' finalsentence=STRING)?
 		//('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
-		//turndirection=Integer)? ('Colors:' colorlist+=Colors*)? //('Sensors:' sensorlist += Sensors*)?
-		//'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Color)? ('FinalSentence:' finalsentence=STRING)?
+		//turndirection=Integer)? ('Safety:' safetyproperty=Safety)? ('AvoidObjects:' objectdistance=Integer)? ('OuterBorder:'
+		//bordercolor=Color)? ('LakeColors:' lakelist+=Colors*)? ('Colors:' colorlist+=Colors*)? ('MeasurementColors:'
+		//measurelist+=Colors*)? ('FlashingColor:' flashingcolor=Color)? ('Timeout:' timeout=Integer)? // Optional, default 120 (minimum 10)
+		//'End'
 		public Group getGroup() { return cGroup; }
 		
 		//'Mission:'
@@ -104,123 +126,137 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//MissionType
 		public RuleCall getMissiontypeMissionTypeEnumRuleCall_1_0() { return cMissiontypeMissionTypeEnumRuleCall_1_0; }
 		
-		//('Safety:' safetyproperty=Safety)?
+		//('BeginSentence:' beginsentence=STRING)?
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//'Safety:'
-		public Keyword getSafetyKeyword_2_0() { return cSafetyKeyword_2_0; }
-		
-		//safetyproperty=Safety
-		public Assignment getSafetypropertyAssignment_2_1() { return cSafetypropertyAssignment_2_1; }
-		
-		//Safety
-		public RuleCall getSafetypropertySafetyEnumRuleCall_2_1_0() { return cSafetypropertySafetyEnumRuleCall_2_1_0; }
-		
-		//('LakeColors:' lakelist+=Colors*)?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//'LakeColors:'
-		public Keyword getLakeColorsKeyword_3_0() { return cLakeColorsKeyword_3_0; }
-		
-		//lakelist+=Colors*
-		public Assignment getLakelistAssignment_3_1() { return cLakelistAssignment_3_1; }
-		
-		//Colors
-		public RuleCall getLakelistColorsEnumRuleCall_3_1_0() { return cLakelistColorsEnumRuleCall_3_1_0; }
-		
-		//('AvoidObjects:' objectdistance=Integer)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//'AvoidObjects:'
-		public Keyword getAvoidObjectsKeyword_4_0() { return cAvoidObjectsKeyword_4_0; }
-		
-		//objectdistance=Integer
-		public Assignment getObjectdistanceAssignment_4_1() { return cObjectdistanceAssignment_4_1; }
-		
-		//Integer
-		public RuleCall getObjectdistanceIntegerParserRuleCall_4_1_0() { return cObjectdistanceIntegerParserRuleCall_4_1_0; }
-		
-		//('BeginSentence:' beginsentence=STRING)?
-		public Group getGroup_5() { return cGroup_5; }
-		
 		//'BeginSentence:'
-		public Keyword getBeginSentenceKeyword_5_0() { return cBeginSentenceKeyword_5_0; }
+		public Keyword getBeginSentenceKeyword_2_0() { return cBeginSentenceKeyword_2_0; }
 		
 		//beginsentence=STRING
-		public Assignment getBeginsentenceAssignment_5_1() { return cBeginsentenceAssignment_5_1; }
+		public Assignment getBeginsentenceAssignment_2_1() { return cBeginsentenceAssignment_2_1; }
 		
 		//STRING
-		public RuleCall getBeginsentenceSTRINGTerminalRuleCall_5_1_0() { return cBeginsentenceSTRINGTerminalRuleCall_5_1_0; }
+		public RuleCall getBeginsentenceSTRINGTerminalRuleCall_2_1_0() { return cBeginsentenceSTRINGTerminalRuleCall_2_1_0; }
 		
-		//('OuterBorder:' bordercolor=Color)?
-		public Group getGroup_6() { return cGroup_6; }
+		//('FinalSentence:' finalsentence=STRING)?
+		public Group getGroup_3() { return cGroup_3; }
 		
-		//'OuterBorder:'
-		public Keyword getOuterBorderKeyword_6_0() { return cOuterBorderKeyword_6_0; }
+		//'FinalSentence:'
+		public Keyword getFinalSentenceKeyword_3_0() { return cFinalSentenceKeyword_3_0; }
 		
-		//bordercolor=Color
-		public Assignment getBordercolorAssignment_6_1() { return cBordercolorAssignment_6_1; }
+		//finalsentence=STRING
+		public Assignment getFinalsentenceAssignment_3_1() { return cFinalsentenceAssignment_3_1; }
 		
-		//Color
-		public RuleCall getBordercolorColorParserRuleCall_6_1_0() { return cBordercolorColorParserRuleCall_6_1_0; }
+		//STRING
+		public RuleCall getFinalsentenceSTRINGTerminalRuleCall_3_1_0() { return cFinalsentenceSTRINGTerminalRuleCall_3_1_0; }
 		
 		//('ForwardSpeed:' forwardspeed=Integer)?
-		public Group getGroup_7() { return cGroup_7; }
+		public Group getGroup_4() { return cGroup_4; }
 		
 		//'ForwardSpeed:'
-		public Keyword getForwardSpeedKeyword_7_0() { return cForwardSpeedKeyword_7_0; }
+		public Keyword getForwardSpeedKeyword_4_0() { return cForwardSpeedKeyword_4_0; }
 		
 		//forwardspeed=Integer
-		public Assignment getForwardspeedAssignment_7_1() { return cForwardspeedAssignment_7_1; }
+		public Assignment getForwardspeedAssignment_4_1() { return cForwardspeedAssignment_4_1; }
 		
 		//Integer
-		public RuleCall getForwardspeedIntegerParserRuleCall_7_1_0() { return cForwardspeedIntegerParserRuleCall_7_1_0; }
+		public RuleCall getForwardspeedIntegerParserRuleCall_4_1_0() { return cForwardspeedIntegerParserRuleCall_4_1_0; }
 		
 		//('ReverseSpeed:' reversespeed=Integer)?
-		public Group getGroup_8() { return cGroup_8; }
+		public Group getGroup_5() { return cGroup_5; }
 		
 		//'ReverseSpeed:'
-		public Keyword getReverseSpeedKeyword_8_0() { return cReverseSpeedKeyword_8_0; }
+		public Keyword getReverseSpeedKeyword_5_0() { return cReverseSpeedKeyword_5_0; }
 		
 		//reversespeed=Integer
-		public Assignment getReversespeedAssignment_8_1() { return cReversespeedAssignment_8_1; }
+		public Assignment getReversespeedAssignment_5_1() { return cReversespeedAssignment_5_1; }
 		
 		//Integer
-		public RuleCall getReversespeedIntegerParserRuleCall_8_1_0() { return cReversespeedIntegerParserRuleCall_8_1_0; }
+		public RuleCall getReversespeedIntegerParserRuleCall_5_1_0() { return cReversespeedIntegerParserRuleCall_5_1_0; }
 		
 		//('TurnDirection:' turndirection=Integer)?
-		public Group getGroup_9() { return cGroup_9; }
+		public Group getGroup_6() { return cGroup_6; }
 		
 		//'TurnDirection:'
-		public Keyword getTurnDirectionKeyword_9_0() { return cTurnDirectionKeyword_9_0; }
+		public Keyword getTurnDirectionKeyword_6_0() { return cTurnDirectionKeyword_6_0; }
 		
 		//turndirection=Integer
-		public Assignment getTurndirectionAssignment_9_1() { return cTurndirectionAssignment_9_1; }
+		public Assignment getTurndirectionAssignment_6_1() { return cTurndirectionAssignment_6_1; }
 		
 		//Integer
-		public RuleCall getTurndirectionIntegerParserRuleCall_9_1_0() { return cTurndirectionIntegerParserRuleCall_9_1_0; }
+		public RuleCall getTurndirectionIntegerParserRuleCall_6_1_0() { return cTurndirectionIntegerParserRuleCall_6_1_0; }
 		
-		//('Colors:' colorlist+=Colors*)?
+		//('Safety:' safetyproperty=Safety)?
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//'Safety:'
+		public Keyword getSafetyKeyword_7_0() { return cSafetyKeyword_7_0; }
+		
+		//safetyproperty=Safety
+		public Assignment getSafetypropertyAssignment_7_1() { return cSafetypropertyAssignment_7_1; }
+		
+		//Safety
+		public RuleCall getSafetypropertySafetyEnumRuleCall_7_1_0() { return cSafetypropertySafetyEnumRuleCall_7_1_0; }
+		
+		//('AvoidObjects:' objectdistance=Integer)?
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//'AvoidObjects:'
+		public Keyword getAvoidObjectsKeyword_8_0() { return cAvoidObjectsKeyword_8_0; }
+		
+		//objectdistance=Integer
+		public Assignment getObjectdistanceAssignment_8_1() { return cObjectdistanceAssignment_8_1; }
+		
+		//Integer
+		public RuleCall getObjectdistanceIntegerParserRuleCall_8_1_0() { return cObjectdistanceIntegerParserRuleCall_8_1_0; }
+		
+		//('OuterBorder:' bordercolor=Color)?
+		public Group getGroup_9() { return cGroup_9; }
+		
+		//'OuterBorder:'
+		public Keyword getOuterBorderKeyword_9_0() { return cOuterBorderKeyword_9_0; }
+		
+		//bordercolor=Color
+		public Assignment getBordercolorAssignment_9_1() { return cBordercolorAssignment_9_1; }
+		
+		//Color
+		public RuleCall getBordercolorColorParserRuleCall_9_1_0() { return cBordercolorColorParserRuleCall_9_1_0; }
+		
+		//('LakeColors:' lakelist+=Colors*)?
 		public Group getGroup_10() { return cGroup_10; }
 		
-		//'Colors:'
-		public Keyword getColorsKeyword_10_0() { return cColorsKeyword_10_0; }
+		//'LakeColors:'
+		public Keyword getLakeColorsKeyword_10_0() { return cLakeColorsKeyword_10_0; }
 		
-		//colorlist+=Colors*
-		public Assignment getColorlistAssignment_10_1() { return cColorlistAssignment_10_1; }
+		//lakelist+=Colors*
+		public Assignment getLakelistAssignment_10_1() { return cLakelistAssignment_10_1; }
 		
 		//Colors
-		public RuleCall getColorlistColorsEnumRuleCall_10_1_0() { return cColorlistColorsEnumRuleCall_10_1_0; }
+		public RuleCall getLakelistColorsEnumRuleCall_10_1_0() { return cLakelistColorsEnumRuleCall_10_1_0; }
 		
-		////('Sensors:' sensorlist += Sensors*)?
-		//'End:'
-		public Keyword getEndKeyword_11() { return cEndKeyword_11; }
+		//('Colors:' colorlist+=Colors*)?
+		public Group getGroup_11() { return cGroup_11; }
 		
-		//terminationcondition=STRING
-		public Assignment getTerminationconditionAssignment_12() { return cTerminationconditionAssignment_12; }
+		//'Colors:'
+		public Keyword getColorsKeyword_11_0() { return cColorsKeyword_11_0; }
 		
-		//STRING
-		public RuleCall getTerminationconditionSTRINGTerminalRuleCall_12_0() { return cTerminationconditionSTRINGTerminalRuleCall_12_0; }
+		//colorlist+=Colors*
+		public Assignment getColorlistAssignment_11_1() { return cColorlistAssignment_11_1; }
+		
+		//Colors
+		public RuleCall getColorlistColorsEnumRuleCall_11_1_0() { return cColorlistColorsEnumRuleCall_11_1_0; }
+		
+		//('MeasurementColors:' measurelist+=Colors*)?
+		public Group getGroup_12() { return cGroup_12; }
+		
+		//'MeasurementColors:'
+		public Keyword getMeasurementColorsKeyword_12_0() { return cMeasurementColorsKeyword_12_0; }
+		
+		//measurelist+=Colors*
+		public Assignment getMeasurelistAssignment_12_1() { return cMeasurelistAssignment_12_1; }
+		
+		//Colors
+		public RuleCall getMeasurelistColorsEnumRuleCall_12_1_0() { return cMeasurelistColorsEnumRuleCall_12_1_0; }
 		
 		//('FlashingColor:' flashingcolor=Color)?
 		public Group getGroup_13() { return cGroup_13; }
@@ -234,24 +270,27 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Color
 		public RuleCall getFlashingcolorColorParserRuleCall_13_1_0() { return cFlashingcolorColorParserRuleCall_13_1_0; }
 		
-		//('FinalSentence:' finalsentence=STRING)?
+		//('Timeout:' timeout=Integer)?
 		public Group getGroup_14() { return cGroup_14; }
 		
-		//'FinalSentence:'
-		public Keyword getFinalSentenceKeyword_14_0() { return cFinalSentenceKeyword_14_0; }
+		//'Timeout:'
+		public Keyword getTimeoutKeyword_14_0() { return cTimeoutKeyword_14_0; }
 		
-		//finalsentence=STRING
-		public Assignment getFinalsentenceAssignment_14_1() { return cFinalsentenceAssignment_14_1; }
+		//timeout=Integer
+		public Assignment getTimeoutAssignment_14_1() { return cTimeoutAssignment_14_1; }
 		
-		//STRING
-		public RuleCall getFinalsentenceSTRINGTerminalRuleCall_14_1_0() { return cFinalsentenceSTRINGTerminalRuleCall_14_1_0; }
+		//Integer
+		public RuleCall getTimeoutIntegerParserRuleCall_14_1_0() { return cTimeoutIntegerParserRuleCall_14_1_0; }
+		
+		//// Optional, default 120 (minimum 10)
+		//'End'
+		public Keyword getEndKeyword_15() { return cEndKeyword_15; }
 	}
 	public class IntegerElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Integer");
 		private final Assignment cIntegerAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cIntegerINTTerminalRuleCall_0 = (RuleCall)cIntegerAssignment.eContents().get(0);
 		
-		////Colors: color = STRING;
 		//Integer:
 		//	integer=INT;
 		@Override public ParserRule getRule() { return rule; }
@@ -267,7 +306,6 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Assignment cColorAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cColorColorsEnumRuleCall_0 = (RuleCall)cColorAssignment.eContents().get(0);
 		
-		////Sensors: sensor = STRING;
 		//Color:
 		//	color=Colors;
 		@Override public ParserRule getRule() { return rule; }
@@ -282,29 +320,37 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	public class MissionTypeElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.MissionType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cAvoidColorsEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cAvoidColorsAvoidColorsKeyword_0_0 = (Keyword)cAvoidColorsEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cFindColorsEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cFindColorsFindColorsKeyword_1_0 = (Keyword)cFindColorsEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cFindColorsEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cFindColorsFindColorsKeyword_0_0 = (Keyword)cFindColorsEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cMeasureEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cMeasureMeasureKeyword_1_0 = (Keyword)cMeasureEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cParkEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cParkParkKeyword_2_0 = (Keyword)cParkEnumLiteralDeclaration_2.eContents().get(0);
 		
 		//enum MissionType:
-		//	AvoidColors | FindColors;
+		//	FindColors | Measure | Park;
 		public EnumRule getRule() { return rule; }
 		
-		//AvoidColors | FindColors
+		//FindColors | Measure | Park
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//AvoidColors
-		public EnumLiteralDeclaration getAvoidColorsEnumLiteralDeclaration_0() { return cAvoidColorsEnumLiteralDeclaration_0; }
-		
-		//"AvoidColors"
-		public Keyword getAvoidColorsAvoidColorsKeyword_0_0() { return cAvoidColorsAvoidColorsKeyword_0_0; }
-		
 		//FindColors
-		public EnumLiteralDeclaration getFindColorsEnumLiteralDeclaration_1() { return cFindColorsEnumLiteralDeclaration_1; }
+		public EnumLiteralDeclaration getFindColorsEnumLiteralDeclaration_0() { return cFindColorsEnumLiteralDeclaration_0; }
 		
 		//"FindColors"
-		public Keyword getFindColorsFindColorsKeyword_1_0() { return cFindColorsFindColorsKeyword_1_0; }
+		public Keyword getFindColorsFindColorsKeyword_0_0() { return cFindColorsFindColorsKeyword_0_0; }
+		
+		//Measure
+		public EnumLiteralDeclaration getMeasureEnumLiteralDeclaration_1() { return cMeasureEnumLiteralDeclaration_1; }
+		
+		//"Measure"
+		public Keyword getMeasureMeasureKeyword_1_0() { return cMeasureMeasureKeyword_1_0; }
+		
+		//Park
+		public EnumLiteralDeclaration getParkEnumLiteralDeclaration_2() { return cParkEnumLiteralDeclaration_2; }
+		
+		//"Park"
+		public Keyword getParkParkKeyword_2_0() { return cParkParkKeyword_2_0; }
 	}
 	public class ColorsElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "mars.rover.RoverDSL.Colors");
@@ -385,12 +431,13 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		public Keyword getOffOffKeyword_1_0() { return cOffOffKeyword_1_0; }
 	}
 	
+	private final TasksElements pTasks;
 	private final MissionElements pMission;
 	private final MissionTypeElements eMissionType;
-	private final IntegerElements pInteger;
-	private final ColorElements pColor;
 	private final ColorsElements eColors;
 	private final SafetyElements eSafety;
+	private final IntegerElements pInteger;
+	private final ColorElements pColor;
 	
 	private final Grammar grammar;
 	
@@ -401,12 +448,13 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
+		this.pTasks = new TasksElements();
 		this.pMission = new MissionElements();
 		this.eMissionType = new MissionTypeElements();
-		this.pInteger = new IntegerElements();
-		this.pColor = new ColorElements();
 		this.eColors = new ColorsElements();
 		this.eSafety = new SafetyElements();
+		this.pInteger = new IntegerElements();
+		this.pColor = new ColorElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -436,13 +484,23 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 
 	
+	//Tasks:
+	//	missionlist+=Mission+;
+	public TasksElements getTasksAccess() {
+		return pTasks;
+	}
+	
+	public ParserRule getTasksRule() {
+		return getTasksAccess().getRule();
+	}
+	
 	//Mission:
-	//	'Mission:' missiontype=MissionType ('Safety:' safetyproperty=Safety)? ('LakeColors:' lakelist+=Colors*)?
-	//	('AvoidObjects:' objectdistance=Integer)? ('BeginSentence:' beginsentence=STRING)? ('OuterBorder:'
-	//	bordercolor=Color)? ('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
-	//	turndirection=Integer)? ('Colors:' colorlist+=Colors*)?
-	//	//('Sensors:' sensorlist += Sensors*)?
-	//	'End:' terminationcondition=STRING ('FlashingColor:' flashingcolor=Color)? ('FinalSentence:' finalsentence=STRING)? // For robot to say when mission is done. Maybe change final sentence to song? (validate options) Optional, default white
+	//	'Mission:' missiontype=MissionType ('BeginSentence:' beginsentence=STRING)? ('FinalSentence:' finalsentence=STRING)?
+	//	('ForwardSpeed:' forwardspeed=Integer)? ('ReverseSpeed:' reversespeed=Integer)? ('TurnDirection:'
+	//	turndirection=Integer)? ('Safety:' safetyproperty=Safety)? ('AvoidObjects:' objectdistance=Integer)? ('OuterBorder:'
+	//	bordercolor=Color)? ('LakeColors:' lakelist+=Colors*)? ('Colors:' colorlist+=Colors*)? ('MeasurementColors:'
+	//	measurelist+=Colors*)? ('FlashingColor:' flashingcolor=Color)? ('Timeout:' timeout=Integer)? // Optional, default 120 (minimum 10)
+	//	'End' // add validation for types of termination values (based on mission)
 	//;
 	public MissionElements getMissionAccess() {
 		return pMission;
@@ -453,35 +511,13 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//enum MissionType:
-	//	AvoidColors | FindColors;
+	//	FindColors | Measure | Park;
 	public MissionTypeElements getMissionTypeAccess() {
 		return eMissionType;
 	}
 	
 	public EnumRule getMissionTypeRule() {
 		return getMissionTypeAccess().getRule();
-	}
-	
-	////Colors: color = STRING;
-	//Integer:
-	//	integer=INT;
-	public IntegerElements getIntegerAccess() {
-		return pInteger;
-	}
-	
-	public ParserRule getIntegerRule() {
-		return getIntegerAccess().getRule();
-	}
-	
-	////Sensors: sensor = STRING;
-	//Color:
-	//	color=Colors;
-	public ColorElements getColorAccess() {
-		return pColor;
-	}
-	
-	public ParserRule getColorRule() {
-		return getColorAccess().getRule();
 	}
 	
 	//enum Colors:
@@ -502,6 +538,26 @@ public class RoverDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public EnumRule getSafetyRule() {
 		return getSafetyAccess().getRule();
+	}
+	
+	//Integer:
+	//	integer=INT;
+	public IntegerElements getIntegerAccess() {
+		return pInteger;
+	}
+	
+	public ParserRule getIntegerRule() {
+		return getIntegerAccess().getRule();
+	}
+	
+	//Color:
+	//	color=Colors;
+	public ColorElements getColorAccess() {
+		return pColor;
+	}
+	
+	public ParserRule getColorRule() {
+		return getColorAccess().getRule();
 	}
 	
 	//terminal ID:

@@ -20,14 +20,16 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected RoverDSLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Mission_ColorsKeyword_10_0_q;
-	protected AbstractElementAlias match_Mission_LakeColorsKeyword_3_0_q;
+	protected AbstractElementAlias match_Mission_ColorsKeyword_11_0_q;
+	protected AbstractElementAlias match_Mission_LakeColorsKeyword_10_0_q;
+	protected AbstractElementAlias match_Mission_MeasurementColorsKeyword_12_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (RoverDSLGrammarAccess) access;
-		match_Mission_ColorsKeyword_10_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_10_0());
-		match_Mission_LakeColorsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getLakeColorsKeyword_3_0());
+		match_Mission_ColorsKeyword_11_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getColorsKeyword_11_0());
+		match_Mission_LakeColorsKeyword_10_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getLakeColorsKeyword_10_0());
+		match_Mission_MeasurementColorsKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getMissionAccess().getMeasurementColorsKeyword_12_0());
 	}
 	
 	@Override
@@ -42,10 +44,12 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Mission_ColorsKeyword_10_0_q.equals(syntax))
-				emit_Mission_ColorsKeyword_10_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Mission_LakeColorsKeyword_3_0_q.equals(syntax))
-				emit_Mission_LakeColorsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Mission_ColorsKeyword_11_0_q.equals(syntax))
+				emit_Mission_ColorsKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Mission_LakeColorsKeyword_10_0_q.equals(syntax))
+				emit_Mission_LakeColorsKeyword_10_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Mission_MeasurementColorsKeyword_12_0_q.equals(syntax))
+				emit_Mission_MeasurementColorsKeyword_12_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -55,17 +59,48 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Colors:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     beginsentence=STRING (ambiguity) 'End:' terminationcondition=STRING
-	 *     bordercolor=Color (ambiguity) 'End:' terminationcondition=STRING
-	 *     forwardspeed=Integer (ambiguity) 'End:' terminationcondition=STRING
-	 *     lakelist+=Colors (ambiguity) 'End:' terminationcondition=STRING
-	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     objectdistance=Integer (ambiguity) 'End:' terminationcondition=STRING
-	 *     reversespeed=Integer (ambiguity) 'End:' terminationcondition=STRING
-	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'End:' terminationcondition=STRING
-	 *     turndirection=Integer (ambiguity) 'End:' terminationcondition=STRING
+	 *     beginsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     beginsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     beginsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     beginsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     bordercolor=Color 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     bordercolor=Color 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     bordercolor=Color 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     bordercolor=Color 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     finalsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     finalsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     finalsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     finalsentence=STRING 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     forwardspeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     forwardspeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     forwardspeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     forwardspeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     lakelist+=Colors (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     lakelist+=Colors (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     lakelist+=Colors (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     lakelist+=Colors (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     missiontype=MissionType 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     objectdistance=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     objectdistance=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     objectdistance=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     objectdistance=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     reversespeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     reversespeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     reversespeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     reversespeed=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     safetyproperty=Safety 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     turndirection=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:' measurelist+=Colors
+	 *     turndirection=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'End' (rule end)
+	 *     turndirection=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     turndirection=Integer 'LakeColors:'? (ambiguity) 'MeasurementColors:'? 'Timeout:' timeout=Integer
 	 */
-	protected void emit_Mission_ColorsKeyword_10_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_ColorsKeyword_11_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -74,24 +109,96 @@ public class RoverDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'LakeColors:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     missiontype=MissionType (ambiguity) 'AvoidObjects:' objectdistance=Integer
-	 *     missiontype=MissionType (ambiguity) 'BeginSentence:' beginsentence=STRING
+	 *     beginsentence=STRING (ambiguity) 'Colors:' colorlist+=Colors
+	 *     beginsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     beginsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     beginsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     beginsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     bordercolor=Color (ambiguity) 'Colors:' colorlist+=Colors
+	 *     bordercolor=Color (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     bordercolor=Color (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     bordercolor=Color (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     bordercolor=Color (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     finalsentence=STRING (ambiguity) 'Colors:' colorlist+=Colors
+	 *     finalsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     finalsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     finalsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     finalsentence=STRING (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     forwardspeed=Integer (ambiguity) 'Colors:' colorlist+=Colors
+	 *     forwardspeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     forwardspeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     forwardspeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     forwardspeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
 	 *     missiontype=MissionType (ambiguity) 'Colors:' colorlist+=Colors
-	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
-	 *     missiontype=MissionType (ambiguity) 'ForwardSpeed:' forwardspeed=Integer
-	 *     missiontype=MissionType (ambiguity) 'OuterBorder:' bordercolor=Color
-	 *     missiontype=MissionType (ambiguity) 'ReverseSpeed:' reversespeed=Integer
-	 *     missiontype=MissionType (ambiguity) 'TurnDirection:' turndirection=Integer
-	 *     safetyproperty=Safety (ambiguity) 'AvoidObjects:' objectdistance=Integer
-	 *     safetyproperty=Safety (ambiguity) 'BeginSentence:' beginsentence=STRING
+	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     missiontype=MissionType (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     objectdistance=Integer (ambiguity) 'Colors:' colorlist+=Colors
+	 *     objectdistance=Integer (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     objectdistance=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     objectdistance=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     objectdistance=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     reversespeed=Integer (ambiguity) 'Colors:' colorlist+=Colors
+	 *     reversespeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     reversespeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     reversespeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     reversespeed=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
 	 *     safetyproperty=Safety (ambiguity) 'Colors:' colorlist+=Colors
-	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'End:' terminationcondition=STRING
-	 *     safetyproperty=Safety (ambiguity) 'ForwardSpeed:' forwardspeed=Integer
-	 *     safetyproperty=Safety (ambiguity) 'OuterBorder:' bordercolor=Color
-	 *     safetyproperty=Safety (ambiguity) 'ReverseSpeed:' reversespeed=Integer
-	 *     safetyproperty=Safety (ambiguity) 'TurnDirection:' turndirection=Integer
+	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     safetyproperty=Safety (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
+	 *     turndirection=Integer (ambiguity) 'Colors:' colorlist+=Colors
+	 *     turndirection=Integer (ambiguity) 'Colors:'? 'MeasurementColors:' measurelist+=Colors
+	 *     turndirection=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'End' (rule end)
+	 *     turndirection=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'FlashingColor:' flashingcolor=Color
+	 *     turndirection=Integer (ambiguity) 'Colors:'? 'MeasurementColors:'? 'Timeout:' timeout=Integer
 	 */
-	protected void emit_Mission_LakeColorsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Mission_LakeColorsKeyword_10_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'MeasurementColors:'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     beginsentence=STRING 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     beginsentence=STRING 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     beginsentence=STRING 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     bordercolor=Color 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     bordercolor=Color 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     bordercolor=Color 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     colorlist+=Colors (ambiguity) 'End' (rule end)
+	 *     colorlist+=Colors (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     colorlist+=Colors (ambiguity) 'Timeout:' timeout=Integer
+	 *     finalsentence=STRING 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     finalsentence=STRING 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     finalsentence=STRING 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     forwardspeed=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     forwardspeed=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     forwardspeed=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     lakelist+=Colors 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     lakelist+=Colors 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     lakelist+=Colors 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     missiontype=MissionType 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     missiontype=MissionType 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     missiontype=MissionType 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     objectdistance=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     objectdistance=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     objectdistance=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     reversespeed=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     reversespeed=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     reversespeed=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     safetyproperty=Safety 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     safetyproperty=Safety 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     safetyproperty=Safety 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 *     turndirection=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'End' (rule end)
+	 *     turndirection=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'FlashingColor:' flashingcolor=Color
+	 *     turndirection=Integer 'LakeColors:'? 'Colors:'? (ambiguity) 'Timeout:' timeout=Integer
+	 */
+	protected void emit_Mission_MeasurementColorsKeyword_12_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

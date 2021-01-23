@@ -8,6 +8,7 @@ import java.util.Set;
 import mars.rover.roverDSL.Color;
 import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.RoverDSLPackage;
+import mars.rover.roverDSL.Tasks;
 import mars.rover.services.RoverDSLGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -41,6 +42,9 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case RoverDSLPackage.MISSION:
 				sequence_Mission(context, (Mission) semanticObject); 
+				return; 
+			case RoverDSLPackage.TASKS:
+				sequence_Tasks(context, (Tasks) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -90,21 +94,34 @@ public class RoverDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * Constraint:
 	 *     (
 	 *         missiontype=MissionType 
-	 *         safetyproperty=Safety? 
-	 *         lakelist+=Colors* 
-	 *         objectdistance=Integer? 
 	 *         beginsentence=STRING? 
-	 *         bordercolor=Color? 
+	 *         finalsentence=STRING? 
 	 *         forwardspeed=Integer? 
 	 *         reversespeed=Integer? 
 	 *         turndirection=Integer? 
+	 *         safetyproperty=Safety? 
+	 *         objectdistance=Integer? 
+	 *         bordercolor=Color? 
+	 *         lakelist+=Colors* 
 	 *         colorlist+=Colors* 
-	 *         terminationcondition=STRING 
+	 *         measurelist+=Colors* 
 	 *         flashingcolor=Color? 
-	 *         finalsentence=STRING?
+	 *         timeout=Integer?
 	 *     )
 	 */
 	protected void sequence_Mission(ISerializationContext context, Mission semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Tasks returns Tasks
+	 *
+	 * Constraint:
+	 *     missionlist+=Mission+
+	 */
+	protected void sequence_Tasks(ISerializationContext context, Tasks semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

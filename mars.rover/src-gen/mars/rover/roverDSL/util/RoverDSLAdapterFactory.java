@@ -6,6 +6,7 @@ package mars.rover.roverDSL.util;
 import mars.rover.roverDSL.Color;
 import mars.rover.roverDSL.Mission;
 import mars.rover.roverDSL.RoverDSLPackage;
+import mars.rover.roverDSL.Tasks;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -78,6 +79,11 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
     new RoverDSLSwitch<Adapter>()
     {
       @Override
+      public Adapter caseTasks(Tasks object)
+      {
+        return createTasksAdapter();
+      }
+      @Override
       public Adapter caseMission(Mission object)
       {
         return createMissionAdapter();
@@ -113,6 +119,21 @@ public class RoverDSLAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
+
+  /**
+   * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Tasks <em>Tasks</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see mars.rover.roverDSL.Tasks
+   * @generated
+   */
+  public Adapter createTasksAdapter()
+  {
+    return null;
+  }
 
   /**
    * Creates a new adapter for an object of class '{@link mars.rover.roverDSL.Mission <em>Mission</em>}'.
